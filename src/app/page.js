@@ -1,3 +1,7 @@
+import HomeSlider from "./components/HomePage/HomeSlider";
+
 export default function App() {
-  return <div className="flex flex-col gap-4"></div>;
+  return (
+    <HomeSlider/>
+  );
 }
