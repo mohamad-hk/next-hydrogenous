@@ -1,29 +1,3 @@
-import { Checkbox } from "@heroui/react";
-
 export default function App() {
-  return (
-    <div className="flex flex-col gap-4">
-      <Checkbox defaultSelected size="sm">
-        Small
-      </Checkbox>
-      <Checkbox defaultSelected size="md">
-        Medium
-      </Checkbox>
-      <Checkbox defaultSelected size="lg">
-        Large
-      </Checkbox>{" "}
-      <Checkbox defaultSelected size="lg">
-        Large
-      </Checkbox>{" "}
-      <Checkbox defaultSelected size="lg">
-        Large
-      </Checkbox>{" "}
-      <Checkbox defaultSelected size="lg">
-        Large
-      </Checkbox>{" "}
-      <Checkbox defaultSelected size="lg">
-        Large
-      </Checkbox>
-    </div>
-  );
+  return <div className="flex flex-col gap-4"></div>;
 }
