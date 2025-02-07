@@ -59,7 +59,7 @@ const Footer = () => {
         </nav>
         <nav>
           <Image
-            src="/images/enamad.png"
+            src="/images/statics/enamad.png"
             width={150}
             height={150}
             alt="image not found"
@@ -67,7 +67,7 @@ const Footer = () => {
         </nav>
         <nav>
           <Image
-            src="/images/book.webp"
+            src="/images/statics/book.webp"
             width={160}
             height={160}
             alt="image not found"
