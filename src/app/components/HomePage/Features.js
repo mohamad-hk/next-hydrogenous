@@ -1,5 +1,5 @@
 const Features = async () => {
-  const response = await fetch("/api/GetFeatures");
+  const response = await fetch("https://smyowokinmmgmemhoqtl.supabase.co/api/Get/GetFeatures");
   const features = await response.json();
 
   return (
