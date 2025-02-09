@@ -1,5 +1,5 @@
 const Features = async () => {
-  const baseUrl = "https://smyowokinmmgmemhoqtl.supabase.co";
+  const baseUrl ="http://localhost:3000" ||process.env.hydrogenous_NEXT_PUBLIC_SUPABASE_URL;
   const response = await fetch(`${baseUrl}/api/GetFeatures`, {
     cache: "no-store",
   });
