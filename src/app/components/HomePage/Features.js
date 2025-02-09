@@ -1,9 +1,10 @@
 const Features = async () => {
-  const response = await fetch("https://hydrogenous.vercel.app/api/GetFeatures");
-  console.log(response)
+  const NEXT_PUBLIC_SITE_URL = "https://hydrogenous.vercel.app/";
+  const response = await fetch(`${NEXT_PUBLIC_SITE_URL}/api/GetFeatures`);
+  console.log(response);
   if (!response.ok) throw new Error("Failed to fetch features");
 
   const features = await response.json();
-  console.log(features);
+  //   console.log(features);
 };
 export default Features;
