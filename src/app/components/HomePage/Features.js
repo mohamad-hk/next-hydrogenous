@@ -13,9 +13,9 @@ const Features = async () => {
       <h2>Features</h2>
       {features.length > 0 ? (
         features.map((feature) => (
-          <div key={feature.customer_id}>
-            <h3>{feature.first_name}</h3>
-            <p>{feature.last_name}</p>
+          <div key={feature.feature_id}>
+            <h3>{feature.feature_hading}</h3>
+            <p>{feature.feature_content}</p>
           </div>
         ))
       ) : (
