@@ -1,12 +1,9 @@
 const Features = async () => {
-  const response = await fetch("https://smyowokinmmgmemhoqtl.supabase.co/api/Get/GetFeatures");
-  const features = await response.json();
+  const response = await fetch("https://hydrogenous.vercel.app/api/GetFeatures");
+  console.log(response)
+  if (!response.ok) throw new Error("Failed to fetch features");
 
-  return (
-    <div>
-      <h2>Features</h2>
-      {JSON.stringify(features, null, 2)}
-    </div>
-  );
+  const features = await response.json();
+  console.log(features);
 };
 export default Features;
