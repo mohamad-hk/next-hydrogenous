@@ -1,11 +1,8 @@
-const Features = async () => {
-  const baseUrl = process.env.hydrogenous_NEXT_PUBLIC_SUPABASE_URL || "http://localhost:3000";
-  const response = await fetch(`${baseUrl}/api/GetFeatures`, {
-    cache: "no-store",
-  });
+const baseUrl =
+  process.env.hydrogenous_NEXT_PUBLIC_SUPABASE_URL ||
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "http://localhost:3000";
 
-  if (!response.ok) throw new Error("Failed to fetch features");
-
-  const features = await response.json();
-};
-export default Features;
+const response = await fetch(`${baseUrl}/api/GetFeatures`, {
+  cache: "no-store",
+});
