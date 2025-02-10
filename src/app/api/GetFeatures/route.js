@@ -8,7 +8,6 @@ export async function GET() {
 
     return Response.json(tbl_customer, { status: 200 });
   } catch (err) {
-    console.error("Error:", err.message); // چاپ خطای کلی
     return Response.json({ error: err.message }, { status: 500 });
   }
 }
