@@ -1,0 +1,24 @@
+import { supabase } from "@/app/utils/client";
+
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
+  let category = searchParams.get("category");
+  if (category == "ساشه") {
+    category = "2";
+  } else if (category == "پودر") {
+    category = "1";
+  } else {
+    category = null;
+  }
+  try {
+    let { data: products, error } = await supabase
+      .from("tbl_products")
+      .select(
+        "product_name,product_price,discount_percent,discount_price,product_photo"
+      )
+      .eq("t_category_id", category);
+    return Response.json(products, { status: 200 });
+  } catch (error) {
+    return Response.json({ error: error.message }, { status: 500 });
+  }
+}

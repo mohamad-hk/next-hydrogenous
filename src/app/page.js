@@ -1,4 +1,5 @@
 import Features from "./components/HomePage/Features";
+import GetProducts from "./components/HomePage/GetProducts";
 import HomeSlider from "./components/HomePage/HomeSlider";
 
 export default function App() {
@@ -6,6 +7,8 @@ export default function App() {
     <>
       <HomeSlider />
       <Features />
+      <GetProducts category={"ساشه"} />
+      <GetProducts category={"پودر"}/>
     </>
   );
 }
