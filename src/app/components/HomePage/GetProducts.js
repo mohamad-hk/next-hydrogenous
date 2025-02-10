@@ -5,7 +5,7 @@ const GetProducts = async ({ category }) => {
     category: category,
   });
   const response = await fetch(
-    `http://localhost:3000/api/GetProducts?${params}`
+    `https://hydrogenous.vercel.app/api/GetProducts?${params}`
   );
   const products = await response.json();
   return (
