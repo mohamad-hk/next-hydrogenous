@@ -4,13 +4,13 @@ export async function GET(req) {
   const { searchParams } = new URL(req.url);
   let category = searchParams.get("category");
   if (category == "ساشه") {
-    category = "2";
+    category = 2;
   } else if (category == "پودر") {
-    category = "1";
+    category = 1;
   } else {
     category = null;
   }
-  if (category != null) {
+  if (category == 1 || category == 2) {
     try {
       let { data: products, error } = await supabase
         .from("tbl_products")

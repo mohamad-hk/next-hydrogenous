@@ -1,6 +1,6 @@
 const Features = async () => {
   const response = await fetch(
-    "https://hydrogenous.vercel.app/api/GetFeatures",
+    `https://hydrogenous.vercel.app/api/GetFeatures`,
     {
       cache: "no-store",
     }
