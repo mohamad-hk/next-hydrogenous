@@ -5,18 +5,18 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
+import PersianNumbers from "@/app/utils/ToPersianNumber";
+import { Button } from "@heroui/react";
 const ProductSlider = ({ products }) => {
   return (
     <>
       <Swiper
         modules={[Autoplay]}
-        slidesPerView={6}
-        spaceBetween={30}
         loop={true}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 3000,
+        //   disableOnInteraction: false,
+        // }}
         breakpoints={{
           300: {
             slidesPerView: 1,
@@ -36,7 +36,7 @@ const ProductSlider = ({ products }) => {
           },
           1200: {
             slidesPerView: 5,
-            spaceBetween: 50,
+            spaceBetween: 30,
           },
         }}
         className="h-[500px]"
@@ -44,14 +44,23 @@ const ProductSlider = ({ products }) => {
         {products.map((product, index) => {
           return (
             <SwiperSlide key={index}>
-              <div>
+              <div className="bg-[#f5f7fb] rounded-2xl lg:h-[400px]">
                 <Image
                   width={350}
                   height={350}
                   src={`/images/products/${product.product_photo}`}
                 />
-                <h3>{product.product_name}</h3>
-                <p>{product.product_price}</p>
+                <div className="flex flex-col items-center gap-5">
+                  <h3 className="">{product.product_name}</h3>
+                  <div className="flex flex-row gap-2 text-xl">
+                    <p>{PersianNumbers(product.product_price)}</p>
+                    <p>تومان</p>
+                  </div>
+
+                  <Button className="w-[50%]" color="primary" variant="ghost">
+                    افزودن به سبد
+                  </Button>
+                </div>
               </div>
             </SwiperSlide>
           );
