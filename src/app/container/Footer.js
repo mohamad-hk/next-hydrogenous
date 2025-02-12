@@ -9,8 +9,8 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <>
-      <footer className=" flex flex-row justify-between py-5 px-5 bg-gradient-to-r from-[#3a6073] to-[#3a7bd5]">
-        <nav>
+      <footer className=" grid grid-cols-1 gap-y-5 sm:grid-cols-3 lg:gap-x-4  lg:grid-cols-5  py-5 px-5 bg-gradient-to-r from-[#3a6073] to-[#3a7bd5]">
+        <nav className=" flex flex-col items-center sm:items-start">
           <div className="flex flex-row gap-3">
             <PhoneIcon />
             <p className="text-white">تلفن:</p>
@@ -29,7 +29,7 @@ const Footer = () => {
             <LinkedInIcon className="text-gray-100" />
           </div>
         </nav>
-        <nav>
+        <nav className=" flex flex-col items-center">
           <strong className=" text-white text-lg ">خدمات مشتریان</strong>
           <div className="flex flex-col gap-3 mt-4">
             <Link className="text-gray-200 font-semibold" href={"#"}>
@@ -46,7 +46,7 @@ const Footer = () => {
             </Link>
           </div>
         </nav>
-        <nav>
+        <nav className=" flex flex-col items-center">
           <strong className="text-white text-lg">هیدروژنوس </strong>
           <div className="flex flex-col gap-3 mt-4">
             <Link className="text-gray-200 font-semibold" href={"#"}>
@@ -57,7 +57,7 @@ const Footer = () => {
             </Link>
           </div>
         </nav>
-        <nav>
+        <nav className=" flex flex-col items-center">
           <Image
             src="/images/statics/enamad.png"
             width={150}
@@ -65,7 +65,7 @@ const Footer = () => {
             alt="image not found"
           />
         </nav>
-        <nav>
+        <nav className=" flex flex-col items-center">
           <Image
             src="/images/statics/book.webp"
             width={160}
