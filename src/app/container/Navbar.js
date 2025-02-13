@@ -22,7 +22,7 @@ const Navigation = () => {
         </div>
         <div className="flex flex-row justify-end gap-3">
           <button className="border-1 border-blue-400 px-3 py-1 rounded-md">
-            <Link href={"#"}>
+            <Link href={"/login"}>
               <div className="flex flex-row gap-3">
                 <span className="border-1 border-y-0 border-s-0 pe-2">
                   ثبت نام
