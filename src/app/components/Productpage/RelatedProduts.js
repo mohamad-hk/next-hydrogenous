@@ -6,7 +6,7 @@ const RelatedProducts = async ({ m_category, t_category }) => {
     t_category: t_category,
   });
   const response = await fetch(
-    `http://localhost:3000/api/GetRealtedProducts?${params}`
+    `https://hydrogenous.vercel.app/api/GetRealtedProducts?${params}`
   );
   const products = await response.json();
   return <>{<ProductSlider products={products} />}</>;
