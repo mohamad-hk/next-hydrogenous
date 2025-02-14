@@ -7,19 +7,19 @@ import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import Link from "next/link";
-const ProductSlider = ({ products }) => {
-  const fixurl = (text) => {
-    return encodeURIComponent(text.trim().replace(/\s+/g, "-"));
-  };
+import fixurl from "@/app/utils/Fixurl";
+const ProductSlider = ({ products,category }) => {
+  
   return (
     <>
+    <h2 className="text-3xl mb-5">{category}</h2>
       <Swiper
         modules={[Autoplay]}
         loop={true}
-        // autoplay={{
-        //   delay: 3000,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         breakpoints={{
           300: {
             slidesPerView: 1,

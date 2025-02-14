@@ -1,6 +1,8 @@
 import Image from "next/image";
 import PersianNumbers from "../utils/ToPersianNumber";
 import { Button } from "@heroui/react";
+import Link from "next/link";
+import fixurl from "../utils/Fixurl";
 
 const ShowProducts = async () => {
   const response = await fetch(
@@ -20,12 +22,14 @@ const ShowProducts = async () => {
                 className="bg-[#f5f7fb] rounded-2xl lg:h-[400px] flex flex-col items-center gap-5 pb-3"
                 key={index}
               >
+                <Link href={`/product/${fixurl(product.product_name)}`}>
                 <Image
                   width={350}
                   height={350}
                   alt="image not found"
                   src={`/images/products/${product.product_photo}`}
-                />
+                  />
+                  </Link>
                 <h3 className="">{product.product_name}</h3>
                 <div className="flex flex-row gap-2 text-xl">
                   <p>{PersianNumbers(product.product_price)}</p>
