@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const Features = async () => {
   const response = await fetch(
     `https://hydrogenous.vercel.app/api/GetFeatures`,
@@ -47,10 +49,18 @@ const Features = async () => {
   return (
     <>
       <h2 className="text-center text-3xl lg:mb-10">چرا هیدروژنوس</h2>
-      <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2  sm:gap-y-10 sm:gap-x-10  lg:gap-y-10 lg:gap-x-40 lg:grid-cols-3 py-10">
+      <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2  sm:gap-y-10 sm:gap-x-10  lg:gap-y-10 lg:gap-x-24 lg:grid-cols-3 py-10">
         {features.map((feature, index) => (
           <div className={colors[index].color} key={feature.feature_id}>
-            <h2 className="text-xl mb-2">{feature.feature_heading}</h2>
+            <div className="flex flex-row justify-between items-center mt-4">
+              <h2 className="text-xl mb-2">{feature.feature_heading}</h2>
+              <Image
+                src={`/images/statics/${feature.feature_image}`}
+                width={60}
+                height={60}
+                alt="image not found"
+              />
+            </div>
             <p className="text-justify leading-8 text-[14px] py-5">
               {feature.feature_content}
             </p>
