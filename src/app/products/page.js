@@ -1,10 +1,10 @@
 import Image from "next/image";
 import PersianNumbers from "../utils/ToPersianNumber";
-import { Button } from "@heroui/react";
 import Link from "next/link";
 import fixurl from "../utils/Fixurl";
-
+import AddToCart from "../components/CartStore/AddToCart";
 const ShowProducts = async () => {
+
   const response = await fetch(
     `https://hydrogenous.vercel.app/api/GetProducts`,
     { cache: "no-store" }
@@ -23,22 +23,19 @@ const ShowProducts = async () => {
                 key={index}
               >
                 <Link href={`/product/${fixurl(product.product_name)}`}>
-                <Image
-                  width={350}
-                  height={350}
-                  alt="image not found"
-                  src={`/images/products/${product.product_photo}`}
+                  <Image
+                    width={350}
+                    height={350}
+                    alt="image not found"
+                    src={`/images/products/${product.product_photo}`}
                   />
-                  </Link>
+                </Link>
                 <h3 className="">{product.product_name}</h3>
                 <div className="flex flex-row gap-2 text-xl">
                   <p>{PersianNumbers(product.product_price)}</p>
                   <p>تومان</p>
                 </div>
-
-                <Button className="w-[50%]" color="primary" variant="ghost">
-                  افزودن به سبد
-                </Button>
+                <AddToCart product={product} />
               </div>
             );
           })}
