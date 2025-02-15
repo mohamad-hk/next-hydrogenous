@@ -2,11 +2,13 @@ import CalcPercent from "@/app/utils/CalcDiscountPercent";
 import { Button } from "@heroui/react";
 import Quantity from "./Qauantity";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
-const AddToCart = ({
+import AddToCart from "../CartStore/AddToCart";
+const AddToCartSection = ({
   product_name,
   price,
   discount_price,
   discount_percent,
+  product,
 }) => {
   return (
     <>
@@ -14,7 +16,9 @@ const AddToCart = ({
         <h1 className="text-2xl">{product_name}</h1>
         <div className="my-10">
           <p className="mb-3">{PersianNumbers(price)}</p>
-          {discount_price != null ? <p>{PersianNumbers(discount_price)}</p> : null}
+          {discount_price != null ? (
+            <p>{PersianNumbers(discount_price)}</p>
+          ) : null}
           {discount_percent != null ? (
             <p className="">
               <CalcPercent price={price} d_percent={discount_percent} />
@@ -22,9 +26,9 @@ const AddToCart = ({
           ) : null}
         </div>
         <Quantity />
-        <Button>افزودن به سبد</Button>
+          <AddToCart product={product}/>
       </div>
     </>
   );
 };
-export default AddToCart;
+export default AddToCartSection;

@@ -1,4 +1,4 @@
-import AddToCart from "@/app/components/Productpage/AddToCart";
+import AddToCartSection from "@/app/components/Productpage/AddToCart";
 import Details from "@/app/components/Productpage/Details";
 import ProductImage from "@/app/components/Productpage/ProductImage";
 import RelatedProducts from "@/app/components/Productpage/RelatedProduts";
@@ -24,11 +24,12 @@ const ShowProduct = async ({ params }) => {
         return (
           <>
             <div className="flex flex-row justify-center my-10 gap-x-80">
-              <AddToCart
+              <AddToCartSection
                 product_name={product.product_name}
                 price={product.product_price}
                 discount_price={product.discount_price}
                 discount_percent={product.discount_percent}
+                product={product}
               />
               <ProductImage image={product.product_photo} />
             </div>
