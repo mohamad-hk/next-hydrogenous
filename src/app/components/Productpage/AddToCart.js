@@ -1,5 +1,4 @@
 import CalcPercent from "@/app/utils/CalcDiscountPercent";
-import { Button } from "@heroui/react";
 import Quantity from "./Qauantity";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import AddToCart from "../CartStore/AddToCart";
@@ -26,7 +25,7 @@ const AddToCartSection = ({
           ) : null}
         </div>
         <Quantity />
-          <AddToCart product={product}/>
+        <AddToCart product={product} />
       </div>
     </>
   );

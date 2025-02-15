@@ -11,9 +11,9 @@ const Details = async ({ id }) => {
       {details?.map((detail) => {
         return (
           <>
-            <h2 className="text-3xl ">مشخصات</h2>
-            <div className="grid grid-cols-[200px_minmax(700px,_1fr)_400px]  my-8">
-              <div className="flex flex-col gap-10">
+            <h2 className="text-3xl my-5 px-10">مشخصات</h2>
+            <div className="grid grid-cols-[200px_minmax(700px,_1fr)_400px] bg-slate-200 shadow-lg p-2 ">
+              <div className="flex flex-col gap-10 ">
                 <h3 className="pb-2">محتویات</h3>
                 <h3 className="pb-2">روش مصرف</h3>
                 <h3 className="pb-2">تعداد</h3>

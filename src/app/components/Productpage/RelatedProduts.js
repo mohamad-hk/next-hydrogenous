@@ -9,6 +9,9 @@ const RelatedProducts = async ({ m_category, t_category }) => {
     `https://hydrogenous.vercel.app/api/GetRealtedProducts?${params}`
   );
   const products = await response.json();
-  return <>{<ProductSlider products={products} />}</>;
+  return <>
+  <h2 className="text-3xl my-5 px-10">محصولات مرتبط</h2>
+  {<ProductSlider products={products} />}
+  </>;
 };
 export default RelatedProducts;

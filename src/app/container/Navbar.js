@@ -4,13 +4,15 @@ import ShowBasket from "../components/CartStore/ShowBasket";
 const Navigation = () => {
   return (
     <>
-      <nav className="flex flex-row justify-center items-center  lg:grid lg:grid-cols-3  lg:justify-between px-4 py-1 bg-slate-100 shadow-lg">
-        <Image
-          src="/images/statics/logo.png"
-          alt="image not found"
-          height={100}
-          width={300}
-        />
+      <nav className="flex flex-row justify-center items-center  lg:grid lg:grid-cols-3  lg:justify-between px-4 py-2 bg-slate-100 shadow-xl mb-5 ">
+        <Link href={"/"}>
+          <Image
+            src="/images/statics/logo.png"
+            alt="image not found"
+            height={100}
+            width={300}
+          />
+        </Link>
 
         <div className="hidden lg:flex lg:flex-row lg:justify-center lg:gap-10 ">
           <Link href={"/"}>صفحه اصلی</Link>
