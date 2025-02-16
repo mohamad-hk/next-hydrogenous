@@ -47,11 +47,11 @@ const login = () => {
       });
 
       const response = await fetch(
-        `http://localhost:3000/api/Auth/GetUser?${input_params}`
+        `https://hydrogenous.vercel.app/api/Auth/GetUser?${input_params}`
       );
 
       const user = await response.json();
-      // console.log(user);
+      console.log(user);
       // router.push("/dashboard");
     }
   }
