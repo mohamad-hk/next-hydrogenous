@@ -16,9 +16,6 @@ const login = () => {
   function handleSubmitCode(event) {
     event.preventDefault();
   }
-  useEffect(() => {
-    console.log(step, phone, code);
-  }, [step]);
   return (
     <>
       <div className="bg-[url(/images/statics/login-bg.webp)] bg-center bg-no-repeat bg-cover min-h-screen flex justify-center items-center">
