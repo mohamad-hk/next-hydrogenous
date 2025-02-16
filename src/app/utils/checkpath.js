@@ -5,7 +5,6 @@ import Header from "../container/Header";
 
 export default function Checkpath() {
   const pathname = usePathname();
-  
 
-  return <>{ pathname=="/login"?null : <Header/>  }</>;
+  return <>{pathname == "/login" ? null : <Header />}</>;
 }

@@ -2,32 +2,45 @@
 import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { InputOtp } from "@heroui/react";
 
 const login = () => {
   const [step, Set_step] = useState(1);
-  const [phone, Set_phone] = useState(1);
   const [code, Set_code] = useState(1);
 
   const phoneRef = useRef();
   const codeRef = useRef();
 
-  function handleSubmitPhone(event) {
+  async function handleSubmitPhone(event) {
     event.preventDefault();
-    Set_phone(phoneRef.current.value);
-    Set_step(2);
+    const phoneValue = phoneRef.current.value;
+    const response = await fetch("/api/Auth/sms", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone: phoneValue }),
+    });
+
+    try {
+      const data = await response.json();
+      if (data.success) {
+        Set_step(2);
+      } else {
+        console.error("خطا:", data.message || data.error);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   function handleSubmitCode(event) {
+    console.log(codeRef.current.value, data.code)
+    if (codeRef.current.value == data.code) {
+      return "salam";
+    }
     event.preventDefault();
     Set_code(codeRef.current.value);
   }
-
-  useEffect(() => {
-    console.log("Phone:", phone);
-    console.log("Code:", code);
-  }, [phone, code]);
 
   return (
     <>
@@ -79,7 +92,7 @@ const login = () => {
                     dir="ltr"
                   >
                     <InputOtp
-                      length={4}
+                      length={5}
                       variant="bordered"
                       className="flex-row-reverse"
                       dir="ltr"
