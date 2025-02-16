@@ -12,12 +12,12 @@ const useCartStore = create(
             (item) => item.id === product.id
           );
           if (exist_index !== -1) {
-            const updatedCart = [...state.cart];
-            updatedCart[exist_index] = {
-              ...updatedCart[exist_index],
-              quantity: updatedCart[exist_index].quantity + 1,
+            const updated_cart = [...state.cart];
+            updated_cart[exist_index] = {
+              ...updated_cart[exist_index],
+              quantity: updated_cart[exist_index].quantity + 1,
             };
-            return { cart: updatedCart };
+            return { cart: updated_cart };
           } else {
             return { cart: [...state.cart, { ...product, quantity: 1 }] };
           }

@@ -10,7 +10,7 @@ const GetProducts = async ({ category }) => {
   const products = await response.json();
   return (
     <>
-      <ProductSlider products={products} />
+      <ProductSlider products={products} category={category} />
     </>
   );
 };
