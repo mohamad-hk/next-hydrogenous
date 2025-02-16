@@ -4,10 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { InputOtp } from "@heroui/react";
+import { Input } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 const login = () => {
   const [step, Set_step] = useState(1);
-  const [code, Set_code] = useState(1);
+  const [phone, Set_phone] = useState("");
+  const [serverode, set_serverode] = useState("");
 
   const phoneRef = useRef();
   const codeRef = useRef();
@@ -15,6 +18,8 @@ const login = () => {
   async function handleSubmitPhone(event) {
     event.preventDefault();
     const phoneValue = phoneRef.current.value;
+    Set_phone(phoneValue);
+
     const response = await fetch("/api/Auth/sms", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -24,6 +29,7 @@ const login = () => {
     try {
       const data = await response.json();
       if (data.success) {
+        set_serverode(data.code);
         Set_step(2);
       } else {
         console.error("خطا:", data.message || data.error);
@@ -33,13 +39,21 @@ const login = () => {
     }
   }
 
-  function handleSubmitCode(event) {
-    console.log(codeRef.current.value, data.code)
-    if (codeRef.current.value == data.code) {
-      return "salam";
-    }
+  async function handleSubmitCode(event) {
     event.preventDefault();
-    Set_code(codeRef.current.value);
+    if (codeRef.current.value === serverode) {
+      const input_params = new URLSearchParams({
+        phone: phone,
+      });
+
+      const response = await fetch(
+        `http://localhost:3000/api/Auth/GetUser?${input_params}`
+      );
+
+      const user = await response.json();
+      // console.log(user);
+      // router.push("/dashboard");
+    }
   }
 
   return (
@@ -58,17 +72,15 @@ const login = () => {
           <h1 className="text-2xl">ورود | ثبت نام</h1>
           {step == 1 ? (
             <>
-              <form onSubmit={handleSubmitPhone} className="w-full" action="">
-                <div className="relative w-full mt-4">
-                  <input
+              <form onSubmit={handleSubmitPhone} className="w-full">
+                <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
+                  <Input
+                    key="outside"
+                    label="شماره موبایل"
+                    labelPlacement="outside"
                     type="tel"
-                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
                     ref={phoneRef}
                   />
-                  <label className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                    شماره موبایل
-                  </label>
                 </div>
 
                 <Button
@@ -82,7 +94,7 @@ const login = () => {
             </>
           ) : (
             <>
-              <form className="w-full" onSubmit={handleSubmitCode} action="">
+              <form className="w-full" onSubmit={handleSubmitCode}>
                 <div className="flex flex-col items-center gap-2 mt-2">
                   <p className="self-start text-[12px]">
                     کد تایید خود را وارد کنید
@@ -115,4 +127,5 @@ const login = () => {
     </>
   );
 };
+
 export default login;
