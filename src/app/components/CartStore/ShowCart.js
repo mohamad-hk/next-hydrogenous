@@ -28,7 +28,7 @@ const Cart = () => {
       {cart.length === 0 ? (
         <p className="text-gray-600">سبد خرید خالی است.</p>
       ) : (
-        cart.map((item) => (
+        cart.map((item, index) => (
           <>
             <div
               key={item.id}
@@ -46,7 +46,11 @@ const Cart = () => {
                     height={150}
                     alt="image not found"
                   />
-                  <div className={pathname == "/cart" ? "flex flex-col gap-3" : null}>
+                  <div
+                    className={
+                      pathname == "/cart" ? "flex flex-col gap-3" : null
+                    }
+                  >
                     <p className="text-[14px]">{item.name}</p>
                     {pathname == "/cart" ? (
                       <p>{PersianNumbers(item.price)} تومان </p>
@@ -76,7 +80,7 @@ const Cart = () => {
                 </button>
               </div>
             </div>
-            <Divider />
+            {cart.length-1 != index ? <Divider /> : null}
           </>
         ))
       )}

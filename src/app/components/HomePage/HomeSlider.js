@@ -21,7 +21,7 @@ const HomeSlider = () => {
         disableOnInteraction: false,
       }}
       pagination={{ clickable: true }}
-      className="h-[500px]"
+      className="h-[150px] sm:h-[200px] md:h-[250px] lg:h-[300px] xl:h-[350px] 2xl:h-[450px]"
     >
       <SwiperSlide>
         <Image src="/images/sliders/slider1.jpg" fill alt="image not found" />

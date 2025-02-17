@@ -15,10 +15,16 @@ export default function ShowBasket() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
-      <Button variant="light" onPress={onOpen}>
-        <Badge color="primary" content={<CounterBasket />}>
+      <Button className="p-0 h-auto " variant="light" onPress={onOpen}>
+        <div className="flex flex-row gap-1">
+          <Badge
+            color="danger"
+            showOutline="false"
+            content={<CounterBasket />}
+            className="top-2 "
+          ></Badge>
           <PiBasket className="text-2xl" />
-        </Badge>
+        </div>
       </Button>
       <Drawer isOpen={isOpen} onOpenChange={onOpenChange}>
         <DrawerContent>

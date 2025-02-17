@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import ShowBasket from "../components/CartStore/ShowBasket";
+import { usePathname } from "next/navigation";
 const Navigation = () => {
+  const pathname = usePathname();
+
   return (
     <>
       <nav className="flex flex-row justify-center items-center  lg:grid lg:grid-cols-3  lg:justify-between px-4 py-2 bg-slate-100 shadow-xl mb-5 ">
@@ -31,7 +34,7 @@ const Navigation = () => {
               </div>
             </Link>
           </button>
-          <ShowBasket />
+          {pathname == "/cart" ? null : <ShowBasket />}
         </div>
       </nav>
     </>
