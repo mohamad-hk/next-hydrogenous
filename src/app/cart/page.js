@@ -1,35 +1,49 @@
 "use client";
-import { Card, CardBody } from "@heroui/react";
-import useCartStore from "../store/cartstore";
+import Link from "next/link";
+import Cart from "../components/CartStore/ShowCart";
+import { Button, Card, CardBody } from "@heroui/react";
+import { Progress } from "@heroui/react";
+import PersianNumbers from "../utils/ToPersianNumber";
 
-const Cart = () => {
-  const cart = useCartStore((state) => state.cart);
-
+const Basket = () => {
   return (
     <>
-      <div className="grid grid-cols-[minmax(600px,_1fr)_minmax(300px,_400px)] gap-x-10 justify-items-center p-10 h-screen">
-        <main className="container mx-auto p-6">
-          <h1 className="text-3xl font-bold mb-6"> سبد خرید</h1>
-          {cart.length === 0 ? (
-            <p className="text-gray-600">سبد خرید شما خالی است.</p>
-          ) : (
-            <ul className="space-y-4">
-              {cart.map((item) => (
-                <li
-                  key={item.id}
-                  className="p-4 border rounded-lg shadow-md flex justify-between"
-                >
-                  <span>
-                    {item.name} - {item.quantity} 
-                  </span>
-                  <span className="text-gray-600">{item.price} تومان</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </main>
+      <div className="grid max-w-[1200px] mx-auto grid-cols-[_minmax(800px,_1fr)_minmax(300px,_400px)] gap-x-10  p-10 h-screen">
+        <div className="shadow-lg rounded-xl p-3">
+          <Cart />
+        </div>
+        <div>
+          <Card>
+            <CardBody>
+              <div className="flex flex-col gap-5">
+                <div className="flex flex-row justify-between max-h-[400px]">
+                  <div className="flex flex-col items-start gap-2">
+                    <p>هزینه ارسال</p>
+                    <p>مجموع نخفیف</p>
+                    <p>مبلغ قابل پرداخت</p>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <p>15000</p>
+                    <p>15000</p>
+                    <p>15000</p>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Progress size="md" value={40} />
+                  <p className="text-center">
+                    {PersianNumbers(15000)} تا ارسال رایگان
+                  </p>
+                </div>
+
+                <Button color="primary">
+                  <Link href={"/shipment"}>ادامه خرید</Link>
+                </Button>
+              </div>
+            </CardBody>
+          </Card>
+        </div>
       </div>
     </>
   );
 };
-export default Cart;
+export default Basket;
