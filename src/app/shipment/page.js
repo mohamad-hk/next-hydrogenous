@@ -7,7 +7,7 @@ import { CgAdd } from "react-icons/cg";
 import Link from "next/link";
 
 const Shipment = async () => {
-  const data = await fetch("http://localhost:3000/api/GetShipment");
+  const data = await fetch("https://hydrogenous.vercel.app/api/GetShipment");
   const shipments = await data.json();
   return (
     <>
