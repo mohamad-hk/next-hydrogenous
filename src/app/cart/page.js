@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import Cart from "../components/CartStore/ShowCart";
 import { Button, Card, CardBody } from "@heroui/react";

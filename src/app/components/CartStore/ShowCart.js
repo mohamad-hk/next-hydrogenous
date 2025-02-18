@@ -80,16 +80,16 @@ const Cart = () => {
                 </button>
               </div>
             </div>
-            {cart.length-1 != index ? <Divider /> : null}
+            {cart.length - 1 != index ? <Divider /> : null}
           </>
         ))
       )}
       {pathname == "/cart" ? null : (
         <>
           <p className="mt-5">{PersianNumbers(total)} تومان</p>
-          <Button className="w-[80%] block mx-auto mt-5" color="danger">
-            <Link href={"/cart"}>ادامه خرید</Link>
-          </Button>
+          <Link href="/cart" className="w-[80%] block mx-auto mt-5">
+            <Button color="danger">ادامه خرید</Button>
+          </Link>
         </>
       )}
     </div>
