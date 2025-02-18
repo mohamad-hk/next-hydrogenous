@@ -87,7 +87,7 @@ const Cart = () => {
       {pathname == "/cart" ? null : (
         <>
           <p className="mt-5">{PersianNumbers(total)} تومان</p>
-          <Link href="/cart" className="w-[80%] block mx-auto mt-5">
+          <Link href="/cart" className="w-[80%] block mx-auto mt-5" onPress={onClose}>
             <Button color="danger">ادامه خرید</Button>
           </Link>
         </>
