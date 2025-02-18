@@ -32,7 +32,7 @@ export default function ShowBasket() {
             <>
               <DrawerHeader className=" text-2xl">سبد خرید</DrawerHeader>
               <DrawerBody>
-                <Cart />
+                <Cart close={onClose} />
               </DrawerBody>
             </>
           )}

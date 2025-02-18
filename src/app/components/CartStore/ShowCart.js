@@ -7,11 +7,10 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import Link from "next/link";
-import { Button } from "@heroui/react";
 import { Divider } from "@heroui/divider";
 import { usePathname } from "next/navigation";
 
-const Cart = () => {
+const Cart = ({ close }) => {
   const { cart, inc_quantity, dec_quantity, remove } = useCartStore();
   const [total, SetTotal] = useState(0);
   const pathname = usePathname();
@@ -87,7 +86,11 @@ const Cart = () => {
       {pathname == "/cart" ? null : (
         <>
           <p className="mt-5">{PersianNumbers(total)} تومان</p>
-          <Link href="/cart" className="w-[80%] block mx-auto mt-5 bg-danger rounded-xl text-white text-center p-2">
+          <Link
+            href="/cart"
+            className="w-[80%] block mx-auto mt-5 bg-danger rounded-xl text-white text-center p-2"
+            onClick={close}
+          >
             ادامه خرید
           </Link>
         </>
