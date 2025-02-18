@@ -31,23 +31,23 @@ const ProductSlider = ({ products, category }) => {
             },
             768: {
               slidesPerView: 3,
-              spaceBetween: 40,
+              spaceBetween: 20,
             },
             1024: {
               slidesPerView: 4,
-              spaceBetween: 50,
+              spaceBetween: 20,
             },
             1200: {
               slidesPerView: 5,
-              spaceBetween: 30,
+              spaceBetween: 20,
             },
           }}
-          className="h-[450px]"
+          className=" min-h-[300px]"
         >
           {products.map((product, index) => {
             return (
-              <SwiperSlide key={index}>
-                <div className="bg-[#f5f7fb] rounded-2xl lg:h-[400px]">
+              <SwiperSlide key={index} className="my-5">
+                <div className="bg-[#f5f7fb] rounded-2xl min-h-[270px] sm:min-h-[300px] lg:min-h-[300px] xl:min-h-[350px] p-2">
                   <Link href={`/product/${fixurl(product.product_name)}`}>
                     <Image
                       width={350}

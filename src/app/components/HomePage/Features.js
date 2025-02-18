@@ -49,7 +49,7 @@ const Features = async () => {
   return (
     <>
       <h2 className="text-center text-3xl my-5">چرا هیدروژنوس</h2>
-      <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2  sm:gap-y-10 sm:gap-x-10  lg:gap-y-10 lg:gap-x-24 lg:grid-cols-3 py-10 px-10">
+      <div className="grid grid-cols-1 gap-y-10 md:grid-cols-2 sm:gap-y-10 sm:gap-x-5  lg:gap-y-10 lg:gap-x-10  xl:grid-cols-3  py-10 px-10">
         {features.map((feature, index) => (
           <div className={colors[index].color} key={feature.feature_id}>
             <div className="flex flex-row justify-between items-center mt-4">
