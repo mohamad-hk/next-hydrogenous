@@ -8,7 +8,7 @@ export default function CheckpathFooter() {
 
   return (
     <>
-      {pathname == "/login" ? null : (
+      {pathname == "/login" || pathname.startsWith("/profile/orders/") ? null : (
         <>
 
           <Footer />

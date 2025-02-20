@@ -6,5 +6,12 @@ import Header from "../container/Header";
 export default function Checkpath() {
   const pathname = usePathname();
 
-  return <>{pathname == "/login" ? null : <Header />}</>;
+  return (
+    <>
+      {pathname === "/login" ||
+      pathname.startsWith("/profile/orders/") ? null : (
+        <Header />
+      )}
+    </>
+  );
 }
