@@ -2,8 +2,10 @@
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 import { useDashboard } from "@/app/context/dashboard";
+import { useState } from "react";
 const ProfileNavbar = () => {
   const { setActiveTab } = useDashboard();
+  const [clicked, setClicked] = useState("dashboard");
 
   return (
     <>
@@ -15,38 +17,66 @@ const ProfileNavbar = () => {
 
         <nav className="mt-5 ">
           <ul className="flex flex-col gap-10">
-            <li className="bg-white text-[#0046fe] p-2 rounded-r-3xl">
+            <li className=" p-2 ">
               <Link
-                className="p-3 text-lg"
+                className={
+                  clicked === "dashboard"
+                    ? "rounded-r-3xl bg-white text-[#0046fe] text-lg p-3 w-full block"
+                    : "p-3 text-white text-lg"
+                }
                 href={"/profile"}
-                onClick={() => setActiveTab("dashboard")}
+                onClick={() => {
+                  setActiveTab("dashboard");
+                  setClicked("dashboard");
+                }}
               >
                 داشبورد
               </Link>
             </li>
-            <li className="p-2">
+            <li>
               <Link
-                className="p-3 text-white text-lg"
+                className={
+                  clicked === "orders"
+                    ? "rounded-r-3xl bg-white text-[#0046fe] text-lg p-3 block"
+                    : "p-3 text-white text-lg"
+                }
                 href={"/profile/orders"}
-                onClick={() => setActiveTab("orders")}
+                onClick={() => {
+                  setActiveTab("orders");
+                  setClicked("orders");
+                }}
               >
                 سفارش ها
               </Link>
             </li>
-            <li className="p-2">
+            <li>
               <Link
-                className="p-3 text-white text-lg"
+                className={
+                  clicked === "addresses"
+                    ? "rounded-r-3xl bg-white text-[#0046fe] text-lg p-3  block"
+                    : "p-3 text-white text-lg"
+                }
                 href={"/profile/addresses"}
-                onClick={() => setActiveTab("addresses")}
+                onClick={() => {
+                  setActiveTab("addresses");
+                  setClicked("addresses");
+                }}
               >
                 آدرس ها
               </Link>
             </li>
-            <li className="p-2">
+            <li>
               <Link
-                className="p-3 text-white text-lg"
+                className={
+                  clicked === "personal-info"
+                    ? "rounded-r-3xl bg-white text-[#0046fe] text-lg p-3  block"
+                    : "p-3 text-white text-lg"
+                }
                 href={"/profile/personal-info"}
-                onClick={() => setActiveTab("personal-info")}
+                onClick={() => {
+                  setActiveTab("personal-info");
+                  setClicked("personal-info");
+                }}
               >
                 ویرایش مشخصات
               </Link>
