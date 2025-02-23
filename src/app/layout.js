@@ -1,7 +1,7 @@
 import "./styles/globals.css";
 import { Providers } from "./Providers";
 import Checkpath from "./utils/checkpath";
-import CheckpathFooter from "./utils/checkpathFooter";
+import Footer from "./container/Footer";
 
 export default function RootLayout({ children }) {
   return (
@@ -9,7 +9,7 @@ export default function RootLayout({ children }) {
       <body>
         <Checkpath />
         <Providers>{children}</Providers>
-        <CheckpathFooter />
+        <Footer/>
       </body>
     </html>
   );
