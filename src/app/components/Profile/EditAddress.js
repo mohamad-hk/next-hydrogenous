@@ -20,10 +20,7 @@ export default function EditAddress({ id }) {
   // console.log(id)
   return (
     <>
-      <Button
-        className="bg-white focus:bg-white"
-        onPress={() => handleOpen("3xl")}
-      >
+      <Button color="success" className="text-white" onPress={() => handleOpen("3xl")}>
         ویرایش آدرس
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="3xl">
@@ -33,18 +30,6 @@ export default function EditAddress({ id }) {
               <ModalBody>
                 <form className="p-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Input
-                      label="Email"
-                      type="email"
-                      onClick={(e) => e.stopPropagation()}
-                      onMouseDown={(e) => e.stopPropagation()}
-                    />
-                    <Input
-                      label="Email"
-                      type="email"
-                      onClick={(e) => e.stopPropagation()}
-                      onMouseDown={(e) => e.stopPropagation()}
-                    />
                     <Input
                       label="Email"
                       type="email"
