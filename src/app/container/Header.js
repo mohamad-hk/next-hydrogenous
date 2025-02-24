@@ -12,6 +12,7 @@ const Header = () => {
       <Navigation />
       {pathname === "/cart" ||
       pathname === "/shipment" ||
+      pathname.startsWith("/product") ||
       pathname === "/payment" ? null : (
         <NavbarMobile />
       )}
