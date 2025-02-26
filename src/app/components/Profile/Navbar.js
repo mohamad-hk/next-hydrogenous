@@ -9,7 +9,7 @@ const ProfileNavbar = () => {
 
   return (
     <>
-      <div className="h-[100vh] bg-[#0046fe] rounded-r-3xl">
+      <div className="w-[95%] block mx-auto rounded-lg md:w-full md:h-[100vh] bg-[#0046fe] md:rounded-r-3xl">
         <div className="bg-white w-[80%] block mx-auto rounded-3xl mt-4">
           <CgProfile className="text-[8rem] block mx-auto text-[#c7c7c7]" />
           <p className="text-center">محمد حسین کریمی</p>
@@ -17,7 +17,7 @@ const ProfileNavbar = () => {
 
         <nav className="mt-5 ">
           <ul className="flex flex-col gap-10">
-            <li className=" p-2 ">
+            <li>
               <Link
                 className={
                   clicked === "dashboard"
@@ -79,6 +79,18 @@ const ProfileNavbar = () => {
                 }}
               >
                 ویرایش مشخصات
+              </Link>
+            </li>
+            <li className="px-1">
+              <Link
+                className="rounded-3xl bg-danger text-white text-center text-lg p-3  block"
+                href={"/profile/personal-info"}
+                onClick={() => {
+                  setActiveTab("personal-info");
+                  setClicked("personal-info");
+                }}
+              >
+                خروج
               </Link>
             </li>
           </ul>
