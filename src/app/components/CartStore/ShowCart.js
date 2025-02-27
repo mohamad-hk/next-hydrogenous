@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation";
 const Cart = ({ close }) => {
   const { cart, inc_quantity, dec_quantity, remove } = useCartStore();
   const [total, SetTotal] = useState(0);
+
   const pathname = usePathname();
 
   useEffect(() => {
@@ -68,15 +69,17 @@ const Cart = ({ close }) => {
                   <FaPlus />
                 </button>
                 <span>{PersianNumbers(item.quantity)}</span>
-                <button
-                  onClick={() => dec_quantity(item.id)}
-                  className="text-blue-400 border border-blue-500 px-1 rounded-lg"
-                >
-                  <FaMinus />
-                </button>
-                <button onClick={() => remove(item.id)}>
-                  <FaRegTrashCan className="text-danger" />
-                </button>
+
+                {item.quantity == 1 ? (
+                  <button onClick={() => remove(item.id)}>
+                    <FaRegTrashCan className="text-danger text-xl" />
+                  </button>
+                ) : (
+                  <FaMinus
+                    className=" text-blue-400 border border-blue-500 p-1 rounded-lg text-2xl cursor-pointer"
+                    onClick={() => dec_quantity(item.id)}
+                  />
+                )}
               </div>
             </div>
             {cart.length - 1 != index ? <Divider /> : null}
