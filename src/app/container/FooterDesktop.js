@@ -9,7 +9,7 @@ import Image from "next/image";
 const FooterDesktop = () => {
   return (
     <>
-      <footer className=" grid grid-cols-1 gap-y-5 sm:grid-cols-3 lg:gap-x-4  lg:grid-cols-5  py-5 px-5 bg-gradient-to-r from-[#3a6073] to-[#3a7bd5]">
+      <footer className=" grid grid-cols-1 gap-y-5 sm:grid-cols-3 lg:gap-x-4  lg:grid-cols-3 xl:grid-cols-5  py-5 px-5 bg-gradient-to-r from-[#3a6073] to-[#3a7bd5]">
         <nav className=" flex flex-col items-center sm:items-start">
           <div className="flex flex-row gap-3">
             <PhoneIcon />

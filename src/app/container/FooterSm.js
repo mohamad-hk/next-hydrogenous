@@ -6,7 +6,6 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import Image from "next/image";
-import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
 import { Accordion, AccordionItem } from "@heroui/react";
@@ -14,7 +13,7 @@ import { Accordion, AccordionItem } from "@heroui/react";
 const FooterMobile = () => {
   return (
     <>
-      <footer className=" grid grid-cols-1 gap-y-5 sm:grid-cols-3 lg:gap-x-4  lg:grid-cols-5 pb-24 pt-5  sm:py-5 px-5 bg-gradient-to-r from-[#3a6073] to-[#3a7bd5]">
+      <footer className=" grid grid-cols-1 gap-y-5 sm:grid-cols-1 sm:py-15 px-5 bg-gradient-to-r from-[#3a6073] to-[#3a7bd5]">
         <Accordion>
           <AccordionItem
             key="1"
@@ -99,7 +98,7 @@ const FooterMobile = () => {
           </div>
         </nav>
         <nav>
-          <div className="flex flex-row justify-center gap-20">
+          <div className="flex flex-row justify-center gap-10 md:gap-20">
             <TelegramIcon className="text-gray-100" />
             <InstagramIcon className="text-gray-100" />
             <WhatsAppIcon className="text-gray-100" />
