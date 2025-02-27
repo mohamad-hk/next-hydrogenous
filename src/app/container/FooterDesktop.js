@@ -32,16 +32,28 @@ const FooterDesktop = () => {
         <nav className=" flex flex-col items-center">
           <strong className=" text-white text-lg ">خدمات مشتریان</strong>
           <div className="flex flex-col gap-3 mt-4">
-            <Link className="text-gray-200 font-semibold" href={"#"}>
+            <Link
+              className="text-gray-200 font-semibold"
+              href={"/policies/shipping-policy"}
+            >
               قوانین ارسال
             </Link>
-            <Link className="text-gray-200 font-semibold" href={"#"}>
-              روزه بازگشت کالا
+            <Link
+              className="text-gray-200 font-semibold"
+              href={"/policies/return-policy"}
+            >
+              رویه بازگشت کالا
             </Link>
-            <Link className="text-gray-200 font-semibold" href={"#"}>
-              حریک خصوصی
+            <Link
+              className="text-gray-200 font-semibold"
+              href={"/policies/privacy-policy"}
+            >
+              حریم خصوصی
             </Link>
-            <Link className="text-gray-200 font-semibold" href={"#"}>
+            <Link
+              className="text-gray-200 font-semibold"
+              href={"/order-tracking"}
+            >
               پیگیری سفارش
             </Link>
           </div>
@@ -49,11 +61,11 @@ const FooterDesktop = () => {
         <nav className=" flex flex-col items-center">
           <strong className="text-white text-lg">هیدروژنوس </strong>
           <div className="flex flex-col gap-3 mt-4">
-            <Link className="text-gray-200 font-semibold" href={"#"}>
-              قوانین ارسال
+            <Link className="text-gray-200 font-semibold" href={"/about"}>
+              درباره هیدروژنوس
             </Link>
-            <Link className="text-gray-200 font-semibold" href={"#"}>
-              روزه بازگشت کالا
+            <Link className="text-gray-200 font-semibold" href={"/contact-us"}>
+              تماس با هیدروژنوس
             </Link>
           </div>
         </nav>

@@ -20,8 +20,8 @@ const Navigation = () => {
         <div className="hidden lg:flex lg:flex-row lg:justify-center lg:gap-10 ">
           <Link href={"/"}>صفحه اصلی</Link>
           <Link href={"../products/"}>محصولات</Link>
-          <Link href={"#"}>درباره ما</Link>
-          <Link href={"#"}>تماس با ما</Link>
+          <Link href={"/about"} >درباره ما</Link>
+          <Link href={"/contact-us"} >تماس با ما</Link>
         </div>
         <div className="hidden  lg:flex lg:flex-row justify-end gap-3">
           <button className="border-1 border-blue-400 px-3 py-1 rounded-md">
