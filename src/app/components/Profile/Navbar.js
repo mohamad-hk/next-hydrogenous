@@ -21,7 +21,7 @@ const ProfileNavbar = () => {
               <Link
                 className={
                   clicked === "dashboard"
-                    ? "rounded-r-3xl bg-white text-[#0046fe] text-lg p-3 w-full block"
+                    ? "rounded-3xl md:rounded-r-3xl bg-white text-[#0046fe] text-lg p-3 w-full block"
                     : "p-3 text-white text-lg"
                 }
                 href={"/profile"}
@@ -37,7 +37,7 @@ const ProfileNavbar = () => {
               <Link
                 className={
                   clicked === "orders"
-                    ? "rounded-r-3xl bg-white text-[#0046fe] text-lg p-3 block"
+                    ? "rounded-3xl md:rounded-r-3xl bg-white text-[#0046fe] text-lg p-3 block"
                     : "p-3 text-white text-lg"
                 }
                 href={"/profile/orders"}
@@ -53,7 +53,7 @@ const ProfileNavbar = () => {
               <Link
                 className={
                   clicked === "addresses"
-                    ? "rounded-r-3xl bg-white text-[#0046fe] text-lg p-3  block"
+                    ? "rounded-3xl md:rounded-r-3xl bg-white text-[#0046fe] text-lg p-3  block"
                     : "p-3 text-white text-lg"
                 }
                 href={"/profile/addresses"}
@@ -69,7 +69,7 @@ const ProfileNavbar = () => {
               <Link
                 className={
                   clicked === "personal-info"
-                    ? "rounded-r-3xl bg-white text-[#0046fe] text-lg p-3  block"
+                    ? "rounded-3xl md:rounded-r-3xl bg-white text-[#0046fe] text-lg p-3  block"
                     : "p-3 text-white text-lg"
                 }
                 href={"/profile/personal-info"}
@@ -81,7 +81,7 @@ const ProfileNavbar = () => {
                 ویرایش مشخصات
               </Link>
             </li>
-            <li className="px-1">
+            <li className="px-1 mb-5 md:mb-0">
               <Link
                 className="rounded-3xl bg-danger text-white text-center text-lg p-3  block"
                 href={"/profile/personal-info"}
