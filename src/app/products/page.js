@@ -2,7 +2,7 @@ import Image from "next/image";
 import PersianNumbers from "../utils/ToPersianNumber";
 import Link from "next/link";
 import fixurl from "../utils/Fixurl";
-import AddToCart from "../components/CartStore/AddToCart";
+import ProductExisting from "../components/ProductsPage/ProductExisting";
 const ShowProducts = async () => {
 
   const response = await fetch(
@@ -35,7 +35,7 @@ const ShowProducts = async () => {
                   <p>{PersianNumbers(product.product_price)}</p>
                   <p>تومان</p>
                 </div>
-                <AddToCart product={product} />
+                <ProductExisting product={product} />
               </div>
             );
           })}
