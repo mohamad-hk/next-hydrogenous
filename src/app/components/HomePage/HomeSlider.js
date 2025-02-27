@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Image from "next/image";
 
-const HomeSlider = () => {
+const HomeSlider = ({data}) => {
   return (
     <Swiper
       modules={[Pagination, EffectFade, Autoplay]}
@@ -23,15 +23,17 @@ const HomeSlider = () => {
       pagination={{ clickable: true }}
       className="h-[150px] sm:h-[200px] md:h-[250px] lg:h-[300px] xl:h-[350px] 2xl:h-[450px]"
     >
-      <SwiperSlide>
-        <Image src="/images/sliders/slider1.jpg" fill alt="image not found" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image src="/images/sliders/slider2.jpg" fill alt="image not found" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image src="/images/sliders/slider3.jpg" fill alt="image not found" />
-      </SwiperSlide>
+      {data.map((item, index) => {
+        return (
+          <SwiperSlide key={index}>
+            <Image
+              src={`/images/sliders/${item.slider_image}`}
+              fill
+              alt="image not found"
+            />
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 };

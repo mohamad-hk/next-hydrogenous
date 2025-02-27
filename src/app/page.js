@@ -1,11 +1,11 @@
 import Features from "./components/HomePage/Features";
 import GetProducts from "./components/HomePage/GetProducts";
-import HomeSlider from "./components/HomePage/HomeSlider";
+import GetSliders from "./components/HomePage/GetSliders";
 
 export default function App() {
   return (
     <>
-      <HomeSlider />
+      <GetSliders/>
       <Features />
       <GetProducts category={"ساشه"} />
       <GetProducts category={"پودر"}/>
