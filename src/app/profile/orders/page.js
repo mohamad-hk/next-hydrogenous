@@ -10,7 +10,7 @@ const Orders = () => {
   const [orders, Set_orders] = useState([]);
   const fetch_orders = async () => {
     try {
-      const data = await fetch("http://localhost:3000/api/GetOrders");
+      const data = await fetch("https://hydrogenous.vercel.app/api/GetOrders");
       const response = await data.json();
       Set_orders(response);
     } catch (error) {
