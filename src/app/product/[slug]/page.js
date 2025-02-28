@@ -25,7 +25,7 @@ const ShowProduct = async ({ params }) => {
       {product_res?.map((product) => {
         return (
           <>
-            <div className="grid grid-cols-1 place-items-center md:grid-cols-2 md:gap-x-10 xl:gap-x-0 my-10 px-10 ">
+            <div className="grid grid-cols-1 place-items-center md:grid-cols-2 md:gap-x-10 xl:gap-x-0 my-10 px-9 ">
               <ProductImage image={product.product_photo} />
               <AddToCartSection
                 product_name={product.product_name}
