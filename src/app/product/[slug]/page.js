@@ -1,7 +1,9 @@
-import AddToCartSection from "@/app/components/Productpage/AddToCart";
-import Details from "@/app/components/Productpage/Details";
-import ProductImage from "@/app/components/Productpage/ProductImage";
-import RelatedProducts from "@/app/components/Productpage/RelatedProduts";
+import AddComment from "@/app/components/ProductPage/AddComment";
+import AddToCartSection from "@/app/components/ProductPage/AddToCart";
+import Details from "@/app/components/ProductPage/Details";
+import ProductImage from "@/app/components/ProductPage/ProductImage";
+import RelatedProducts from "@/app/components/ProductPage/RelatedProduts";
+import ShowComments from "@/app/components/ProductPage/ShowComments";
 
 const ShowProduct = async ({ params }) => {
   const { slug } = await params;
@@ -23,7 +25,7 @@ const ShowProduct = async ({ params }) => {
       {product_res?.map((product) => {
         return (
           <>
-            <div className="grid grid-cols-1 place-items-center  md:grid-cols-2 my-10 px-10 ">
+            <div className="grid grid-cols-1 place-items-center md:grid-cols-2 md:gap-x-10 xl:gap-x-0 my-10 px-10 ">
               <ProductImage image={product.product_photo} />
               <AddToCartSection
                 product_name={product.product_name}
@@ -34,6 +36,11 @@ const ShowProduct = async ({ params }) => {
               />
             </div>
             <Details id={product.product_id} />
+            <div className="flex flex-row gap-10 mt-10 px-10">
+              <ShowComments id={product.product_id} />
+              <AddComment id={product.product_id} />
+            </div>
+
             <RelatedProducts
               t_category={product.t_category_id}
               m_category={product.m_category_id}
