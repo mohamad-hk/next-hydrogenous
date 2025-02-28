@@ -1,17 +1,22 @@
 "use client";
 import { Button, Input } from "@heroui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 const OrderTracking = () => {
   const [OrderCode, setOrderCode] = useState("");
   const [orderStatus, setOrderStatus] = useState("");
 
+  useEffect(() => {
+    if (orderStatus != "") {
+      toast(orderStatus);
+    }
+  }, [orderStatus]);
   async function handleSubmit(event) {
     event.preventDefault();
     fetchOrder();
   }
-  
+
   const fetchOrder = async () => {
     try {
       const input_param = new URLSearchParams({ order_code: OrderCode });
@@ -23,8 +28,9 @@ const OrderTracking = () => {
         throw new Error("Failed to fetch order status");
       }
       const response = await data.json();
-      setOrderStatus(response[0].status_order);
-      toast(orderStatus);
+      response[0]
+        ? setOrderStatus(response[0].status_order)
+        : setOrderStatus("کد وارد شده اشتباه است");
     } catch (error) {
       console.error("Error fetching order:", error);
     }
