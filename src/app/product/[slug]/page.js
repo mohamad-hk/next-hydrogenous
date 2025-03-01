@@ -36,7 +36,7 @@ const ShowProduct = async ({ params }) => {
               />
             </div>
             <Details id={product.product_id} />
-            <div className="flex flex-row gap-10 mt-10 px-10">
+            <div className="flex flex-col md:flex-row gap-10 mt-10 px-10">
               <ShowComments id={product.product_id} />
               <AddComment id={product.product_id} />
             </div>
