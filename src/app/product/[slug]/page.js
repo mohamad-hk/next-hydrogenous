@@ -1,9 +1,9 @@
-import AddComment from "../../components/ProductPage/AddComment";
-import AddToCartSection from "../../components/ProductPage/AddToCart";
-import Details from "../../components/ProductPage/Details";
-import ProductImage from "../../components/ProductPage/ProductImage";
-import RelatedProducts from "../../components/ProductPage/RelatedProduts";
-import ShowComments from "../../components/ProductPage/ShowComments";
+import AddComment from "../../components/Productpage/AddComment";
+import AddToCartSection from "../../components/Productpage/AddToCart";
+import Details from "../../components/Productpage/Details";
+import ProductImage from "../../components/Productpage/ProductImage";
+import RelatedProducts from "../../components/Productpage/RelatedProduts";
+import ShowComments from "../../components/Productpage/ShowComments";
 
 const ShowProduct = async ({ params }) => {
   const { slug } = await params;
