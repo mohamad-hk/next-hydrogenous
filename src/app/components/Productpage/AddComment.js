@@ -14,7 +14,7 @@ import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
 import CommentStatics from "./CommentStatic";
 
-const AddComment = ({id}) => {
+const AddComment = ({ id }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [size, setSize] = useState("");
   const handleOpen = (size) => {
@@ -23,8 +23,8 @@ const AddComment = ({id}) => {
   };
   return (
     <>
-      <div className="flex flex-col gap-10 shadow-md rounded-2xl">
-        <CommentStatics id={id}/>
+      <div className="flex flex-col gap-5 shadow-md rounded-2xl p-5 max-h-[350px]">
+        <CommentStatics id={id} />
         <p>نظر خود را در مورد این محصول بنویسید</p>
         <Button
           color="success"

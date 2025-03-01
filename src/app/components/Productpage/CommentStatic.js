@@ -1,4 +1,5 @@
 "use client";
+import PersianNumbers from "@/app/utils/ToPersianNumber";
 import { Progress } from "@heroui/react";
 import { useEffect, useState } from "react";
 
@@ -12,6 +13,7 @@ const CommentStatics = ({ id }) => {
   const [Threescore, setThreeScore] = useState(0);
   const [Fourscore, setFourScore] = useState(0);
   const [Fivescore, setFiveScore] = useState(0);
+  const [total, setTotal] = useState(0);
   const getScore = async () => {
     const data = await fetch(
       `https://hydrogenous.vercel.app/api/GetCommentsScore?${input_params}`
@@ -23,6 +25,8 @@ const CommentStatics = ({ id }) => {
   function countscore(response) {
     response.forEach((item) => {
       const scoreValue = Number(item.comment_score);
+      console.log(scoreValue);
+      setTotal((prev) => prev + scoreValue);
       switch (scoreValue) {
         case 1:
           setOneScore((prev) => prev + 1);
@@ -50,15 +54,59 @@ const CommentStatics = ({ id }) => {
   const totalScores = score.length;
   const calculatePercentage = (scoreCount) =>
     totalScores ? (scoreCount / totalScores) * 100 : 0;
+  const averageScore = totalScores ? (total / totalScores) * 1 : 0;
 
   return (
-    <div className="flex flex-col gap-5">
-      <Progress color="warning" value={calculatePercentage(Onescore)} />
-      <Progress color="warning" value={calculatePercentage(Twoscore)} />
-      <Progress color="warning" value={calculatePercentage(Threescore)} />
-      <Progress color="warning" value={calculatePercentage(Fourscore)} />
-      <Progress color="warning" value={calculatePercentage(Fivescore)} />
-    </div>
+    <>
+      <div className="grid grid-cols-[250px_1fr] gap-x-5">
+        <div className="flex flex-col gap-5 ">
+          <div className="flex flex-row items-center gap-2 ">
+            {PersianNumbers(5)}
+            <Progress
+              color="warning"
+              value={calculatePercentage(Fivescore)}
+              className="transform -scale-x-100"
+            />
+          </div>
+          <div className="flex flex-row items-center gap-2">
+            {PersianNumbers(4)}
+            <Progress
+              color="warning"
+              value={calculatePercentage(Fourscore)}
+              className="transform -scale-x-100"
+            />
+          </div>
+          <div className="flex flex-row items-center gap-2">
+            {PersianNumbers(3)}
+            <Progress
+              color="warning"
+              value={calculatePercentage(Threescore)}
+              className="transform -scale-x-100"
+            />
+          </div>
+          <div className="flex flex-row items-center gap-2">
+            {PersianNumbers(2)}
+            <Progress
+              color="warning"
+              value={calculatePercentage(Twoscore)}
+              className="transform -scale-x-100"
+            />
+          </div>
+          <div className="flex flex-row items-center gap-2">
+            {PersianNumbers(1)}
+            <Progress
+              color="warning"
+              value={calculatePercentage(Onescore)}
+              className="transform -scale-x-100"
+            />
+          </div>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <p className="text-2xl">{averageScore!=0? PersianNumbers(averageScore):null}</p>
+          <p className="text-2xl">{PersianNumbers(totalScores)} نظر</p>
+        </div>
+      </div>
+    </>
   );
 };
 
