@@ -8,11 +8,26 @@ import "swiper/css/scrollbar";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import Link from "next/link";
 import fixurl from "@/app/utils/Fixurl";
+import { IoIosArrowBack } from "react-icons/io";
+import { usePathname } from "next/navigation";
+
 const ProductSlider = ({ products, category }) => {
+  const pathname = usePathname();
+  console.log(pathname);
+
   return (
     <>
-      <div className="px-10">
-        <h2 className="text-3xl mb-5">{category}</h2>
+      <div className="px-10 xl:px-20 2xl:px-40">
+        {pathname.startsWith("/product") ? null : (
+          <div className="flex flex-row justify-between items-center rounded-md p-2 bg-blue-700">
+            <h2 className="text-3xl text-white">{category}</h2>
+            <div className="flex flex-row items-center bg-white p-3 rounded-md hover:scale-90 transition-all duration-500 ease-in-out">
+              <Link href={"#"}>مشاهده همه</Link>
+              <IoIosArrowBack />
+            </div>
+          </div>
+        )}
+
         <Swiper
           modules={[Autoplay]}
           loop={true}
@@ -23,22 +38,22 @@ const ProductSlider = ({ products, category }) => {
           breakpoints={{
             300: {
               slidesPerView: 1,
-              spaceBetween: 40,
+              spaceBetween: 10,
             },
             500: {
               slidesPerView: 2,
-              spaceBetween: 20,
+              spaceBetween: 10,
             },
             768: {
-              slidesPerView: 3,
+              slidesPerView: 2,
               spaceBetween: 20,
             },
             1024: {
-              slidesPerView: 4,
-              spaceBetween: 20,
+              slidesPerView: 3,
+              spaceBetween: 5,
             },
             1200: {
-              slidesPerView: 5,
+              slidesPerView: 4,
               spaceBetween: 20,
             },
           }}
@@ -46,13 +61,15 @@ const ProductSlider = ({ products, category }) => {
         >
           {products.map((product, index) => {
             return (
-              <SwiperSlide key={index} className="my-5">
-                <div className="bg-[#f5f7fb] rounded-2xl min-h-[270px] sm:min-h-[300px] lg:min-h-[300px] xl:min-h-[350px] p-2">
+              <SwiperSlide key={index} className="my-5 p-3">
+                <div className="bg-white shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-2xl min-h-[270px] sm:min-h-[300px] lg:min-h-[300px] xl:min-h-[350px] p-2">
                   <Link href={`/product/${fixurl(product.product_name)}`}>
                     <Image
                       width={350}
                       height={350}
                       src={`/images/products/${product.product_photo}`}
+                      alt="image not found"
+                      className="hover:scale-110 transition-all duration-500 ease-in-out"
                     />
                   </Link>
 

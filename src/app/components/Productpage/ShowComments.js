@@ -60,7 +60,7 @@ const ShowComments = ({ id }) => {
             );
           })
         ) : (
-          <div className="flex flex-col justify-start gap-5 rounded-md shadow-sm bg-blue-200 w-full p-4 max-w-[800px] h-[150px] ">
+          <div className="flex flex-col justify-start gap-5 rounded-md shadow-sm  bg-blue-200 w-full p-4 max-w-[800px] h-[150px] ">
             <p className="font-bold">
               دیدگاه خود را در مورد این محصول ثبت کنید و به دیگران کمک کنید.
             </p>

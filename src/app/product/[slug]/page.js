@@ -25,7 +25,7 @@ const ShowProduct = async ({ params }) => {
       {product_res?.map((product) => {
         return (
           <>
-            <div className="grid grid-cols-1 place-items-center md:grid-cols-2 md:gap-x-10 xl:gap-x-0 my-10 px-9 ">
+            <div className="grid grid-cols-1 place-items-center md:grid-cols-2 md:gap-x-10 xl:gap-x-0 my-10 px-10 ">
               <ProductImage image={product.product_photo} />
               <AddToCartSection
                 product_name={product.product_name}
@@ -36,7 +36,7 @@ const ShowProduct = async ({ params }) => {
               />
             </div>
             <Details id={product.product_id} />
-            <div className="flex flex-col md:flex-row gap-10 mt-10 px-10">
+            <div className="flex flex-col md:flex-row gap-10 mt-10 px-10 xl:px-20 2xl:px-40">
               <ShowComments id={product.product_id} />
               <AddComment id={product.product_id} />
             </div>

@@ -18,10 +18,26 @@ const Navigation = () => {
         </Link>
 
         <div className="hidden lg:flex lg:flex-row lg:justify-center lg:gap-10 ">
-          <Link href={"/"}>صفحه اصلی</Link>
-          <Link href={"../products/"}>محصولات</Link>
-          <Link href={"/about"} >درباره ما</Link>
-          <Link href={"/contact-us"} >تماس با ما</Link>
+          <Link class="group relative w-max" href={"/"}>
+            صفحه اصلی
+            <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+          </Link>
+          <Link class="group relative w-max" href={"../products/"}>
+            محصولات
+            <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+          </Link>
+          <Link class="group relative w-max" href={"/about"}>
+            درباره ما
+            <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+          </Link>
+          <Link class="group relative w-max" href={"/contact-us"}>
+            تماس با ما
+            <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+          </Link>
         </div>
         <div className="hidden  lg:flex lg:flex-row justify-end gap-3">
           <button className="border-1 border-blue-400 px-3 py-1 rounded-md">
