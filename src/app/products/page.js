@@ -18,12 +18,12 @@ const ShowProducts = async () => {
           {products.map((product, index) => {
             return (
               <div
-                className="group relative bg-white shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-2xl lg:h-[400px] flex flex-col items-center gap-5 pb-3 overflow-hidden"
+                className=" bg-white shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-2xl lg:h-[400px] flex flex-col items-center gap-5 pb-3"
                 key={index}
               >
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent opacity-0 group-hover:opacity-100">
+                {/* <div className="absolute inset-0 rounded-2xl border-2 border-transparent opacity-0 group-hover:opacity-100">
                   <div className="absolute w-20 h-[3px] bg-blue-500 animate-moving-line" />
-                </div>
+                </div> */}
 
                 <Link
                   href={`/product/${fixurl(product.product_name)}`}
@@ -37,7 +37,7 @@ const ShowProducts = async () => {
                   />
                 </Link>
                 <h3 className="z-10">{product.product_name}</h3>
-                <div className="flex flex-row gap-2 text-xl z-10">
+                <div className="flex flex-row gap-2 text-xl">
                   <p>{PersianNumbers(product.product_price)}</p>
                   <p>تومان</p>
                 </div>

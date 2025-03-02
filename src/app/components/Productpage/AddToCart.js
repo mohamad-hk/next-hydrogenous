@@ -47,6 +47,7 @@ const AddToCartSection = ({
               <CalcPercent price={price} d_percent={discount_percent} />
             </p>
           ) : null}
+          <ProductExisting product={product} />
         </div>
 
         <div className=" flex flex-row justify-around gap-28 w-full items-center bg-slate-50 fixed shadow-md md:hidden bottom-0 left-0 z-10 p-3">

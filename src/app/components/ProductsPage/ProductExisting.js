@@ -13,12 +13,13 @@ const ProductExisting = ({ product }) => {
   const [cartItem, setCartItem] = useState(null);
 
   useEffect(() => {
-    cart.map((item) => {
-      if (item.id == product.product_id) {
-        setAvailable(true);
-        setCartItem(item);
-      }
-    });
+    const foundItem = cart.find((item) => item.id === product.product_id);
+    if (foundItem) {
+      setAvailable(true);
+      setCartItem(foundItem);
+    } else {
+      setAvailable(false);
+    }
   }, [cart, product.product_id]);
 
   return (
@@ -33,8 +34,13 @@ const ProductExisting = ({ product }) => {
           </button>
           <span>{PersianNumbers(cartItem.quantity)}</span>
 
-          {cartItem.quantity == 1 ? (
-            <button onClick={() => remove(cartItem.id)}>
+          {cartItem.quantity === 1 ? (
+            <button
+              onClick={() => {
+                remove(cartItem.id);
+                setAvailable(false);
+              }}
+            >
               <FaRegTrashCan className="text-danger text-xl" />
             </button>
           ) : (
@@ -45,7 +51,7 @@ const ProductExisting = ({ product }) => {
           )}
         </div>
       ) : (
-        <AddToCart product={product} />
+        <AddToCart product={product} onAdd={() => setAvailable(true)} />
       )}
     </>
   );
