@@ -10,7 +10,7 @@ const AddToCart = ({ product }) => {
     product.discount_price,
     product.discount_percent
   );
-
+  const product_discount = product.product_price - calculatedPrice;
   return (
     <>
       <Button
@@ -22,8 +22,10 @@ const AddToCart = ({ product }) => {
             id: product.product_id,
             name: product.product_name,
             price: calculatedPrice,
+            discount: product_discount,
             image: `/images/products/${product.product_photo}`,
           });
+          
         }}
       >
         افزودن به سبد
