@@ -2,6 +2,7 @@ import CalcPercent from "@/app/utils/CalcDiscountPercent";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import ProductExisting from "../ProductsPage/ProductExisting";
 import ShowDiscount from "./ShowDiscount";
+import ShowPrice from "./ShowPrice";
 const AddToCartSection = ({
   product_name,
   price,
@@ -25,23 +26,11 @@ const AddToCartSection = ({
           پرانرژی برای کسانی که به دنبال تعادل و نشاط بیشتر در زندگی خود هستند.
         </p>
         <div className="my-8 hidden md:block">
-          <p
-            className={
-              discount_percent != null || discount_price != null
-                ? `mb-3 line-through`
-                : `mb-3`
-            }
-          >
-            {PersianNumbers(price)} تومان
-          </p>
-          {discount_price != null ? (
-            <p>{PersianNumbers(discount_price)} تومان</p>
-          ) : null}
-          {discount_percent != null ? (
-            <p className="">
-              <CalcPercent price={price} d_percent={discount_percent} />
-            </p>
-          ) : null}
+          <ShowPrice
+            price={price}
+            discount_percent={discount_percent}
+            discount_price={discount_price}
+          />
           <ProductExisting product={product} />
         </div>
 
