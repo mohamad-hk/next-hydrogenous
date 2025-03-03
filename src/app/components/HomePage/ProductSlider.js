@@ -10,6 +10,7 @@ import Link from "next/link";
 import fixurl from "@/app/utils/Fixurl";
 import { IoIosArrowBack } from "react-icons/io";
 import { usePathname } from "next/navigation";
+import ShowPrice from "../Productpage/ShowPrice";
 
 const ProductSlider = ({ products, category }) => {
   const pathname = usePathname();
@@ -74,9 +75,12 @@ const ProductSlider = ({ products, category }) => {
 
                   <div className="flex flex-col items-center gap-5">
                     <h3 className="">{product.product_name}</h3>
-                    <div className="flex flex-row gap-2 text-xl">
-                      <p>{PersianNumbers(product.product_price)}</p>
-                      <p>تومان</p>
+                    <div className="flex flex-col gap-2 text-xl">
+                    <ShowPrice
+                    price={product.product_price}
+                    discount_percent={product.discount_percent}
+                    discount_price={product.discount_price}
+                  />
                     </div>
                   </div>
                 </div>
