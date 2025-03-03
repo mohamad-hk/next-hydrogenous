@@ -1,9 +1,16 @@
 "use client";
 import useCartStore from "@/app/store/cartstore";
 import { Button } from "@heroui/react";
+import CalculatePrice from "../../utils/CalculatePrice";
 
 const AddToCart = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
+  const calculatedPrice = CalculatePrice(
+    product.product_price,
+    product.discount_price,
+    product.discount_percent
+  );
+
   return (
     <>
       <Button
@@ -14,7 +21,7 @@ const AddToCart = ({ product }) => {
           addToCart({
             id: product.product_id,
             name: product.product_name,
-            price: product.product_price,
+            price: calculatedPrice,
             image: `/images/products/${product.product_photo}`,
           });
         }}
