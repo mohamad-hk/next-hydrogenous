@@ -1,5 +1,5 @@
 import Cart from "../components/CartStore/ShowCart";
-import Orderinfo from "../components/Shipment/Orderinfo";
+import Orderinfo from "../components/Shipment/OrderInfo";
 
 const Basket = () => {
   return (
