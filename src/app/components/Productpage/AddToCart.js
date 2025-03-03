@@ -1,6 +1,7 @@
 import CalcPercent from "@/app/utils/CalcDiscountPercent";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import ProductExisting from "../ProductsPage/ProductExisting";
+import ShowDiscount from "./ShowDiscount";
 const AddToCartSection = ({
   product_name,
   price,
@@ -11,16 +12,10 @@ const AddToCartSection = ({
   return (
     <>
       <div className=" flex flex-col items-start gap-5 md:relative max-w-[600px]">
-        {discount_percent != null ? (
-          <div className="hidden md:block rounded-full bg-danger absolute text-white p-3 left-0 top-5">
-            {PersianNumbers(discount_percent)}%
-          </div>
-        ) : null}
-        {discount_price != null ? (
-          <div className="hidden md:block rounded-full bg-danger absolute text-white p-3 left-0 top-5">
-            {PersianNumbers((discount_price / price) * 100)}%
-          </div>
-        ) : null}
+        <ShowDiscount
+          discount_percent={discount_percent}
+          discount_price={discount_price}
+        />
         <h1 className="text-2xl mt-10">{product_name}</h1>
         <p className="text-justify leading-9 text-[14px]">
           پودر نوشیدنی هیدروژنوس با طعم موهیتو، انتخابی ایده‌آل برای افرادی است
