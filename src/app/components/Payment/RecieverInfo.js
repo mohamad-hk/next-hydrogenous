@@ -33,31 +33,28 @@ const ReceiverInfo = () => {
   }, []);
   return (
     <>
-    {
-      shipment.map((item)=>{
-        return(
+      {shipment.map((item) => {
+        return (
           <div className="flex flex-col gap-5 rounded-md p-3 ">
-          <div className="flex flex-row gap-2">
-            <IoPersonOutline className="text-2xl" />
-            <p>{item.f_n_shipment + " " + item.l_n_shipment}</p>
+            <div className="flex flex-row gap-2">
+              <IoPersonOutline className="text-2xl" />
+              <p>{item.f_n_shipment + " " + item.l_n_shipment}</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <CiMobile2 className="text-2xl" />
+              <p>{item.phone_shipment}</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <GrLocation className="text-2xl " />
+              <p>{item.address_shipment}</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <MdOutlineLocalPostOffice className="text-2xl" />
+              <p>{item.zip_code_shipment}</p>
+            </div>
           </div>
-          <div className="flex flex-row gap-2">
-            <CiMobile2 className="text-2xl" />
-            <p>{item.phone_shipment}</p>
-          </div>
-          <div className="flex flex-row gap-2">
-            <GrLocation className="text-2xl " />
-            <p>{item.address_shipment}</p>
-          </div>
-          <div className="flex flex-row gap-2">
-            <MdOutlineLocalPostOffice className="text-2xl" />
-            <p>{item.zip_code_shipment}</p>
-          </div>
-        </div>
-        )
-      })
-    }
-
+        );
+      })}
     </>
   );
 };
