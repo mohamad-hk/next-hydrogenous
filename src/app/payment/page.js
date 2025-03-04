@@ -6,6 +6,7 @@ import { LuClock } from "react-icons/lu";
 import { Button, Input } from "@heroui/react";
 import PersianNumbers from "../utils/ToPersianNumber";
 import OrderSurvey from "../components/Payment/OrderSurvey";
+import ReceiverInfo from "../components/Payment/RecieverInfo";
 
 const Payment = () => {
   return (
@@ -63,7 +64,7 @@ const Payment = () => {
           </div>
           <div>
             <h1 className="text-lg">تحویل گیرنده</h1>
-            <p>lorem</p>
+            <ReceiverInfo/>
           </div>
           <div>
             <h1 className="text-lg">سبد خرید شما</h1>

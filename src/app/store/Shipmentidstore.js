@@ -5,10 +5,11 @@ const useShipmentStore = create(
   persist(
     (set) => ({
       shipmentId: null,
-      setShipmentId: (id) => set({ shipmentId: id }),
+      setShipmentId: (id) => set({ shipmentId: id }), 
     }),
     {
-      name: "shipment-storage",
+      name: "shipment-storage", 
+      getStorage: () => localStorage, 
     }
   )
 );

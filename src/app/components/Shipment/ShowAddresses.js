@@ -8,6 +8,9 @@ import { Radio, RadioGroup } from "@heroui/react";
 import useShipmentStore from "@/app/store/Shipmentidstore";
 const ShowAddresses = ({ data }) => {
   const { setShipmentId } = useShipmentStore();
+  const SaveId = (id) => {
+    setShipmentId(id);
+  };
   return (
     <>
       <div className="grid grid-cols-1 gap-y-5 sm:grid-cols-2 sm:gap-x-5 lg:grid-cols-3 lg:gap-x-5  py-10 px-10">
@@ -18,7 +21,7 @@ const ShowAddresses = ({ data }) => {
                 <div className="flex items-start gap-1" key={index}>
                   <Radio
                     className="!items-baseline"
-                    onClick={() => setShipmentId(index)}
+                    onChange={() => SaveId(index)}
                     value={index}
                   />
                   <div className="flex flex-col gap-5 rounded-xl shadow-lg p-3 max-w-[500px]">
