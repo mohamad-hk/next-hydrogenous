@@ -6,9 +6,10 @@ const Shipment = async () => {
   const shipments = await data.json();
   return (
     <>
-      <div className="grid mx-auto grid-cols-[_minmax(800px,_1fr)_minmax(100px,_300px)] gap-x-10 p-10 ">
+      <div className="grid grid-cols-1 p-5 md:mx-auto md:grid-cols-[_minmax(800px,_1fr)_minmax(100px,_300px)] md:gap-x-10 md:p-10 ">
         <ShowAddresses data={shipments} />
         <Orderinfo href={"/payment"} button="تایید و تکمیل سفارش" />
+        <h1>انتخاب شیوه ارسال</h1>
       </div>
     </>
   );
