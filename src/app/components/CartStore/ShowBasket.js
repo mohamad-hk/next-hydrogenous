@@ -4,7 +4,6 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerBody,
-  Button,
   useDisclosure,
   Badge,
 } from "@heroui/react";
@@ -15,17 +14,20 @@ export default function ShowBasket() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
-      <Button className="p-0 h-auto " variant="light" onPress={onOpen}>
+      <div
+        className="cursor-pointer hover:text-danger transition-all duration-500 ease-in-out"
+        onClick={onOpen}
+      >
         <div className="flex flex-row gap-1">
           <Badge
             color="danger"
             showOutline="false"
             content={<CounterBasket />}
-            className="top-2 "
+            className="top-2 text-danger bg-transparent "
           ></Badge>
           <PiBasket className="text-2xl" />
         </div>
-      </Button>
+      </div>
       <Drawer isOpen={isOpen} onOpenChange={onOpenChange}>
         <DrawerContent>
           {(onClose) => (

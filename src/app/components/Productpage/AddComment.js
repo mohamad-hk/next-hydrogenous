@@ -24,9 +24,9 @@ const AddComment = ({id}) => {
   };
   return (
     <>
-      <div className="flex flex-col gap-10 shadow-md rounded-2xl h-[400px] p-3">
+      <div className="flex flex-col gap-5 shadow-md rounded-2xl  p-3">
         <CommentStatics id={id}/>
-        <p>نظر خود را در مورد این محصول بنویسید</p>
+        <p className="text-center">نظر خود را در مورد این محصول بنویسید</p>
         <Button
           color="success"
           className="text-white"

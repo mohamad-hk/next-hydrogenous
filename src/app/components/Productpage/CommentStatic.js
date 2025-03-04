@@ -25,7 +25,6 @@ const CommentStatics = ({ id }) => {
   function countscore(response) {
     response.forEach((item) => {
       const scoreValue = Number(item.comment_score);
-      console.log(scoreValue);
       setTotal((prev) => prev + scoreValue);
       switch (scoreValue) {
         case 1:

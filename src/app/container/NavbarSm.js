@@ -26,7 +26,7 @@ const NavbarMobile = () => {
           سبد خرید
         </div>
 
-        <Link className="py-3" href={"#"}>
+        <Link className="py-3" href={"/profile"}>
           <div className="flex flex-col items-center gap-1">
             <CgProfile className="text-2xl" />
             پروفایل من

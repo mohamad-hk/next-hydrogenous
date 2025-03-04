@@ -18,28 +18,28 @@ const Navigation = () => {
         </Link>
 
         <div className="hidden lg:flex lg:flex-row lg:justify-center lg:gap-10 ">
-          <Link class="group relative w-max" href={"/"}>
+          <Link className="group relative w-max" href={"/"}>
             صفحه اصلی
-            <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
-            <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
           </Link>
-          <Link class="group relative w-max" href={"../products/"}>
+          <Link className="group relative w-max" href={"/products"}>
             محصولات
-            <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
-            <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
           </Link>
-          <Link class="group relative w-max" href={"/about"}>
+          <Link className="group relative w-max" href={"/about"}>
             درباره ما
-            <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
-            <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
           </Link>
-          <Link class="group relative w-max" href={"/contact-us"}>
+          <Link className="group relative w-max" href={"/contact-us"}>
             تماس با ما
-            <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
-            <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
           </Link>
         </div>
-        <div className="hidden  lg:flex lg:flex-row justify-end gap-3">
+        <div className="hidden  lg:flex lg:flex-row justify-end gap-5">
           <button className="border-1 border-blue-400 px-3 py-1 rounded-md">
             <Link href={"/login"}>
               <div className="flex flex-row gap-3">
@@ -50,7 +50,11 @@ const Navigation = () => {
               </div>
             </Link>
           </button>
-          {pathname == "/cart" ? null : <ShowBasket />}
+          {pathname == "/cart" ||
+          pathname == "/shipment" ||
+          pathname == "/payment" ? null : (
+            <ShowBasket />
+          )}
         </div>
       </nav>
     </>
