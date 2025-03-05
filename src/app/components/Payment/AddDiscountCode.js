@@ -1,3 +1,4 @@
+"use client"
 import { Button, Input } from "@heroui/react";
 
 const AddDiscountCode = () => {
