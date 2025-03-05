@@ -54,7 +54,7 @@ const Login = () => {
       });
       const userData = await userResponse.json();
 
-      const authResponse = await fetch("/api/Auth", {
+      const authResponse = await fetch("/api/Auth/Jwt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: userData }),

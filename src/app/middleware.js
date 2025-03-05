@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { getAccessToken } from "./api/Auth/route";
+import { getAccessToken } from "./api/Auth/Jwt/route";
 import { JWTverify } from "./lib/auth";
 
 export const config = {
