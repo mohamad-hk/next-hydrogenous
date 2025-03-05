@@ -52,7 +52,6 @@ const Login = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone: phoneNumber }),
       });
-      if (!userResponse.ok) throw new Error(`خطا: ${userResponse.status}`);
       const userData = await userResponse.json();
 
       const authResponse = await fetch("/api/Auth", {
@@ -60,8 +59,6 @@ const Login = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: userData }),
       });
-      if (!authResponse.ok) throw new Error(`خطا: ${authResponse.status}`);
-      console.log("کوکی ذخیره شد");
       onOpenChange(false);
     } catch (error) {
       console.error("خطا در تأیید کد:", error);
