@@ -59,7 +59,6 @@ const Login = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: userData }),
       });
-      console.log(authResponse)
       onOpenChange(false);
     } catch (error) {
       console.error("خطا در تأیید کد:", error);

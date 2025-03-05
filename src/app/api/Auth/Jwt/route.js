@@ -21,7 +21,7 @@ export async function POST(request) {
 
 export async function getAccessToken(payload) {
   const token = await JWTgenerate(payload);
-  const expires = new Date(Date.now() + 30 * 1000);
+  const expires = new Date(Date.now() + 60 * 1000 * 60 * 24 );
   return { value: token, time: expires };
 }
 
