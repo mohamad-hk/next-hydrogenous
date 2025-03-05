@@ -6,17 +6,20 @@ import NavbarMobile from "./NavbarSm";
 
 const Header = () => {
   const pathname = usePathname();
+  if (
+    pathname === "/cart" ||
+    pathname === "/shipment" ||
+    pathname === "/payment"
+  ) {
+    return null;
+  }
 
   return (
     <>
       <Navigation />
-      {pathname === "/cart" ||
-      pathname === "/shipment" ||
-      pathname.startsWith("/product") ||
-      pathname === "/payment" ? null : (
-        <NavbarMobile />
-      )}
+      <NavbarMobile />
     </>
   );
 };
+
 export default Header;
