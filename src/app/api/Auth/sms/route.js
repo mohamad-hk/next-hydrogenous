@@ -2,8 +2,18 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const { phone } = await req.json();
-    const code = (10000 + Math.random() * 90000).toFixed(0);
+    const body = await req.json();
+
+    if (!body || !body.phone) {
+      return NextResponse.json(
+        { success: false, message: "شماره موبایل اشتباه است" },
+        { status: 400 }
+      );
+    }
+
+    const { phone } = body;
+
+    const code = (1000 + Math.random() * 9000).toFixed(0);
 
     const response = await fetch("https://api.sms.ir/v1/send/verify/", {
       method: "POST",
@@ -19,11 +29,13 @@ export async function POST(req) {
     });
 
     const text = await response.text();
-    if (!response.ok)
+
+    if (!response.ok) {
       return NextResponse.json(
-        { success: false, message: `Error: ${text}` },
+        { success: false, message: `Error Service: ${text}` },
         { status: response.status }
       );
+    }
 
     return NextResponse.json({
       success: true,
@@ -31,9 +43,8 @@ export async function POST(req) {
       response: JSON.parse(text),
     });
   } catch (error) {
-    console.error("Error:", error.message);
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, message: "Server error ", error: error.message },
       { status: 500 }
     );
   }
