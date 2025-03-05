@@ -40,36 +40,33 @@ const Login = () => {
     }
   }, []);
 
-  const verifyCodeHandler = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const userCode = codeRef.current?.value.trim();
-      if (!userCode) return console.error("کد تایید وارد نشده است");
-      if (userCode !== verifyCode) return console.error("کد تایید اشتباه است");
+  const verifyCodeHandler = async (event) => {
+    event.preventDefault();
+    const userCode = codeRef.current?.value.trim();
+    if (!userCode) return console.error("کد تایید وارد نشده است");
+    if (userCode !== verifyCode) return console.error("کد تایید اشتباه است");
 
-      try {
-        const userResponse = await fetch("/api/Auth/GetUser", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ phone: phoneNumber }),
-        });
-        if (!userResponse.ok) throw new Error(`خطا: ${userResponse.status}`);
-        const userData = await userResponse.json();
+    try {
+      const userResponse = await fetch("/api/Auth/GetUser", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone: phoneNumber }),
+      });
+      if (!userResponse.ok) throw new Error(`خطا: ${userResponse.status}`);
+      const userData = await userResponse.json();
 
-        const authResponse = await fetch("/api/Auth", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ data: userData }),
-        });
-        if (!authResponse.ok) throw new Error(`خطا: ${authResponse.status}`);
-        console.log("کوکی ذخیره شد");
-        onOpenChange(false);
-      } catch (error) {
-        console.error("خطا در تأیید کد:", error);
-      }
-    },
-    [phoneNumber, verifyCode, onOpenChange]
-  );
+      const authResponse = await fetch("/api/Auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: userData }),
+      });
+      if (!authResponse.ok) throw new Error(`خطا: ${authResponse.status}`);
+      console.log("کوکی ذخیره شد");
+      onOpenChange(false);
+    } catch (error) {
+      console.error("خطا در تأیید کد:", error);
+    }
+  };
 
   return (
     <>
