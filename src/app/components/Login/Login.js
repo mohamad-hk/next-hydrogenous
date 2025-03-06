@@ -9,7 +9,8 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@heroui/react";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
+import { CgProfile } from "react-icons/cg";
 
 const Login = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -18,6 +19,7 @@ const Login = () => {
   const [verifyCode, setVerifyCode] = useState("");
   const phoneRef = useRef(null);
   const codeRef = useRef(null);
+  const [LargeScreen, setLargeScreen] = useState(false);
 
   const sendPhone = useCallback(async (event) => {
     event.preventDefault();
@@ -64,10 +66,29 @@ const Login = () => {
       console.error("خطا در تأیید کد:", error);
     }
   };
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setLargeScreen(window.innerWidth > 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   return (
     <>
-      <Button onPress={onOpen}>عضویت</Button>
+      <Button className="bg-transparent h-16 md:h-10" onPress={onOpen}>
+        {LargeScreen ? (
+          "عضویت"
+        ) : (
+          <div className="flex flex-col items-center gap-1" onPress={onOpen}>
+            <CgProfile className="text-2xl" />
+            پروفایل
+          </div>
+        )}
+      </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           <ModalHeader className="flex flex-col gap-1">

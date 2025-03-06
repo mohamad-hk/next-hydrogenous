@@ -3,6 +3,9 @@ import { GoHome } from "react-icons/go";
 import { BsBox } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import ShowBasket from "../components/CartStore/ShowBasket";
+import { IoIosCheckmark } from "react-icons/io";
+import { Badge } from "@heroui/react";
+import CheckLloginSm from "../components/CheckLogin/CheckLoginSm";
 
 const NavbarMobile = () => {
   return (
@@ -25,13 +28,7 @@ const NavbarMobile = () => {
           <ShowBasket />
           سبد خرید
         </div>
-
-        <Link className="py-3" href={"/profile"}>
-          <div className="flex flex-col items-center gap-1">
-            <CgProfile className="text-2xl" />
-            پروفایل من
-          </div>
-        </Link>
+        <CheckLloginSm/>
       </div>
     </>
   );
