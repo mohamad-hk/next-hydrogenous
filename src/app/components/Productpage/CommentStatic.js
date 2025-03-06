@@ -101,7 +101,9 @@ const CommentStatics = ({ id }) => {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="text-2xl">{averageScore!=0? PersianNumbers(averageScore):null}</p>
+          <p className="text-2xl">
+            {averageScore != 0 ? PersianNumbers(averageScore) : null}
+          </p>
           <p className="text-2xl">{PersianNumbers(totalScores)} نظر</p>
         </div>
       </div>

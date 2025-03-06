@@ -14,7 +14,7 @@ const Orders = () => {
   const fetch_orders = async (input_params) => {
     try {
       const data = await fetch(
-        `/api/GetOrders?${input_params}`
+        `https://hydrogenous.vercel.app/api/GetOrders?${input_params}`
       );
       const response = await data.json();
       Set_orders(response);

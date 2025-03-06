@@ -8,7 +8,9 @@ const PersonalInfo = () => {
   const { user } = useContext(AuthContext);
   const getInfo = async (input_params) => {
     try {
-      const data = await fetch(`/api/GetInfo?${input_params}`);
+      const data = await fetch(
+        `https://hydrogenous.vercel.app/api/GetInfo?${input_params}`
+      );
       const response = await data.json();
       setInfo(response);
     } catch (error) {
