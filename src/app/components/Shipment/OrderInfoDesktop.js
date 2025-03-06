@@ -1,5 +1,6 @@
 "use client";
 
+import { useShipment } from "@/app/context/ShipmentContext";
 import useCartStore from "@/app/store/cartstore";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import { Button, Card, CardBody } from "@heroui/react";
@@ -9,6 +10,7 @@ import Link from "next/link";
 const OrderInfoDesktop = ({ href, button }) => {
   const { totalBasket, totalDiscount } = useCartStore();
   const flour = 550000;
+  const { shipmentId } = useShipment();
 
   return (
     <>
@@ -43,7 +45,7 @@ const OrderInfoDesktop = ({ href, button }) => {
                 )}
               </div>
 
-              <Button color="primary">
+              <Button isDisabled={!shipmentId} color="primary">
                 <Link href={href}>{button}</Link>
               </Button>
             </div>

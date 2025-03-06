@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 const Orderinfo = ({ button }) => {
   const [LargeScreen, setLargeScreen] = useState(false);
+
   const pathname = usePathname();
   let refrence = "";
   if (pathname == "/cart") {

@@ -1,5 +1,6 @@
 "use client";
 
+import { useShipment } from "@/app/context/ShipmentContext";
 import useCartStore from "@/app/store/cartstore";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import { Button, Card, CardBody } from "@heroui/react";
@@ -9,6 +10,7 @@ import { useEffect, useState } from "react";
 const OrderInfoSm = ({ href, button }) => {
   const [LargeScreen, setLargeScreen] = useState(false);
   const { totalBasket, totalDiscount } = useCartStore();
+  const { shipmentId } = useShipment();
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -33,7 +35,7 @@ const OrderInfoSm = ({ href, button }) => {
                 <p>{PersianNumbers(totalBasket) + " تومان "}</p>
               </div>
             </div>
-            <Button color="danger">
+            <Button isDisabled={!shipmentId} color="danger">
               <Link href={href}>{button}</Link>
             </Button>
           </div>
