@@ -3,14 +3,19 @@
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import Link from "next/link";
 import { Divider } from "@heroui/divider";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ShowPersianNumbers from "@/app/utils/ShowPersinaNumbers";
+import { AuthContext } from "@/app/context/AuthContext";
 
 const Orders = () => {
   const [orders, Set_orders] = useState([]);
-  const fetch_orders = async () => {
+  const { user } = useContext(AuthContext);
+
+  const fetch_orders = async (input_params) => {
     try {
-      const data = await fetch("https://hydrogenous.vercel.app/api/GetOrders");
+      const data = await fetch(
+        `/api/GetOrders?${input_params}`
+      );
       const response = await data.json();
       Set_orders(response);
     } catch (error) {
@@ -18,8 +23,13 @@ const Orders = () => {
     }
   };
   useEffect(() => {
-    fetch_orders();
-  }, []);
+    if (user) {
+      const input_params = new URLSearchParams({
+        cust_id: user.customer_id,
+      });
+      fetch_orders(input_params);
+    }
+  }, [user]);
 
   return (
     <>

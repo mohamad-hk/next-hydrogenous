@@ -1,19 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CiMobile2 } from "react-icons/ci";
 import { IoPersonOutline } from "react-icons/io5";
 import { GrLocation } from "react-icons/gr";
 import { MdOutlineLocalPostOffice } from "react-icons/md";
 import { CgAdd } from "react-icons/cg";
 import OptionAddress from "@/app/components/Profile/OptionAddress";
+import { AuthContext } from "@/app/context/AuthContext";
 const Addresses = () => {
   const [shipments, setShipments] = useState();
-  const getShipment = async () => {
+  const { user } = useContext(AuthContext);
+
+  const getShipment = async (input_params) => {
     try {
       const data = await fetch(
-        "https://hydrogenous.vercel.app/api/GetShipment"
+        `https://hydrogenous.vercel.app/api/GetShipment?${input_params}`
       );
       const response = await data.json();
       setShipments(response);
@@ -23,8 +26,13 @@ const Addresses = () => {
   };
 
   useEffect(() => {
-    getShipment();
-  }, [shipments]);
+    if (user) {
+      const input_params = new URLSearchParams({
+        cust_id: user.customer_id,
+      });
+      getShipment(input_params);
+    }
+  }, [user]);
 
   return (
     <>
