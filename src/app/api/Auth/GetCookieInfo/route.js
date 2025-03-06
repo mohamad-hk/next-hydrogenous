@@ -4,10 +4,9 @@ import jwt from "jsonwebtoken";
 
 export async function GET() {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const accessToken = cookieStore.get("accessToken")?.value || null;
     const refreshToken = cookieStore.get("refreshToken")?.value || null;
-
     if (!accessToken) {
       return NextResponse.json(
         { error: "Access token not found" },
@@ -19,8 +18,7 @@ export async function GET() {
     const decodedRefreshToken = refreshToken ? jwt.decode(refreshToken) : null;
 
     return NextResponse.json({
-      accessTokenData: decodedAccessToken.data,
-      refreshTokenData: decodedRefreshToken.data,
+      aTData: decodedAccessToken.data,
     });
   } catch (error) {
     return NextResponse.json(
