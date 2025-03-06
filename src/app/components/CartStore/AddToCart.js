@@ -16,7 +16,7 @@ const AddToCart = ({ product }) => {
       <Button
         color="primary"
         variant="ghost"
-        className="px-14 bg-blue-600 border-0 text-white"
+        className="px-14 bg-blue-600 border-0 py-5 text-white"
         onPress={() => {
           addToCart({
             id: product.product_id,

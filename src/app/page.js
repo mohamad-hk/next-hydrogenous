@@ -5,10 +5,10 @@ import GetSliders from "./components/HomePage/GetSliders";
 export default function App() {
   return (
     <>
-      <GetSliders/>
+      <GetSliders />
       <Features />
       <GetProducts category={"ساشه"} />
-      <GetProducts category={"پودر"}/>
+      <GetProducts category={"پودر"} />
     </>
   );
 }
