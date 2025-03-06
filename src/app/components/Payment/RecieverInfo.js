@@ -1,22 +1,20 @@
 "use client";
-import useShipmentStore from "@/app/store/Shipmentidstore";
 import { CiMobile2 } from "react-icons/ci";
 import { IoPersonOutline } from "react-icons/io5";
 import { GrLocation } from "react-icons/gr";
 import { MdOutlineLocalPostOffice } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { useShipment } from "@/app/context/ShipmentContext";
 const ReceiverInfo = () => {
-  const { shipmentId } = useShipmentStore();
+  const { shipmentId } = useShipment();
   const [shipment, setShipment] = useState([]);
-  const getShipment = async () => {
+  const getShipment = async (sh_id) => {
     try {
       const input_params = new URLSearchParams({
-        ship_id: shipmentId,
+        ship_id: sh_id,
       });
 
-      const response = await fetch(
-        `https://hydrogenous.vercel.app/api/GetShipment?${input_params}`
-      );
+      const response = await fetch(`https://hydrogenous.vercel.app/api/GetShipment?${input_params}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -29,8 +27,8 @@ const ReceiverInfo = () => {
     }
   };
   useEffect(() => {
-    getShipment();
-  }, []);
+    getShipment(shipmentId);
+  }, [shipmentId]);
   return (
     <>
       {shipment.map((item) => {

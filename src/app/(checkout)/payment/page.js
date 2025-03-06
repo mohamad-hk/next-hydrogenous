@@ -7,6 +7,7 @@ import ShipmentSurvey from "../../components/Payment/ShipmentSurvey";
 import ChoiceGateaway from "../../components/Payment/ChoiceGateway";
 
 const Payment = () => {
+
   return (
     <div className="grid grid-cols-1 lg:mx-auto lg:grid-cols-[_minmax(600px,_1fr)_minmax(100px,_300px)]  xl:grid-cols-[_minmax(800px,_1fr)_minmax(100px,_300px)] md:gap-x-10 md:p-10 ">
       <div className="flex flex-col gap-3">
