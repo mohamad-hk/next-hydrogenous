@@ -5,12 +5,14 @@ import useCartStore from "@/app/store/cartstore";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import { Button, Card, CardBody } from "@heroui/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const OrderInfoSm = ({ href, button }) => {
   const [LargeScreen, setLargeScreen] = useState(false);
   const { totalBasket, totalDiscount } = useCartStore();
   const { shipmentId } = useShipment();
+  const pathname = usePathname();
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -35,7 +37,10 @@ const OrderInfoSm = ({ href, button }) => {
                 <p>{PersianNumbers(totalBasket) + " تومان "}</p>
               </div>
             </div>
-            <Button isDisabled={!shipmentId} color="danger">
+            <Button
+              isDisabled={pathname != "/cart" ? !shipmentId : undefined}
+              color="danger"
+            >
               <Link href={href}>{button}</Link>
             </Button>
           </div>

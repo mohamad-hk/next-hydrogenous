@@ -6,11 +6,13 @@ import PersianNumbers from "@/app/utils/ToPersianNumber";
 import { Button, Card, CardBody } from "@heroui/react";
 import { Progress } from "@heroui/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const OrderInfoDesktop = ({ href, button }) => {
   const { totalBasket, totalDiscount } = useCartStore();
   const flour = 550000;
   const { shipmentId } = useShipment();
+  const pathname = usePathname();
 
   return (
     <>
@@ -45,7 +47,10 @@ const OrderInfoDesktop = ({ href, button }) => {
                 )}
               </div>
 
-              <Button isDisabled={!shipmentId} color="primary">
+              <Button
+                isDisabled={pathname != "/cart" ? !shipmentId : undefined}
+                color="primary"
+              >
                 <Link href={href}>{button}</Link>
               </Button>
             </div>
