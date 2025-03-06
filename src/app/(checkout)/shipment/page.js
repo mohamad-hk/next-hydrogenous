@@ -1,18 +1,33 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Orderinfo from "../../components/Shipment/OrderInfo";
 import ShowAddresses from "../../components/Shipment/ShowAddresses";
+import { AuthContext } from "@/app/context/AuthContext";
 
 const Shipment = () => {
   const [addresses, setAddresses] = useState([]);
-  const getAddress = async () => {
-    const data = await fetch("https://hydrogenous.vercel.app/api/GetShipment");
-    const shipments = await data.json();
-    setAddresses(shipments);
+  const { user } = useContext(AuthContext);
+
+  const getAddresses = async (input_params) => {
+    try {
+      const data = await fetch(
+        `https://hydrogenous.vercel.app/api/GetShipment?${input_params}`
+      );
+      const response = await data.json();
+      setAddresses(response);
+    } catch (error) {
+      console.error("Error fetching shipments:", error);
+    }
   };
+
   useEffect(() => {
-    getAddress();
-  }, []);
+    if (user) {
+      const input_params = new URLSearchParams({
+        cust_id: user.customer_id,
+      });
+      getAddresses(input_params);
+    }
+  }, [user]);
   return (
     <>
       <div className="grid grid-cols-1 p-5 md:mx-auto md:grid-cols-[_minmax(800px,_1fr)_minmax(100px,_300px)] md:gap-x-10 md:p-10 ">
