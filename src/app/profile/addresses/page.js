@@ -16,7 +16,7 @@ const Addresses = () => {
   const getShipment = async (input_params) => {
     try {
       const data = await fetch(
-        `https://hydrogenous.vercel.app/api/GetShipment?${input_params}`
+        `https://hydrogenous.vercel.app/api/Shipments/GetShipment?${input_params}`
       );
       const response = await data.json();
       setShipments(response);
@@ -61,7 +61,7 @@ const Addresses = () => {
                 <MdOutlineLocalPostOffice className="text-2xl" />
                 <p>{shipment.zip_code_shipment}</p>
               </div>
-              <OptionAddress />
+              <OptionAddress sh_id={shipment.shipment_id} />
             </div>
           );
         })}
