@@ -16,7 +16,7 @@ const ShowAddresses = ({ data, onChange }) => {
 
   return (
     <div className="flex flex-wrap gap-5 py-10 px-10">
-      {data.map((shipment, index) => (
+      {data?.map((shipment, index) => (
         <label
           key={shipment.shipment_id ?? index}
           onClick={() => {

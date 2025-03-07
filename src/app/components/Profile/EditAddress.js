@@ -76,13 +76,11 @@ export default function EditAddress({ sh_id, refresh }) {
         }
       );
 
-      console.log(response)
       const data = await response.json();
-      console.log(data)
       if (response.ok) {
-        console.log("Shipment updated successfully", data);
+        console.log("updated successfully", data);
       } else {
-        console.error("Error updating shipment:", data.error);
+        console.error("Error updating", data.error);
       }
     } catch (error) {
       console.error("Error:", error);

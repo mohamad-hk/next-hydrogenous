@@ -29,15 +29,12 @@ const Cart = ({ close }) => {
         <p className="text-gray-600">سبد خرید خالی است.</p>
       ) : (
         cart.map((item, index) => (
-          <>
-            <div
-              key={item.id}
-              className="rounded-lg flex flex-row justify-between items-center"
-            >
-              <div className="flex flex-row items-center ">
+          <div key={item.id}>
+            <div className="rounded-lg flex flex-row justify-between items-center">
+              <div className="flex flex-row items-center">
                 <div
                   className={`flex ${
-                    pathname == "/cart" ? " flex-row items-center " : "flex-col"
+                    pathname === "/cart" ? "flex-row items-center" : "flex-col"
                   }`}
                 >
                   <Image
@@ -48,45 +45,45 @@ const Cart = ({ close }) => {
                   />
                   <div
                     className={
-                      pathname == "/cart" ? "flex flex-col gap-3" : null
+                      pathname === "/cart" ? "flex flex-col gap-3" : ""
                     }
                   >
                     <p className="text-[14px]">{item.name}</p>
-                    {pathname == "/cart" ? (
-                      <p>{PersianNumbers(item.price)} تومان </p>
-                    ) : null}
+                    {pathname === "/cart" && (
+                      <p>{PersianNumbers(item.price)} تومان</p>
+                    )}
                   </div>
                 </div>
-                {pathname != "/cart" ? (
-                  <p>{PersianNumbers(item.price)} تومان </p>
-                ) : null}
+                {pathname !== "/cart" && (
+                  <p>{PersianNumbers(item.price)} تومان</p>
+                )}
               </div>
               <div className="flex flex-row gap-2">
                 <button
                   onClick={() => inc_quantity(item.id)}
-                  className=" text-blue-400 border border-blue-500 px-1 rounded-lg"
+                  className="text-blue-400 border border-blue-500 px-1 rounded-lg"
                 >
                   <FaPlus />
                 </button>
                 <span>{PersianNumbers(item.quantity)}</span>
 
-                {item.quantity == 1 ? (
+                {item.quantity === 1 ? (
                   <button onClick={() => remove(item.id)}>
                     <FaRegTrashCan className="text-danger text-xl" />
                   </button>
                 ) : (
                   <FaMinus
-                    className=" text-blue-400 border border-blue-500 p-1 rounded-lg text-2xl cursor-pointer"
+                    className="text-blue-400 border border-blue-500 p-1 rounded-lg text-2xl cursor-pointer"
                     onClick={() => dec_quantity(item.id)}
                   />
                 )}
               </div>
             </div>
-            {cart.length - 1 != index ? <Divider /> : null}
-          </>
+            {cart.length - 1 !== index && <Divider />}
+          </div>
         ))
       )}
-      {pathname == "/cart" ? null : (
+      {pathname !== "/cart" && (
         <>
           <p className="mt-5">{PersianNumbers(total)} تومان</p>
           <Link
