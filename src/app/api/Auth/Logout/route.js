@@ -5,5 +5,5 @@ export async function GET() {
   const cookieStore = await cookies();
   cookieStore.delete("accessToken");
   cookieStore.delete("refreshToken");
-  return NextResponse.redirect(new URL("/", "http://localhost:3000/"));
+  return NextResponse.redirect(new URL("/", "hydrogenous.vercel.app"));
 }
