@@ -7,7 +7,7 @@ import {
   useDisclosure,
 } from "@heroui/react";
 
-const DeleteAddress = ({ sh_id }) => {
+const DeleteAddress = ({ sh_id , refresh }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const input_params = new URLSearchParams({
     ship_id: sh_id,
@@ -29,6 +29,7 @@ const DeleteAddress = ({ sh_id }) => {
 
       if (response.ok) {
         console.log("done", result);
+        refresh()
       } else {
         console.error("Failed to delete shipment:", result.error);
       }
