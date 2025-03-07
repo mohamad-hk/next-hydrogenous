@@ -34,7 +34,7 @@ const PersonalInfo = () => {
     event.preventDefault();
     let cu_id = user.customer_id;
     try {
-      const response = await fetch("http://localhost:3000/api/UpdateInfo", {
+      const response = await fetch("https://hydrogenous.vercel.app/api/UpdateInfo", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
