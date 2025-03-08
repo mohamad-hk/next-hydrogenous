@@ -10,6 +10,19 @@
   --foreground: #171717;
 }
 
+.react-rater-star {
+  color: #d3d3d3 !important;
+}
+
+.react-rater-star.is-hover {
+  color: #ffcc00 !important;
+}
+
+.react-rater-star.is-active {
+  color: #ffd700 !important;
+}
+
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
