@@ -8,17 +8,18 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="flex flex-row justify-center items-center  lg:grid lg:grid-cols-3  lg:justify-between px-4 py-2 bg-slate-100 shadow-xl mb-5 ">
-        <Link href={"/"}>
+      <nav className="  flex items-center justify-center lg:justify-between px-4 py-2 bg-slate-100 shadow-xl mb-5 ">
+        <Link href="/" className="flex-shrink-0">
           <Image
             src="/images/statics/logo.png"
             alt="image not found"
             height={100}
-            width={300}
+            width={500}
+            className="h-14 w-auto"
           />
         </Link>
 
-        <div className="hidden lg:flex lg:flex-row lg:justify-center lg:gap-10 ">
+        <div className="hidden lg:flex lg:flex-row lg:justify-center lg:gap-10 lg:pe-16 ">
           <Link className="group relative w-max" href={"/"}>
             صفحه اصلی
             <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
@@ -26,6 +27,11 @@ const Navigation = () => {
           </Link>
           <Link className="group relative w-max" href={"/products"}>
             محصولات
+            <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+            <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
+          </Link>
+          <Link className="group relative w-max" href={"/blog"}>
+            بلاگ
             <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
             <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-3/6"></span>
           </Link>
