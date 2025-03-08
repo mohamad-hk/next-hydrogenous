@@ -5,7 +5,7 @@ import Link from "next/link";
 export const revalidate = 60; 
 
 const getPosts = async () => {
-  const response = await fetch("http://localhost:3000/api/Blogs", {
+  const response = await fetch("https://hydrogenous.vercel.app/api/Blogs", {
     next: { revalidate: 60 }, 
   });
 
