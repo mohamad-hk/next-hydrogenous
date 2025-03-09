@@ -35,11 +35,11 @@ const ShowComments = ({ id }) => {
                   key={index}
                   className="flex flex-col justify-start gap-4 md:w-[400px] lg:w-[600px] p-2 max-w-[800px] h-[250px]"
                 >
-                  <div className="flex flex-row gap-2 items-center">
+                  <div className="flex flex-row gap-2 items-center text-xl">
                     <LuCircleUser />
                     <p>{comment.comment_user}</p>
                   </div>
-                  <div>
+                  <div className="text-2xl">
                     <Rater total={5} rating={comment.comment_score} />
                   </div>
                   <p> {comment.comment_text} </p>
