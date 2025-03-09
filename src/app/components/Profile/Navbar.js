@@ -65,6 +65,7 @@ const ProfileNavbar = () => {
                 آدرس ها
               </Link>
             </li>
+
             <li>
               <Link
                 className={
@@ -81,6 +82,41 @@ const ProfileNavbar = () => {
                 ویرایش مشخصات
               </Link>
             </li>
+
+            <li>
+              <Link
+                className={
+                  clicked === "wish-list"
+                    ? "rounded-3xl md:rounded-r-3xl bg-white text-[#0046fe] text-lg p-3  block"
+                    : "p-3 text-white text-lg"
+                }
+                href={"/profile/wish-list"}
+                onClick={() => {
+                  setActiveTab("wish-list");
+                  setClicked("wish-list");
+                }}
+              >
+                لیست محبوب من
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className={
+                  clicked === "comments"
+                    ? "rounded-3xl md:rounded-r-3xl bg-white text-[#0046fe] text-lg p-3  block"
+                    : "p-3 text-white text-lg"
+                }
+                href={"/profile/comments"}
+                onClick={() => {
+                  setActiveTab("comments");
+                  setClicked("comments");
+                }}
+              >
+                نظرات من
+              </Link>
+            </li>
+
             <li className="px-1 mb-5 md:mb-0">
               <Link
                 className="rounded-3xl bg-danger text-white text-center text-lg p-3  block"
