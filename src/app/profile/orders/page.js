@@ -117,7 +117,7 @@ const Orders = () => {
                 </div>
                 <Link
                   className="float-left bg-blue-600 p-2 rounded-lg shadow-sm text-white mb-5"
-                  href={"#"}
+                  href={`/profile/orders/${order.order_code}`}
                 >
                   مشاهده سفارش
                 </Link>
