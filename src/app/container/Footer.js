@@ -21,7 +21,10 @@ const Footer = () => {
   }, []);
 
   const ShowFooter =
-    pathname !== "/cart" && pathname !== "/shipment" && pathname !== "/payment";
+    pathname !== "/cart" &&
+    pathname !== "/shipment" &&
+    pathname !== "/payment" &&
+    !pathname.startsWith("/profile/orders/");
 
   return (
     <>{ShowFooter && (LargeScreen ? <FooterDesktop /> : <FooterMobile />)}</>
