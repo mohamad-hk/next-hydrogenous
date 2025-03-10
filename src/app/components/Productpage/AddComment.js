@@ -48,7 +48,7 @@ const AddComment = ({ id }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(input_params), // ارسال داده‌ها به صورت JSON
+        body: JSON.stringify(input_params), 
       });
 
       if (!response.ok) {
@@ -56,7 +56,7 @@ const AddComment = ({ id }) => {
       }
 
       const responseData = await response.json();
-      console.log(responseData); // نمایش پاسخ از سرور
+      console.log(responseData);
 
       alert("نظر شما با موفقیت ثبت شد!");
     } catch (error) {

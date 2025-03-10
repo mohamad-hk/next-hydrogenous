@@ -12,7 +12,7 @@ const ShowProduct = async ({ params }) => {
   const input_params = new URLSearchParams({ product_name: decoded_url });
 
   const product_data = await fetch(
-    `https://hydrogenous.vercel.app/api/GetProduct?${input_params}`,
+    `https://hydrogenous.vercel.app/api/Product/GetProduct?${input_params}`,
     { cache: "no-store" }
   );
 
@@ -26,7 +26,7 @@ const ShowProduct = async ({ params }) => {
         return (
           <>
             <div className="grid grid-cols-1 place-items-center md:grid-cols-2 md:gap-x-10 xl:gap-x-0 my-10 px-10 ">
-              <ProductImage image={product.product_photo} />
+              <ProductImage image={product.product_photo} product_id={product.product_id} />
               <AddToCartSection
                 product_name={product.product_name}
                 price={product.product_price}
