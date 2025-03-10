@@ -12,19 +12,16 @@ export async function POST(req) {
       product_id: p_id,
     };
 
-    // ارسال داده‌ها به دیتابیس
     const { data, error } = await supabase.from("tbl_comment").insert([commentData]);
 
     if (error) {
-      // چاپ جزئیات خطا
       console.log("خطای دیتابیس:", error);
       return Response.json({ error: error.message, details: error }, { status: 500 });
     }
 
     return Response.json(data, { status: 200 });
   } catch (err) {
-    // چاپ خطاهای غیرمنتظره
-    console.log("خطای غیرمنتظره:", err);
+    console.log("error :", err);
     return Response.json({ error: err.message }, { status: 500 });
   }
 }
