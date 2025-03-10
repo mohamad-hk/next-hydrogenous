@@ -97,7 +97,7 @@ const Showorder = () => {
         className="w-[90%] mx-auto border border-gray-400 rounded-md p-5 text-[16px] relative"
         ref={invoiceRef}
       >
-        <div className="grid grid-cols-[1fr_200px] items-center mb-3">
+        <div className="grid grid-cols-[1fr_240px] items-center mb-3">
           <div className="flex flex-row justify-center ">
             <Image
               src={"/images/statics/logo.png"}
