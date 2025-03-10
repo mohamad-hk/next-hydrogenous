@@ -7,11 +7,17 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Divider,
 } from "@heroui/react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import PersianNumbers from "@/app/utils/ToPersianNumber";
+import convertToPersianDate from "@/app/utils/ConvertToPersianDate";
+import ShowPersianNumbers from "@/app/utils/ShowPersinaNumbers";
 
 const Showorder = () => {
   const pathname = usePathname();
+  const order_code = pathname.split("/").pop();
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [Address, setAddress] = useState("");
@@ -25,9 +31,12 @@ const Showorder = () => {
   const [pricedeliver, setPriceDeliver] = useState("");
   const [Method, setMethod] = useState("");
   const [statusorder, setStatusOrder] = useState("");
+  const [orderdate, setOrderDate] = useState("");
   const getInfo = async (input_params) => {
     try {
-      const data = await fetch(`/api/Orders/GetOrderInvoice?${input_params}`);
+      const data = await fetch(
+        `/api/Profile/Orders/GetOrderInvoice?${input_params}`
+      );
       const response = await data.json();
       if (response) {
         setFirstName(response?.tbl_shipment.f_n_shipment);
@@ -43,13 +52,13 @@ const Showorder = () => {
         setPriceDeliver(response?.price_deliver);
         setMethod(response?.method_sending);
         setStatusOrder(response?.status_order);
+        setOrderDate(response?.order_date);
       }
     } catch (error) {
-      console.error("Error fetching shipments:", error);
+      console.error("Error fetching shipments :", error);
     }
   };
   useEffect(() => {
-    const order_code = pathname.split("/").pop();
     const input_params = new URLSearchParams({
       order_code: order_code,
     });
@@ -57,58 +66,92 @@ const Showorder = () => {
   }, []);
   return (
     <>
-      <div className="w-[80%] mx-auto"> 
-        <div>
-          <h2> فروشنده</h2>
-
-          <p> فروشگاه اینترنتی هیدروژنوس </p>
-          <div className="flex flex-row items-center">
-            <p> آدرس</p>
-            <p>
-              اراک - پارک علم و فناوری استان مرکزی - شرکت اکسیر سازان نو اندیش
-              پیشروفن
-            </p>
+      <div className="w-[80%] mx-auto border border-gray-400 rounded-md p-5">
+        <div className="grid grid-cols-[1fr_180px] items-center mb-3">
+          <div className="flex flex-row justify-center ">
+            <Image
+              src={"/images/statics/logo.png"}
+              width={400}
+              height={200}
+              alt="image not found"
+            />
           </div>
-          <div className="flex flex-row items-center">
-            <p className="fw-bold">کد پستی </p>
-            <p className="me-1"> </p>
-            <p> 3836134054</p>
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-row items-center gap-2">
+              <p>شماره سفارش :</p>
+              <p>{ShowPersianNumbers(order_code)}</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p>تاریخ سفارش :</p>
+              <p>{convertToPersianDate(orderdate)}</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p>نحوه ارسال :</p>
+              <p>{Method}</p>
+            </div>
           </div>
         </div>
-        <div className="flex flex-col gap-3">
-          <h2> گیرنده</h2>
-          <div className="flex flex-row items-center gap-2">
-            <p>نام و نام خانوادگی</p>
-            <p>{firstname + " " + lastname}</p>
+        <div className="grid grid-cols-[80px_1fr]">
+          <div className=" flex flex-col justify-center bg-slate-400 text-center rounded-r-md ">
+            <p>فروشنده</p>
           </div>
-          <div className="flex flex-row items-center gap-2">
-            <p>شماره موبایل</p>
-            <p>{phone}</p>
+          <div className="flex flex-col gap-3 border border-slate-400 border-r-0 rounded-md ps-3 py-3 rounded-tr-none rounded-br-none">
+            <p> فروشگاه اینترنتی هیدروژنوس </p>
+            <div className="flex flex-row items-center gap-2">
+              <p> آدرس :</p>
+              <p>
+                اراک - پارک علم و فناوری استان مرکزی - شرکت اکسیر سازان نو اندیش
+                پیشروفن
+              </p>
+            </div>
+            <div className="flex flex-row items-center gap-1">
+              <p className="fw-bold">کد پستی : </p>
+              <p className="me-1"> </p>
+              <p> {ShowPersianNumbers(3836134054)} </p>
+            </div>
           </div>
-          <div className="flex flex-row items-center gap-2">
-            <p>شماره تلفن</p>
-            <p>{landline}</p>
+        </div>
+        <div className="grid grid-cols-[80px_1fr]  my-2">
+          <div className=" flex flex-col justify-center bg-slate-400 text-center rounded-r-md  ">
+            <p>گیرنده</p>
           </div>
-          <div className="flex flex-row items-center gap-2">
-            <p>استان</p>
-            <p>{state}</p>
-          </div>
-          <div className="flex flex-row items-center gap-2">
-            <p>شهر</p>
-            <p>{city}</p>
-          </div>
-          <div className="flex flex-row items-center gap-2">
-            <p>ادرس</p>
-            <p>{Address}</p>
-          </div>
-          <div className="flex flex-row items-center gap-2">
-            <p> کد پستی</p>
-            <p>{zipcode}</p>
+          <div className="flex flex-col gap-3 border border-slate-400 border-r-0 rounded-md ps-3 py-3 rounded-tr-none rounded-br-none">
+            <div className="flex flex-row items-center gap-2">
+              <p>نام و نام خانوادگی :</p>
+              <p>{firstname + " " + lastname}</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p>شماره موبایل :</p>
+              <p>{ShowPersianNumbers(phone)}</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p>شماره تلفن :</p>
+              <p>{ShowPersianNumbers(landline)}</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p>استان :</p>
+              <p>{state}</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p>شهر :</p>
+              <p>{city}</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p>آدرس :</p>
+              <p>{Address}</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p> کد پستی :</p>
+              <p>{ShowPersianNumbers(zipcode)}</p>
+            </div>
           </div>
         </div>
 
         <div className="flex flex-col">
-          <Table aria-label="Example static collection table">
+          <Table
+            removeWrapper
+            className="border border-slate-400 rounded-md rounded-br-none"
+          >
             <TableHeader>
               <TableColumn>نام محصول</TableColumn>
               <TableColumn>تعداد</TableColumn>
@@ -120,31 +163,18 @@ const Showorder = () => {
                 <TableCell>CEO</TableCell>
                 <TableCell>Active</TableCell>
               </TableRow>
-              <TableRow key="2">
-                <TableCell>Zoey Lang</TableCell>
-                <TableCell>Technical Lead</TableCell>
-                <TableCell>Paused</TableCell>
-              </TableRow>
-              <TableRow key="3">
-                <TableCell>Jane Fisher</TableCell>
-                <TableCell>Senior Developer</TableCell>
-                <TableCell>Active</TableCell>
-              </TableRow>
-              <TableRow key="4">
-                <TableCell>William Howard</TableCell>
-                <TableCell>Community Manager</TableCell>
-                <TableCell>Vacation</TableCell>
-              </TableRow>
             </TableBody>
           </Table>
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <p>هزینه ارسال</p>
-              <p>{pricedeliver}</p>
+          <div className="flex flex-col gap-3 items-end w-fit border border-slate-400 rounded-md border-t-0 rounded-tl-none rounded-tr-none ">
+            <div className="flex flex-row items-center justify-center gap-2 px-3 pt-2 w-full">
+              <p>هزینه ارسال :</p>
+              <p>{PersianNumbers(pricedeliver)} تومان </p>
             </div>
-            <div className="flex flex-row items-center gap-2">
-              <p>مجموع سفارش</p>
-              <p>{totalprice}</p>
+            <Divider orientation="horzintal" />
+
+            <div className="flex flex-row items-center justify-center gap-2 px-3 pb-2">
+              <p>مجموع سفارش :</p>
+              <p>{PersianNumbers(totalprice)} تومان </p>
             </div>
           </div>
         </div>
