@@ -26,6 +26,34 @@ const Orders = () => {
       console.error("Error fetching orders:", error);
     }
   };
+  const abortOrder = async (order_id) => {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/api/Profile/Orders/UpdateOrderStatus",
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ order_id }),
+        }
+      );
+  
+      const data = await response.json();
+      if (response.ok) {
+        setOrders((prevOrders) =>
+          prevOrders.map((order) =>
+            order.order_id === order_id
+              ? { ...order, status_order: "لغو شده" } 
+              : order
+          )
+        );
+      } else {
+        console.error("Failed to update order status:", data);
+      }
+    } catch (error) {
+      console.error("Error updating order:", error);
+    }
+  };
+  
 
   useEffect(() => {
     if (user) {
@@ -106,19 +134,29 @@ const Orders = () => {
                   <span>{PersianNumbers(order.total_price)} تومان </span>
                 </div>
                 <div className="flex flex-row items-center justify-end mb-2 gap-3">
-                {order.status_order == "در انتظار پرداخت" ? (
-                    <Button color="success" className="px-[1.1rem] py-[1.45rem] text-white"> پرداخت مجدد  </Button>
+                  {order.status_order == "در انتظار پرداخت" ? (
+                    <Button
+                      color="success"
+                      className="px-[1.1rem] py-[1.45rem] text-white"
+                    >
+                      پرداخت مجدد
+                    </Button>
                   ) : null}
                   {order.status_order == "در حال پردازش" ? (
-                    <Button color="danger" className="px-[1.7rem] py-[1.45rem]"> لغو سفارش </Button>
+                    <Button
+                      color="danger"
+                      className="px-[1.7rem] py-[1.45rem]"
+                      onPress={()=>abortOrder(order.order_id)}
+                    >
+                      لغو سفارش
+                    </Button>
                   ) : null}
-                <Link
-                  className=" bg-blue-600 p-3 rounded-xl shadow-sm text-white"
-                  href={`/profile/orders/${order.order_code}`}
-                >
-                  مشاهده سفارش
-                </Link>
-
+                  <Link
+                    className=" bg-blue-600 p-3 rounded-xl shadow-sm text-white"
+                    href={`/profile/orders/${order.order_code}`}
+                  >
+                    مشاهده سفارش
+                  </Link>
                 </div>
 
                 <Divider />
