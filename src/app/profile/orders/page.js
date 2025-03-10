@@ -6,125 +6,129 @@ import { Divider } from "@heroui/divider";
 import { useContext, useEffect, useState } from "react";
 import ShowPersianNumbers from "@/app/utils/ShowPersinaNumbers";
 import { AuthContext } from "@/app/context/AuthContext";
+import { Button } from "@heroui/react";
 
 const Orders = () => {
-  const [orders, Set_orders] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([]);
+  const [activeStatus, setActiveStatus] = useState("همه");
   const { user } = useContext(AuthContext);
 
-  const fetch_orders = async (input_params) => {
+  const fetchOrders = async (inputParams) => {
     try {
       const data = await fetch(
-        `https://hydrogenous.vercel.app/api/GetOrders?${input_params}`
+        `https://hydrogenous.vercel.app/api/Profile/Orders/GetOrders?${inputParams}`
       );
       const response = await data.json();
-      Set_orders(response);
+      setOrders(response);
+      setFilteredOrders(response);
     } catch (error) {
-      console.error("error:", error);
+      console.error("Error fetching orders:", error);
     }
   };
+
   useEffect(() => {
     if (user) {
-      const input_params = new URLSearchParams({
+      const inputParams = new URLSearchParams({
         cust_id: user.customer_id,
       });
-      fetch_orders(input_params);
+      fetchOrders(inputParams);
     }
   }, [user]);
+
+  useEffect(() => {
+    if (activeStatus === "همه") {
+      setFilteredOrders(orders);
+    } else {
+      const filtered = orders.filter(
+        (order) => order.status_order === activeStatus
+      );
+      setFilteredOrders(filtered);
+    }
+  }, [activeStatus, orders]);
 
   return (
     <>
       <div className="shadow-xl bg-white p-10 rounded-l-3xl">
-        <nav className="flex flex-row justify-center items-center gap-10">
-          <Link
-            className="border-2 rounded-lg p-2 border-blue-500 w-[150px] text-center"
-            href={"#"}
-          >
-            همه
-          </Link>
-          <Link
-            className="border-2 rounded-lg p-2 border-blue-500 w-[150px] text-center"
-            href={"#"}
-          >
-            در انتظار پرداخت
-          </Link>
-          <Link
-            className="border-2 rounded-lg p-2 border-blue-500 w-[150px] text-center"
-            href={"#"}
-          >
-            در حال پردازش
-          </Link>
-          <Link
-            className="border-2 rounded-lg p-2 border-blue-500 w-[150px] text-center"
-            href={"#"}
-          >
-            ارسال شده
-          </Link>
-          <Link
-            className="border-2 rounded-lg p-2 border-blue-500 w-[150px] text-center"
-            href={"#"}
-          >
-            لفو شده
-          </Link>
+        <nav className="flex flex-row justify-center items-center gap-10 mb-5">
+          {[
+            "همه",
+            "در انتظار پرداخت",
+            "در حال پردازش",
+            "ارسال سفارش",
+            "لغو سفارش",
+          ].map((status) => (
+            <button
+              key={status}
+              className={`border-2 rounded-lg p-2 w-[150px] text-center transition-all ${
+                activeStatus === status
+                  ? "border-blue-700 bg-blue-100"
+                  : "border-blue-500"
+              }`}
+              onClick={() => {
+                setActiveStatus(status);
+              }}
+            >
+              {status}
+            </button>
+          ))}
         </nav>
         <div className="flex flex-col mt-5">
-          {orders?.map((order, index) => {
-            return (
-              <div className=" p-5 rounded-md" key={index}>
-                <div className="flex flex-row justify-between">
+          {filteredOrders?.length > 0 ? (
+            filteredOrders.map((order, index) => (
+              <div className="p-5 rounded-md" key={index}>
+                <div className="flex flex-row justify-between ">
                   <div className="flex flex-row items-center justify-center gap-2">
                     <p>شماره سفارش:</p>
-                    <p> {ShowPersianNumbers(order.order_code)}</p>
+                    <p>{ShowPersianNumbers(order.order_code)}</p>
                   </div>
-
                   <div className="flex flex-row items-center gap-2">
                     <p>وضعیت سفارش:</p>
-
-                    {(() => {
-                      switch (order.status_order) {
-                        case "در انتظار پرداخت":
-                          return (
-                            <p className="text-center text-warning-600 bg-slate-200 rounded-2xl py-2 px-5 w-[150px]">
-                              در انتظار پرداخت
-                            </p>
-                          );
-                        case "ارسال سفارش":
-                          return (
-                            <p className="text-center text-green-600 bg-slate-200 rounded-2xl py-2 px-5  w-[150px]">
-                              دریافت شده
-                            </p>
-                          );
-                        case "لغو سفارش":
-                          return (
-                            <p className="text-center text-danger bg-slate-200 rounded-2xl py-2 px-5  w-[150px]">
-                              لغو شده
-                            </p>
-                          );
-                        case "در حال پردازش":
-                          return (
-                            <p className="text-center text-blue-700 bg-slate-200 rounded-2xl py-2 px-5  w-[150px]">
-                              در حال پردازش
-                            </p>
-                          );
-                        default:
-                          return " ";
-                      }
-                    })()}
+                    <p
+                      className={`text-center bg-slate-200 rounded-2xl py-2 px-5 w-[150px] ${
+                        order.status_order === "در انتظار پرداخت"
+                          ? "text-warning-600"
+                          : order.status_order === "ارسال سفارش"
+                          ? "text-green-600"
+                          : order.status_order === "لغو سفارش"
+                          ? "text-danger"
+                          : order.status_order === "در حال پردازش"
+                          ? "text-blue-700"
+                          : ""
+                      }`}
+                    >
+                      {order.status_order}
+                    </p>
                   </div>
                 </div>
                 <div className="flex flex-col items-end gap-2 my-5">
                   <p>مجموع پرداختی</p>
                   <span>{PersianNumbers(order.total_price)} تومان </span>
                 </div>
+                <div className="flex flex-row items-center justify-end mb-2 gap-3">
+                {order.status_order == "در انتظار پرداخت" ? (
+                    <Button color="success" className="px-[1.1rem] py-[1.45rem] text-white"> پرداخت مجدد  </Button>
+                  ) : null}
+                  {order.status_order == "در حال پردازش" ? (
+                    <Button color="danger" className="px-[1.7rem] py-[1.45rem]"> لغو سفارش </Button>
+                  ) : null}
                 <Link
-                  className="float-left bg-blue-600 p-2 rounded-lg shadow-sm text-white mb-5"
+                  className=" bg-blue-600 p-3 rounded-xl shadow-sm text-white"
                   href={`/profile/orders/${order.order_code}`}
                 >
                   مشاهده سفارش
                 </Link>
+
+                </div>
+
                 <Divider />
               </div>
-            );
-          })}
+            ))
+          ) : (
+            <p className="text-center text-gray-500">
+              هیچ سفارشی با این وضعیت یافت نشد.
+            </p>
+          )}
         </div>
       </div>
     </>
