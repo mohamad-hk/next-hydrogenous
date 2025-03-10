@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -8,19 +8,46 @@ import {
   TableRow,
   TableCell,
   Divider,
+  Button,
 } from "@heroui/react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import convertToPersianDate from "@/app/utils/ConvertToPersianDate";
 import ShowPersianNumbers from "@/app/utils/ShowPersinaNumbers";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 const Showorder = () => {
+  const invoiceRef = useRef(null);
+
+  const downloadInvoice = async () => {
+    if (!invoiceRef.current) return;
+
+    const canvas = await html2canvas(invoiceRef.current, {
+      scale: 2,
+      useCORS: true,
+    });
+
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF({
+      orientation: "p",
+      unit: "mm",
+      format: "a4",
+      compress: true,
+    });
+
+    const imgWidth = 210;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+    pdf.save("invoice.pdf");
+  };
   const pathname = usePathname();
   const order_code = pathname.split("/").pop();
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
-  const [Address, setAddress] = useState("");
+  const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [landline, setLandline] = useState("");
   const [state, setState] = useState("");
@@ -63,11 +90,14 @@ const Showorder = () => {
       order_code: order_code,
     });
     getInfo(input_params);
-  }, []);
+  }, [order_code]);
   return (
     <>
-      <div className="w-[80%] mx-auto border border-gray-400 rounded-md p-5">
-        <div className="grid grid-cols-[1fr_180px] items-center mb-3">
+      <div
+        className="w-[90%] mx-auto border border-gray-400 rounded-md p-5 text-[16px] relative"
+        ref={invoiceRef}
+      >
+        <div className="grid grid-cols-[1fr_200px] items-center mb-3">
           <div className="flex flex-row justify-center ">
             <Image
               src={"/images/statics/logo.png"}
@@ -80,6 +110,10 @@ const Showorder = () => {
             <div className="flex flex-row items-center gap-2">
               <p>شماره سفارش :</p>
               <p>{ShowPersianNumbers(order_code)}</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p>وضعیت سفارش :</p>
+              <p>{statusorder}</p>
             </div>
             <div className="flex flex-row items-center gap-2">
               <p>تاریخ سفارش :</p>
@@ -138,7 +172,7 @@ const Showorder = () => {
             </div>
             <div className="flex flex-row items-center gap-2">
               <p>آدرس :</p>
-              <p>{Address}</p>
+              <p>{address}</p>
             </div>
             <div className="flex flex-row items-center gap-2">
               <p> کد پستی :</p>
@@ -178,6 +212,14 @@ const Showorder = () => {
             </div>
           </div>
         </div>
+        <Button
+          className="absolute left-0 -bottom-12"
+          size="lg"
+          color="primary"
+          onPress={downloadInvoice}
+        >
+          دانلود فاکتور
+        </Button>
       </div>
     </>
   );
