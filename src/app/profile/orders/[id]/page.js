@@ -41,7 +41,7 @@ const Showorder = () => {
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
     pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-    pdf.save("invoice.pdf");
+    pdf.save(`${order_code}_hydrogenous`);
   };
   const pathname = usePathname();
   const order_code = pathname.split("/").pop();
@@ -53,7 +53,7 @@ const Showorder = () => {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [zipcode, setZipCode] = useState("");
-  const [lproducts, setListProducts] = useState("");
+  const [lproducts, setListProducts] = useState([]);
   const [totalprice, SetTotalPrice] = useState("");
   const [pricedeliver, setPriceDeliver] = useState("");
   const [Method, setMethod] = useState("");
@@ -65,6 +65,7 @@ const Showorder = () => {
         `/api/Profile/Orders/GetOrderInvoice?${input_params}`
       );
       const response = await data.json();
+      console.log(response?.l_products);
       if (response) {
         setFirstName(response?.tbl_shipment.f_n_shipment);
         setLastName(response?.tbl_shipment.l_n_shipment);
@@ -91,6 +92,7 @@ const Showorder = () => {
     });
     getInfo(input_params);
   }, [order_code]);
+
   return (
     <>
       <div
@@ -192,11 +194,15 @@ const Showorder = () => {
               <TableColumn>قیمت</TableColumn>
             </TableHeader>
             <TableBody>
-              <TableRow key="1">
-                <TableCell>Tony Reichert</TableCell>
-                <TableCell>CEO</TableCell>
-                <TableCell>Active</TableCell>
-              </TableRow>
+              {lproducts.map((product, index) => {
+                return (
+                  <TableRow key={index}>
+                    <TableCell>{product.name}</TableCell>
+                    <TableCell>{product.quantity}</TableCell>
+                    <TableCell>{product.price}</TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
           <div className="flex flex-col gap-3 items-end w-fit border border-slate-400 rounded-md border-t-0 rounded-tl-none rounded-tr-none ">
