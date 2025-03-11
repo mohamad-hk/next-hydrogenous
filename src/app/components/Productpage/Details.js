@@ -3,7 +3,7 @@ const Details = async ({ id }) => {
     p_id: id,
   });
   const data = await fetch(
-    `https://hydrogenous.vercel.app/api/GetProductDetails?${input_params}`
+    `https://hydrogenous.vercel.app/api/Product/GetProductDetails?${input_params}`
   );
   const details = await data.json();
   return (

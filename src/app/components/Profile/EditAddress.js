@@ -56,7 +56,7 @@ export default function EditAddress({ sh_id, refresh }) {
   const updateData = async () => {
     try {
       const response = await fetch(
-        "https://hydrogenous.vercel.app/api/Shipments/UpdateShipment",
+        "https://hydrogenous.vercel.app/api/Profile/Shipments/UpdateShipment",
         {
           method: "PATCH",
           headers: {

@@ -16,7 +16,7 @@ const DeleteAddress = ({ sh_id , refresh }) => {
   const removeAddress = async (input_params) => {
     try {
       const response = await fetch(
-        `https://hydrogenous.vercel.app/api/Shipments/DeleteShipment?${input_params}`,
+        `https://hydrogenous.vercel.app/api/Profile/Shipments/DeleteShipment?${input_params}`,
         {
           method: "DELETE",
           headers: {
