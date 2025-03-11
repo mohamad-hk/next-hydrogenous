@@ -10,6 +10,7 @@ import { MdOutlineLocalPostOffice } from "react-icons/md";
 import { CgAdd } from "react-icons/cg";
 import OptionAddress from "@/app/components/Profile/OptionAddress";
 import { AuthContext } from "@/app/context/AuthContext";
+import AddAddress from "@/app/components/Profile/AddAddress";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -22,7 +23,7 @@ const Addresses = () => {
     isLoading,
   } = useSWR(
     user
-      ? `https://hydrogenous.vercel.app/api/Shipments/GetShipment?cust_id=${user.customer_id}`
+      ? `https://hydrogenous.vercel.app/api/Profile/Shipments/GetShipment?cust_id=${user.customer_id}`
       : null,
     fetcher
   );
@@ -57,18 +58,21 @@ const Addresses = () => {
             refreshData={() =>
               mutate(
                 user
-                  ? `https://hydrogenous.vercel.app/api/Shipments/GetShipment?cust_id=${user.customer_id}`
+                  ? `https://hydrogenous.vercel.app/api/Product/Shipments/GetShipment?cust_id=${user.customer_id}`
                   : null
               )
             }
           />
         </div>
       ))}
-      <Link href={"#"} className="h-[300px]">
-        <div className="relative rounded-xl shadow-lg bg-slate-100 max-w-[500px] h-[300px]">
-          <CgAdd className="absolute top-[25%] left-[40%] text-8xl opacity-50" />
-        </div>
-      </Link>
+      <AddAddress refreshData={() =>
+              mutate(
+                user
+                  ? `https://hydrogenous.vercel.app/api/Product/Shipments/GetShipment?cust_id=${user.customer_id}`
+                  : null
+              )
+            } />
+
     </div>
   );
 };
