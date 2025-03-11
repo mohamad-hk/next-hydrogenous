@@ -13,12 +13,12 @@ export async function GET() {
         { status: 401 }
       );
     }
-
+    
     const decodedAccessToken = accessToken ? jwt.decode(accessToken) : null;
     const decodedRefreshToken = refreshToken ? jwt.decode(refreshToken) : null;
 
     return NextResponse.json({
-      aTData: decodedAccessToken.data,
+      aTData: decodedAccessToken,
     });
   } catch (error) {
     return NextResponse.json(

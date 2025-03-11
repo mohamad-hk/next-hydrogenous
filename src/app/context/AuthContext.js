@@ -12,8 +12,8 @@ export const AuthProvider = ({ children }) => {
         const response = await fetch("/api/Auth/GetCookieInfo");
         const data = await response.json();
 
-        if (data?.aTData?.[0]) {
-          setUser(data.aTData[0]);
+        if (data?.aTData) {
+          setUser(data.aTData);
         }
       } catch (error) {
         console.error("Error fetching tokens:", error);

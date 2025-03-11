@@ -24,7 +24,9 @@ const Footer = () => {
     pathname !== "/cart" &&
     pathname !== "/shipment" &&
     pathname !== "/payment" &&
-    !pathname.startsWith("/profile/orders/");
+    !pathname.startsWith("/profile/orders/") && ! pathname.startsWith("/auth")
+    ;
+    
 
   return (
     <>{ShowFooter && (LargeScreen ? <FooterDesktop /> : <FooterMobile />)}</>

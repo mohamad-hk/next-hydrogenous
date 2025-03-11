@@ -1,7 +1,6 @@
 "use client";
 
 import { CgProfile } from "react-icons/cg";
-import Login from "../Login/Login";
 import { useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -36,7 +35,7 @@ const CheckLlogin = () => {
   return (
     <>
       {state == 1 && !user ? (
-        <Login />
+        <Link href={"/auth/login"}>ورود یا ثبت نام</Link>
       ) : (
         <div
           className="relative"

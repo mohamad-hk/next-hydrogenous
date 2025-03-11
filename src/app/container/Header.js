@@ -10,7 +10,8 @@ const Header = () => {
     pathname === "/cart" ||
     pathname === "/shipment" ||
     pathname === "/payment"||
-    pathname.startsWith("/profile/orders/")
+    pathname.startsWith("/profile/orders/") ||
+    pathname.startsWith("/auth")
   ) {
     return null;
   }
