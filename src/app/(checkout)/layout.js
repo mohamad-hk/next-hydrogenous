@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { FaShoppingCart, FaTruck, FaCheckCircle } from "react-icons/fa";
 import { AuthProvider } from "../context/AuthContext";
+import { ShipmentProvider } from "../context/ShipmentContext";
 
 const CheckoutLayout = ({ children }) => {
   let currentStep = 0;
@@ -53,7 +54,10 @@ const CheckoutLayout = ({ children }) => {
           ))}
         </div>
       </div>
-      <AuthProvider>{children}</AuthProvider>
+
+      <AuthProvider>
+        <ShipmentProvider>{children}</ShipmentProvider>
+      </AuthProvider>
     </>
   );
 };

@@ -14,7 +14,7 @@ const ReceiverInfo = () => {
         ship_id: sh_id,
       });
 
-      const response = await fetch(`https://hydrogenous.vercel.app/api/GetShipment?${input_params}`);
+      const response = await fetch(`https://hydrogenous.vercel.app/api/Profile/Shipments/GetShipment?${input_params}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

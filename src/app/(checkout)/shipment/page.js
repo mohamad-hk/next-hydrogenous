@@ -11,7 +11,7 @@ const Shipment = () => {
   const getAddresses = async (input_params) => {
     try {
       const data = await fetch(
-        `https://hydrogenous.vercel.app/api/Shipments/GetShipment?${input_params}`
+        `https://hydrogenous.vercel.app/api/Profile/Shipments/GetShipment?${input_params}`
       );
       const response = await data.json();
       setAddresses(response);
@@ -28,6 +28,7 @@ const Shipment = () => {
       getAddresses(input_params);
     }
   }, [user]);
+  
   return (
     <>
       <div className="grid grid-cols-1 pt-[5.5rem] px-3 md:mx-auto md:grid-cols-[_minmax(800px,_1fr)_minmax(100px,_300px)] md:gap-x-10 md:p-10 ">
