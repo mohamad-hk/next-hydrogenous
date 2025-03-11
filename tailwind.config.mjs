@@ -13,6 +13,9 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'gradient-start': '#91EAE4',
+        'gradient-middle': '#86A8E7',
+        'gradient-end': '#7F7FD5',
       },
       screens: {
         sm: "576px",
