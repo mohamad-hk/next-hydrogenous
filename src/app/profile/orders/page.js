@@ -29,20 +29,20 @@ const Orders = () => {
   const abortOrder = async (order_id) => {
     try {
       const response = await fetch(
-        "http://localhost:3000/api/Profile/Orders/UpdateOrderStatus",
+        "https://hydrogenous.vercel.app/api/Profile/Orders/UpdateOrderStatus",
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ order_id }),
         }
       );
-  
+
       const data = await response.json();
       if (response.ok) {
         setOrders((prevOrders) =>
           prevOrders.map((order) =>
             order.order_id === order_id
-              ? { ...order, status_order: "لغو شده" } 
+              ? { ...order, status_order: "لغو شده" }
               : order
           )
         );
@@ -53,7 +53,6 @@ const Orders = () => {
       console.error("Error updating order:", error);
     }
   };
-  
 
   useEffect(() => {
     if (user) {
@@ -146,7 +145,7 @@ const Orders = () => {
                     <Button
                       color="danger"
                       className="px-[1.7rem] py-[1.45rem]"
-                      onPress={()=>abortOrder(order.order_id)}
+                      onPress={() => abortOrder(order.order_id)}
                     >
                       لغو سفارش
                     </Button>

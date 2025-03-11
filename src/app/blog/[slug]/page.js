@@ -4,7 +4,7 @@ export const revalidate = 60;
 
 const getPost = async (input_params) => {
   const response = await fetch(
-    `http://localhost:3000/api/Blogs/Post?${input_params}`,
+    `https://hydrogenous.vercel.app/api/Blogs/Post?${input_params}`,
     {
       next: { revalidate: 60 },
     }
@@ -19,7 +19,7 @@ const getPost = async (input_params) => {
 
 const getPostImages = async (input_images_params) => {
   const response = await fetch(
-    `http://localhost:3000/api/Blogs/PostImages?${input_images_params}`,
+    `https://hydrogenous.vercel.app/api/Blogs/PostImages?${input_images_params}`,
     {
       next: { revalidate: 60 },
     }

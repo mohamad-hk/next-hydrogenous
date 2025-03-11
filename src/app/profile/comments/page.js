@@ -16,7 +16,7 @@ const ProfileComments = () => {
   const getComments = async (input_params) => {
     try {
       const data = await fetch(
-        `http://localhost:3000/api/Profile/Comments?${input_params}`
+        `https://hydrogenous.vercel.app/api/Profile/Comments?${input_params}`
       );
       const response = await data.json();
       setComments(response);

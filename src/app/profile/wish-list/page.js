@@ -15,7 +15,7 @@ const WishList = () => {
   const getWish = async (input_params) => {
     try {
       const data = await fetch(
-        `http://localhost:3000/api/Product/Wish/GetWish?${input_params}`
+        `https://hydrogenous.vercel.app/api/Product/Wish/GetWish?${input_params}`
       );
       const response = await data.json();
       console.log(response);

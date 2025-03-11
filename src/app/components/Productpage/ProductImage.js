@@ -16,7 +16,7 @@ const ProductImage = ({ image, product_id }) => {
       const url = window.location.href;
       await navigator.clipboard.writeText(url);
       setCopied(true);
-      
+
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error("Error copying URL:", error);
@@ -26,10 +26,10 @@ const ProductImage = ({ image, product_id }) => {
   const fetchWish = async (input_params) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/Product/Wish/GetWish?${input_params}`
+        `https://hydrogenous.vercel.app/api/Product/Wish/GetWish?${input_params}`
       );
       const data = await response.json();
-      
+
       if (data && data.length > 0) {
         setIsWish(true);
       }
@@ -40,16 +40,19 @@ const ProductImage = ({ image, product_id }) => {
 
   const setWish = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/Wish/InsertWish", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          customer_id: user.customer_id,
-          product_id: product_id,
-        }),
-      });
+      const response = await fetch(
+        "https://hydrogenous.vercel.app/api/Wish/InsertWish",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            customer_id: user.customer_id,
+            product_id: product_id,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("مشکلی در ثبت علاقه‌مندی پیش آمده است");
@@ -67,7 +70,7 @@ const ProductImage = ({ image, product_id }) => {
   const removeWish = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/Product/Wish/DeleteWish?customer_id=${user.customer_id}&product_id=${product_id}`,
+        `https://hydrogenous.vercel.app/api/Product/Wish/DeleteWish?customer_id=${user.customer_id}&product_id=${product_id}`,
         {
           method: "DELETE",
           headers: {
@@ -75,9 +78,9 @@ const ProductImage = ({ image, product_id }) => {
           },
         }
       );
-      
+
       const result = await response.json();
-      
+
       if (response.ok) {
         console.log("Removed from wishlist", result);
         setIsWish(false);

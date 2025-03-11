@@ -23,7 +23,7 @@ const ShowProducts = () => {
 
   const getFilteredProducts = async () => {
     setLoading(true);
-    let url = "http://localhost:3000/api/GetProducts";
+    let url = "https://hydrogenous.vercel.app/api/GetProducts";
     const params = new URLSearchParams();
 
     if (category) params.set("category", category);

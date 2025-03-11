@@ -29,7 +29,7 @@ const AddComment = ({ id }) => {
   };
 
   const handleform = async (event) => {
-    event.preventDefault
+    event.preventDefault;
 
     const temp_user =
       user && beuser ? `${user.first_name} ${user.last_name}` : "نا شناس";
@@ -40,16 +40,19 @@ const AddComment = ({ id }) => {
       rating,
       user_name: temp_user,
     };
-    console.log(input_params)
+    console.log(input_params);
 
     try {
-      const response = await fetch("http://localhost:3000/api/AddComment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(input_params), 
-      });
+      const response = await fetch(
+        "https://hydrogenous.vercel.app/api/AddComment",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(input_params),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("مشکلی در ارسال نظر پیش آمده است");
@@ -63,7 +66,7 @@ const AddComment = ({ id }) => {
       console.error(error);
       alert("خطا در ارسال نظر");
     }
-    onClose()
+    onClose();
   };
 
   const handleOpen = (size) => {
@@ -119,12 +122,12 @@ const AddComment = ({ id }) => {
                     )}
                   </div>
                   <Button
-                  color="success"
-                  className="text-white"
-                  onPress={handleform}
-                >
-                  ثبت نظر
-                </Button>
+                    color="success"
+                    className="text-white"
+                    onPress={handleform}
+                  >
+                    ثبت نظر
+                  </Button>
                 </form>
               </ModalBody>
             </>
