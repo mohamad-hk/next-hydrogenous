@@ -3,8 +3,8 @@
 import { LuCircleUser } from "react-icons/lu";
 import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
-import { SlLike } from "react-icons/sl";
-import { SlDislike } from "react-icons/sl";
+// import { SlLike } from "react-icons/sl";
+// import { SlDislike } from "react-icons/sl";
 import { Divider } from "@heroui/react";
 import { useEffect, useState } from "react";
 import convertToPersianDate from "@/app/utils/ConvertToPersianDate";
@@ -45,13 +45,13 @@ const ShowComments = ({ id }) => {
                   <p> {comment.comment_text} </p>
                   <p>{convertToPersianDate(comment.create_comment)}</p>
 
-                  <div className="flex flex-row gap-5">
+                  {/* <div className="flex flex-row gap-5">
                     <p>این نظر برای شما مفید بود؟</p>
                     <div className="flex flex-row gap-8">
                       <SlDislike className="cursor-pointer" />
                       <SlLike className="cursor-pointer" />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 {index != comments.length - 1 ? (
                   <Divider orientation="horizontal" />

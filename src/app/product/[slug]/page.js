@@ -27,6 +27,10 @@ const ShowProduct = async ({ params }) => {
           <>
             <div className="grid grid-cols-1 place-items-center md:grid-cols-2 md:gap-x-10 xl:gap-x-0 my-10 px-10 ">
               <ProductImage image={product.product_photo} product_id={product.product_id} />
+              {
+                  product.stock==0 ? null : <ProductExisting product={product}/>
+                }
+                
               <AddToCartSection
                 product_name={product.product_name}
                 price={product.product_price}
