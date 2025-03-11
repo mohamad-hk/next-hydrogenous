@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import fixurl from "../utils/Fixurl";
 import ProductExisting from "../components/ProductsPage/ProductExisting";
 import FilterProducts from "../components/ProductsPage/Filter";
@@ -11,6 +11,14 @@ import ShowDiscount from "../components/ProductsPage/ShowDiscount";
 import ShowPrice from "../components/Productpage/ShowPrice";
 
 const ShowProducts = () => {
+  return (
+    <Suspense fallback={<p>در حال بارگذاری...</p>}>
+      <ShowProductsContent />
+    </Suspense>
+  );
+};
+
+const ShowProductsContent = () => {
   const searchParams = useSearchParams();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
