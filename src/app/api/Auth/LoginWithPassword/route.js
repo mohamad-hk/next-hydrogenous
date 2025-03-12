@@ -6,11 +6,12 @@ import { cookies } from "next/headers";
 export async function POST(req) {
   try {
     const { phone, password } = await req.json();
+    console.log(phone,password);
 
     const { data, error } = await supabase
       .from("tbl_customer")
       .select("customer_id, first_name, last_name, phone_number, password")
-      .eq("phone_number", phone)
+      .eq("phone_number", phone).eq("password",password)
       .single();
 
     if (error || !data) {
