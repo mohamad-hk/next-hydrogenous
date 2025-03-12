@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { MD5 } from "crypto-js";
+import Link from "next/link";
 
 const LoginWithPassword = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -18,7 +19,6 @@ const LoginWithPassword = () => {
     
 
     const hash = MD5(currentPassword).toString();
-    consolelog(hash);
 
     try {
 
@@ -78,6 +78,9 @@ const LoginWithPassword = () => {
           ورود
         </button>
       </form>
+      <Link className="text-blue-600" href={"/auth/forget_password"}>
+      فراموشی رمز عبور
+      </Link>
     </div>
   );
 };
