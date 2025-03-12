@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const RegisterUser = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -10,8 +11,7 @@ const RegisterUser = () => {
   const [password, setPassword] = useState("");
   const [verifyCode, setVerifyCode] = useState("");
   const serverCode = useRef(null);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+
   const [step, setStep] = useState(1);
   const [resendTimer, setResendTimer] = useState(30);
   const [isResendDisabled, setIsResendDisabled] = useState(true);
@@ -19,8 +19,6 @@ const RegisterUser = () => {
 
   const handlePhoneSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage("");
-    setSuccessMessage("");
 
     try {
       const userResponse = await fetch("/api/Auth/CheckUser", {
@@ -56,14 +54,12 @@ const RegisterUser = () => {
       setIsNewUser(true);
       setStep(2);
     } catch (error) {
-      setErrorMessage(error.message);
+      toast.error("مشکلی پیش اومده");
     }
   };
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage("");
-    setSuccessMessage("");
 
     try {
       const registerResponse = await fetch("/api/Auth/RegisterUser", {
@@ -83,13 +79,12 @@ const RegisterUser = () => {
         throw new Error(registerData.error || " خطایی در ثبت نام رخ داد.");
       }
 
-      setSuccessMessage(" ثبت‌ نام با موفقیت انجام شد!");
-
+      toast.success("ثبت نام با موفقیت انجام شد");
       setTimeout(() => {
         router.push("/");
       }, 2000);
     } catch (error) {
-      setErrorMessage(error.message);
+      toast.error("مشکلی پیش اومده");
     }
   };
 
@@ -118,9 +113,9 @@ const RegisterUser = () => {
       if (!smsResponse.ok)
         throw new Error(`خطا در ارسال پیامک: ${smsResponse.status}`);
 
-      setSuccessMessage(" کد تأیید مجدداً ارسال شد.");
+      toast.success("کد تایید مجدد ارسال شد");
     } catch (error) {
-      setErrorMessage(error.message);
+      toast.error("مشکلی پیش اومده");
     }
   };
   return (
@@ -142,7 +137,6 @@ const RegisterUser = () => {
               required
               className="border p-2 rounded"
             />
-            {errorMessage && <p className="text-red-600">{errorMessage}</p>}
           </div>
           <button
             type="submit"
@@ -218,8 +212,6 @@ const RegisterUser = () => {
               ثبت اطلاعات
             </button>
           </form>
-          {errorMessage && <p className="text-red-600">{errorMessage}</p>}
-          {successMessage && <p className="text-green-600">{successMessage}</p>}
         </div>
       )}
     </div>

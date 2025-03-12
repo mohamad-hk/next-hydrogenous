@@ -3,6 +3,7 @@ import { MD5 } from "crypto-js";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const LoginUser = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -11,8 +12,6 @@ const LoginUser = () => {
   const [repassword, setRePassword] = useState("");
   const [serverCode, setServerCode] = useState(null);
   const [userData, setUserData] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
   const [step, setStep] = useState(1);
   const router = useRouter();
   const [resendTimer, setResendTimer] = useState(30);
@@ -20,8 +19,6 @@ const LoginUser = () => {
 
   const handlePhoneSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage("");
-    setSuccessMessage("");
 
     try {
       const userResponse = await fetch("/api/Auth/GetUser", {
@@ -56,14 +53,12 @@ const LoginUser = () => {
       setStep(2);
     } catch (error) {
       console.error(" خطا:", error.message);
-      setErrorMessage(error.message);
+      toast.error("مشکلی پیش اومده");
     }
   };
 
   const handleVerifyCode = async (e) => {
     e.preventDefault();
-    setErrorMessage("");
-    setSuccessMessage("");
 
     try {
       if (verifyCode !== serverCode) {
@@ -72,7 +67,7 @@ const LoginUser = () => {
       setStep(3);
     } catch (error) {
       console.error(" خطا:", error.message);
-      setErrorMessage(error.message);
+      toast.error("مشکلی پیش اومده");
     }
   };
 
@@ -80,31 +75,30 @@ const LoginUser = () => {
     if (isResendDisabled) return;
     setIsResendDisabled(true);
     setResendTimer(30);
-  
+
     try {
       const smsResponse = await fetch("/api/Auth/sms", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone: phoneNumber }),
       });
-  
-      if (!smsResponse.ok) throw new Error(`خطا در ارسال پیامک: ${smsResponse.status}`);
-  
-      setSuccessMessage("کد تأیید مجدداً ارسال شد.");
+
+      if (!smsResponse.ok)
+        throw new Error(`خطا در ارسال پیامک: ${smsResponse.status}`);
+
+      toast.success("کد تایید مجدد ارسال شد");
     } catch (error) {
-      setErrorMessage(error.message);
+      toast.error("مشکلی پیش اومده");
     }
   };
-  
+
   const updatePassword = async (e) => {
     e.preventDefault();
-    setErrorMessage("");
-    setSuccessMessage("");
     const temp_password = password;
     const temp_repassword = repassword;
     if (temp_password == temp_repassword) {
-        const new_password = MD5(temp_password).toString();
-        try {
+      const new_password = MD5(temp_password).toString();
+      try {
         const response = await fetch(
           "http://localhost:3000/api/Auth/ResetPassword",
           {
@@ -113,8 +107,8 @@ const LoginUser = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                phone: phoneNumber, 
-                password: new_password,
+              phone: phoneNumber,
+              password: new_password,
             }),
           }
         );
@@ -129,7 +123,7 @@ const LoginUser = () => {
         console.error("Error:", error);
       }
     } else {
-      setErrorMessage("کلمه عبور و تکرار آن مطابقت ندارد");
+      toast.error(" کلمه عبور و تکرار آن مطابقت ندارد ");
     }
     setTimeout(() => {
       router.push("/auth/login_password");
@@ -146,11 +140,11 @@ const LoginUser = () => {
       setIsResendDisabled(false);
     }
   }, [resendTimer]);
-  
+
   useEffect(() => {
     setResendTimer(30);
   }, [isResendDisabled]);
-  
+
   return (
     <div className="flex flex-col gap-10 shadow-xl rounded-md p-5">
       {step === 1 && (
@@ -170,8 +164,6 @@ const LoginUser = () => {
             <Link className="text-blue-600" href={"/auth/login_password"}>
               ورود با پیامک
             </Link>
-
-            {errorMessage && <p className="text-red-600">{errorMessage}</p>}
           </div>
           <button
             type="submit"
@@ -197,10 +189,6 @@ const LoginUser = () => {
               required
               className="border p-2 rounded"
             />
-            {errorMessage && <p className="text-red-600">{errorMessage}</p>}
-            {successMessage && (
-              <p className="text-green-600">{successMessage}</p>
-            )}
           </div>
           <div className="flex items-center gap-4">
             <button
@@ -253,18 +241,14 @@ const LoginUser = () => {
                 required
                 className="border p-2 rounded"
               />
-              {errorMessage && <p className="text-red-600">{errorMessage}</p>}
-              {successMessage && (
-                <p className="text-green-600">{successMessage}</p>
-              )}
             </div>
 
             <button
               type="submit"
               className="text-white bg-green-600 px-10 rounded-md py-3"
             >
-بازیابی          
- </button>
+              بازیابی
+            </button>
           </form>
         </div>
       )}

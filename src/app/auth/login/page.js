@@ -2,14 +2,13 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const LoginUser = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [verifyCode, setVerifyCode] = useState("");
   const [serverCode, setServerCode] = useState(null);
   const [userData, setUserData] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
   const [step, setStep] = useState(1);
   const router = useRouter();
   const [resendTimer, setResendTimer] = useState(30);
@@ -17,8 +16,7 @@ const LoginUser = () => {
 
   const handlePhoneSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage("");
-    setSuccessMessage("");
+
 
     try {
       const userResponse = await fetch("/api/Auth/GetUser", {
@@ -42,8 +40,7 @@ const LoginUser = () => {
       });
 
       if (!smsResponse.ok)
-        throw new Error(`خطا در ارسال پیامک: ${smsResponse.status}`);
-
+        toast.error("خطا در ارسال پیامک");
       const data = await smsResponse.json();
       setServerCode(data.code);
 
@@ -53,18 +50,16 @@ const LoginUser = () => {
       setStep(2);
     } catch (error) {
       console.error(" خطا:", error.message);
-      setErrorMessage(error.message);
+      toast.success("مشکلی پیش اومده");
     }
   };
 
   const handleVerifyCode = async (e) => {
     e.preventDefault();
-    setErrorMessage("");
-    setSuccessMessage("");
 
     try {
       if (verifyCode !== serverCode) {
-        throw new Error(" کد وارد شده نادرست است.");
+        toast.error("کد وارد شده اشتباه است");
       }
 
       if (!userData) {
@@ -84,14 +79,14 @@ const LoginUser = () => {
         throw new Error(" خطا در تولید و ذخیره توکن JWT.");
       }
 
-      setSuccessMessage(" ثبت‌نام با موفقیت انجام شد!");
+      toast.success(" ثبت نام با موفقیت انجام شد");
 
       setTimeout(() => {
         router.push("/");
       }, 2000);
     } catch (error) {
       console.error(" خطا:", error.message);
-      setErrorMessage(error.message);
+      toast.success("خطا در ثبت نام");
     }
   };
 
@@ -119,9 +114,9 @@ const LoginUser = () => {
       if (!smsResponse.ok)
         throw new Error(`خطا در ارسال پیامک: ${smsResponse.status}`);
 
-      setSuccessMessage(" کد تأیید مجدداً ارسال شد.");
+      toast.success("کد تایید مجدد ارسال شد");
     } catch (error) {
-      setErrorMessage(error.message);
+      toast.error("مشکلی پیش اومده");
     }
   };
 
@@ -158,7 +153,6 @@ const LoginUser = () => {
               ورود با گذرواژه
             </Link>
 
-            {errorMessage && <p className="text-red-600">{errorMessage}</p>}
           </div>
           <button
             type="submit"
@@ -184,10 +178,6 @@ const LoginUser = () => {
               required
               className="border p-2 rounded"
             />
-            {errorMessage && <p className="text-red-600">{errorMessage}</p>}
-            {successMessage && (
-              <p className="text-green-600">{successMessage}</p>
-            )}
           </div>
           <div className="flex items-center gap-4">
             <button
@@ -215,12 +205,6 @@ const LoginUser = () => {
             تأیید کد
           </button>
         </form>
-      )}
-
-      {step === 3 && (
-        <div className="text-center text-green-600 text-lg font-bold">
-          ورود موفقیت‌آمیز بود.
-        </div>
       )}
     </div>
   );

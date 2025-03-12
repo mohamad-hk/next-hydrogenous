@@ -3,29 +3,24 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { MD5 } from "crypto-js";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const LoginWithPassword = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
   const router = useRouter();
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage("");
-    setSuccessMessage("");
     const currentPassword = password;
-    
 
     const hash = MD5(currentPassword).toString();
 
     try {
-
       const loginResponse = await fetch("/api/Auth/LoginWithPassword", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone: phoneNumber, password:hash }),
+        body: JSON.stringify({ phone: phoneNumber, password: hash }),
         credentials: "include",
       });
 
@@ -37,13 +32,13 @@ const LoginWithPassword = () => {
         );
       }
 
-      setSuccessMessage(" ورود موفقیت‌آمیز بود!");
+      toast.success("ورود با موفقیت انجام شد!");
 
       setTimeout(() => {
         router.push("/");
       }, 2000);
     } catch (error) {
-      setErrorMessage(error.message);
+      toast.error("خطا در ورود!");
     }
   };
 
@@ -68,8 +63,6 @@ const LoginWithPassword = () => {
             required
             className="border p-2 rounded"
           />
-          {errorMessage && <p className="text-red-600">{errorMessage}</p>}
-          {successMessage && <p className="text-green-600">{successMessage}</p>}
         </div>
         <button
           type="submit"
@@ -79,7 +72,7 @@ const LoginWithPassword = () => {
         </button>
       </form>
       <Link className="text-blue-600" href={"/auth/forget_password"}>
-      فراموشی رمز عبور
+        فراموشی رمز عبور
       </Link>
     </div>
   );
