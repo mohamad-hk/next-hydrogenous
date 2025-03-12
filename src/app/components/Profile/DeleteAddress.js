@@ -6,8 +6,9 @@ import {
   Button,
   useDisclosure,
 } from "@heroui/react";
+import { toast } from "react-toastify";
 
-const DeleteAddress = ({ sh_id , refresh }) => {
+const DeleteAddress = ({ sh_id, refresh }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const input_params = new URLSearchParams({
     ship_id: sh_id,
@@ -28,14 +29,15 @@ const DeleteAddress = ({ sh_id , refresh }) => {
       const result = await response.json();
 
       if (response.ok) {
-        console.log("done", result);
-        refresh()
+        toast.success("آدرس با موفقیت حذف شد");
+        refresh();
       } else {
-        console.error("Failed to delete shipment:", result.error);
+        toast.error("مشکلی پیش اومده");
       }
     } catch (error) {
-      console.error("Error deleting shipments:", error);
+      toast.error("مشکلی پیش اومده");
     }
+    onOpenChange(false)
   };
   const deleteData = () => {
     console.log(1);

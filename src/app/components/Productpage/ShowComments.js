@@ -16,7 +16,7 @@ const ShowComments = ({ id }) => {
   const [comments, setComments] = useState([]);
   const getComments = async () => {
     const data = await fetch(
-      `https://hydrogenous.vercel.app/api/GetComments?${input_params}`
+      `https://hydrogenous.vercel.app/api/Product/ProductComments/GetComments?${input_params}`
     );
     const response = await data.json();
     setComments(response);

@@ -17,32 +17,34 @@ import convertToPersianDate from "@/app/utils/ConvertToPersianDate";
 import ShowPersianNumbers from "@/app/utils/ShowPersinaNumbers";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import Loading from "@/app/components/Loading/Loading";
 
 const Showorder = () => {
   const invoiceRef = useRef(null);
 
   const downloadInvoice = async () => {
     if (!invoiceRef.current) return;
-
+  
     const canvas = await html2canvas(invoiceRef.current, {
       scale: 2,
       useCORS: true,
     });
-
+  
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF({
-      orientation: "p",
+      orientation: "landscape", 
       unit: "mm",
       format: "a4",
       compress: true,
     });
-
-    const imgWidth = 210;
+  
+    const imgWidth = 297; 
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
+  
     pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
     pdf.save(`${order_code}_hydrogenous`);
   };
+  
   const pathname = usePathname();
   const order_code = pathname.split("/").pop();
   const [firstname, setFirstName] = useState("");
@@ -59,13 +61,16 @@ const Showorder = () => {
   const [Method, setMethod] = useState("");
   const [statusorder, setStatusOrder] = useState("");
   const [orderdate, setOrderDate] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const getInfo = async (input_params) => {
     try {
+      setLoading(true);
       const data = await fetch(
         `/api/Profile/Orders/GetOrderInvoice?${input_params}`
       );
       const response = await data.json();
-      console.log(response?.l_products);
+    
       if (response) {
         setFirstName(response?.tbl_shipment.f_n_shipment);
         setLastName(response?.tbl_shipment.l_n_shipment);
@@ -84,6 +89,8 @@ const Showorder = () => {
       }
     } catch (error) {
       console.error("Error fetching shipments :", error);
+    }finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -95,6 +102,7 @@ const Showorder = () => {
 
   return (
     <>
+    {loading ? <Loading /> : (
       <div
         className="w-[90%] mx-auto border border-gray-400 rounded-md p-5 text-[16px] relative"
         ref={invoiceRef}
@@ -198,8 +206,8 @@ const Showorder = () => {
                 return (
                   <TableRow key={index}>
                     <TableCell>{product.name}</TableCell>
-                    <TableCell>{product.quantity}</TableCell>
-                    <TableCell>{product.price}</TableCell>
+                    <TableCell>{PersianNumbers(product.quantity)}</TableCell>
+                    <TableCell>{PersianNumbers(product.price)} تومان </TableCell>
                   </TableRow>
                 );
               })}
@@ -227,6 +235,7 @@ const Showorder = () => {
           دانلود فاکتور
         </Button>
       </div>
+    )}
     </>
   );
 };

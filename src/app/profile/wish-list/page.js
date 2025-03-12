@@ -3,6 +3,7 @@
 import ShowDiscount from "@/app/components/Productpage/ShowDiscount";
 import ShowPrice from "@/app/components/Productpage/ShowPrice";
 import { AuthContext } from "@/app/context/AuthContext";
+import Loading from "@/app/loading";
 import fixurl from "@/app/utils/Fixurl";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,9 +12,12 @@ import { useContext, useEffect, useState } from "react";
 const WishList = () => {
   const [products, setProducts] = useState([]);
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+
 
   const getWish = async (input_params) => {
     try {
+      setLoading(true);
       const data = await fetch(
         `https://hydrogenous.vercel.app/api/Product/Wish/GetWish?${input_params}`
       );
@@ -22,6 +26,8 @@ const WishList = () => {
       setProducts(response);
     } catch (error) {
       console.error("Error fetching", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,6 +41,7 @@ const WishList = () => {
   }, [user]);
   return (
     <>
+    {loading ? <Loading /> : (
       <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-y-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-y-5 gap-x-5 lg:ms-5">
         {products.map((product, index) => {
           return (
@@ -69,6 +76,7 @@ const WishList = () => {
           );
         })}
       </div>
+    )}
     </>
   );
 };

@@ -1,5 +1,6 @@
 "use client";
 import { AuthContext } from "@/app/context/AuthContext";
+import Loading from "@/app/loading";
 import { Input } from "@heroui/react";
 import { useContext, useEffect, useState } from "react";
 import { mutate } from "swr";
@@ -11,11 +12,13 @@ const PersonalInfo = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRePassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { user } = useContext(AuthContext);
 
   const getInfo = async (input_params) => {
     try {
+      setLoading(true);
       const data = await fetch(`/api/GetInfo?${input_params}`);
       const response = await data.json();
       if (response) {
@@ -27,6 +30,8 @@ const PersonalInfo = () => {
       }
     } catch (error) {
       console.error("Error fetching shipments:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -34,20 +39,24 @@ const PersonalInfo = () => {
     event.preventDefault();
     let cu_id = user.customer_id;
     try {
-      const response = await fetch("https://hydrogenous.vercel.app/api/UpdateInfo", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          cu_id,
-          firstname,
-          lastname,
-          phone,
-          email,
-          password,
-        }),
-      });
+      setLoading(true);
+      const response = await fetch(
+        "https://hydrogenous.vercel.app/api/UpdateInfo",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cu_id,
+            firstname,
+            lastname,
+            phone,
+            email,
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
@@ -58,6 +67,8 @@ const PersonalInfo = () => {
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -73,6 +84,7 @@ const PersonalInfo = () => {
   return (
     <div className="shadow-lg p-5 rounded-3xl">
       <h2 className="text-center text-3xl mt-5 md:mt-0 mb-5">ویرایش مشخصات</h2>
+      {loading ? <Loading /> : (
       <form
         className="sm:w-[95%] lg:w-[90%] xl:w-[80%] 2xl:w-[70%] block mx-auto"
         onSubmit={updateData}
@@ -120,6 +132,7 @@ const PersonalInfo = () => {
           value="ویرایش"
         />
       </form>
+      )}
     </div>
   );
 };

@@ -10,7 +10,7 @@ const Dashboard = () => {
   const getOrders = async (input_params) => {
     try {
       const data = await fetch(
-        `https://hydrogenous.vercel.app/api/GetShipment?${input_params}`
+        `https://hydrogenous.vercel.app/api/Profile/Shipment/GetShipment?${input_params}`
       );
       const response = await data.json();
       setOrders(response);

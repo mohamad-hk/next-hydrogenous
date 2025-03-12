@@ -15,6 +15,7 @@ import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
 import CommentStatics from "./CommentStatic";
 import { AuthContext } from "@/app/context/AuthContext";
+import { toast } from "react-toastify";
 
 const AddComment = ({ id }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -57,16 +58,13 @@ const AddComment = ({ id }) => {
       if (!response.ok) {
         throw new Error("مشکلی در ارسال نظر پیش آمده است");
       }
-
       const responseData = await response.json();
-      console.log(responseData);
 
-      alert("نظر شما با موفقیت ثبت شد!");
+      toast.success("نظر شما ثبت شد");
     } catch (error) {
-      console.error(error);
-      alert("خطا در ارسال نظر");
+      toast.error("مشکلی پیش اومده");
     }
-    onClose();
+    onOpenChange(false);
   };
 
   const handleOpen = (size) => {

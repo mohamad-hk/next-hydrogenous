@@ -14,6 +14,7 @@ import {
 } from "@heroui/react";
 import { useState, useEffect, useContext } from "react";
 import { CgAdd } from "react-icons/cg";
+import { toast } from "react-toastify";
 
 export default function AddAddress({ refresh }) {
   const [size, setSize] = useState("");
@@ -40,7 +41,6 @@ export default function AddAddress({ refresh }) {
   useEffect(() => {
     if (user?.customer_id) {
       setID(user.customer_id);
-      console.log(ID, user.customer_id);
     }
   }, [user]);
 
@@ -89,7 +89,7 @@ export default function AddAddress({ refresh }) {
 
       const data = await response.json();
       if (response.ok) {
-        console.log("Address added successfully", data);
+        toast.success("آدرس جدید با موفقیت اضافه شد");
         setFirstName("");
         setLastName("");
         setPhone("");
@@ -100,10 +100,10 @@ export default function AddAddress({ refresh }) {
         setZipCode("");
         setCities([]);
       } else {
-        console.error("Error adding address", data.error);
+        toast.error("مشکلی پیش اومده");
       }
     } catch (error) {
-      console.error("Error:", error);
+      toast.error("مشکلی پیش اومده");
     }
     onClose();
     refresh();

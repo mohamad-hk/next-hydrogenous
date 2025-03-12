@@ -16,7 +16,7 @@ const CommentStatics = ({ id }) => {
   const [total, setTotal] = useState(0);
   const getScore = async () => {
     const data = await fetch(
-      `https://hydrogenous.vercel.app/api/GetCommentsScore?${input_params}`
+      `https://hydrogenous.vercel.app/api/Product/ProductComments/GetCommentsScore?${input_params}`
     );
     const response = await data.json();
     setScore(response);

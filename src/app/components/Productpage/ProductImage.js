@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { CiShare2 } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const ProductImage = ({ image, product_id }) => {
   const { user } = useContext(AuthContext);
@@ -34,14 +35,14 @@ const ProductImage = ({ image, product_id }) => {
         setIsWish(true);
       }
     } catch (error) {
-      console.error("Error fetching wishlist:", error);
+      toast.error("مشکلی پیش اومده");
     }
   };
 
   const setWish = async () => {
     try {
       const response = await fetch(
-        "https://hydrogenous.vercel.app/api/Wish/InsertWish",
+        "https://hydrogenous.vercel.app/api/Product/Wish/InsertWish",
         {
           method: "POST",
           headers: {
@@ -55,15 +56,14 @@ const ProductImage = ({ image, product_id }) => {
       );
 
       if (!response.ok) {
-        throw new Error("مشکلی در ثبت علاقه‌مندی پیش آمده است");
+        toast.error("مشکلی پیش اومده");
       }
 
       const responseData = await response.json();
-      console.log(responseData);
+      toast.success("به لیست علاقه مندی اضافه شد");
       setIsWish(true);
     } catch (error) {
-      console.error(error);
-      alert("خطا در ارسال درخواست علاقه‌مندی");
+      toast.error("مشکلی پیش اومده");
     }
   };
 
@@ -82,13 +82,13 @@ const ProductImage = ({ image, product_id }) => {
       const result = await response.json();
 
       if (response.ok) {
-        console.log("Removed from wishlist", result);
+        toast.success("از لیست علاقه مندی حذف شد");
         setIsWish(false);
       } else {
-        console.error("Failed to remove from wishlist:", result.error);
+        toast.error("مشکلی پیش اومده");
       }
     } catch (error) {
-      console.error("Error removing from wishlist:", error);
+      toast.error("مشکلی پیش اومده");
     }
   };
 

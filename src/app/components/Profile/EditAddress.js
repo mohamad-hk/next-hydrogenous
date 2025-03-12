@@ -11,6 +11,7 @@ import {
 } from "@heroui/react";
 import { Input } from "@heroui/react";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function EditAddress({ sh_id, refresh }) {
   const [size, setSize] = useState("");
@@ -78,12 +79,12 @@ export default function EditAddress({ sh_id, refresh }) {
 
       const data = await response.json();
       if (response.ok) {
-        console.log("updated successfully", data);
+        toast.success("آدرس با موفقیت ویرایش شد");
       } else {
-        console.error("Error updating", data.error);
+        toast.error("مشکلی پیش اومده");
       }
     } catch (error) {
-      console.error("Error:", error);
+      toast.error("مشکلی پیش اومده");
     }
     refresh();
     onClose();

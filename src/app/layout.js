@@ -4,6 +4,8 @@ import Footer from "./container/Footer";
 import { AuthProvider } from "./context/AuthContext";
 import Header from "./container/Header";
 import { ShipmentProvider } from "./context/ShipmentContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
 
 export default function RootLayout({ children }) {
   return (
@@ -13,6 +15,14 @@ export default function RootLayout({ children }) {
           <ShipmentProvider>
             <Header />
             <Providers>{children}</Providers>
+            <ToastContainer 
+              position="top-right" 
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={true}
+            />
             <Footer />
           </ShipmentProvider>
         </AuthProvider>

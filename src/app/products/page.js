@@ -9,6 +9,7 @@ import ProductExisting from "../components/ProductsPage/ProductExisting";
 import FilterProducts from "../components/ProductsPage/Filter";
 import ShowDiscount from "../components/ProductsPage/ShowDiscount";
 import ShowPrice from "../components/Productpage/ShowPrice";
+import Loading from "../components/Loading/Loading";
 
 const ShowProducts = () => {
   return (
@@ -59,7 +60,6 @@ const ShowProductsContent = () => {
   useEffect(() => {
     getFilteredProducts();
   }, [searchParams]);
-
   return (
     <div className="px-5 grid grid-cols-1 lg:grid-cols-[200px_minmax(700px,_1fr)_20px] xl:grid-cols-[350px_minmax(800px,_1fr)_20px]">
       <div className="w-full md:mt-10 hidden lg:flex">
@@ -68,7 +68,7 @@ const ShowProductsContent = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-y-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-y-5 gap-x-5 my-10">
         {loading ? (
-          <p>در حال بارگذاری...</p>
+          <Loading />
         ) : products.length > 0 ? (
           products.map((product, index) => {
             return (
@@ -79,7 +79,7 @@ const ShowProductsContent = () => {
                 key={index}
               >
                 {product.stock == 0 && (
-                  <div className="relative inset-0 bg-gray-200 bg-opacity-50  text-xl font-bold text-red-600">
+                  <div className="relative inset-0 bg-gray-200 bg-opacity-50 text-xl font-bold text-red-600">
                     <p className="absolute top-52 -left-6 z-20">ناموجود</p>
                   </div>
                 )}
@@ -109,9 +109,7 @@ const ShowProductsContent = () => {
                   </div>
                 )}
 
-                {product.stock == 0 ? null : (
-                  <ProductExisting product={product} />
-                )}
+                {product.stock == 0 ? null : <ProductExisting product={product} />}
               </div>
             );
           })
