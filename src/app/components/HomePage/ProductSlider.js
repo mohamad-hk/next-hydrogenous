@@ -22,7 +22,7 @@ const ProductSlider = ({ products, category }) => {
           <div className="flex flex-row justify-between items-center rounded-md p-2 bg-blue-700">
             <h2 className="text-3xl text-white">{category}</h2>
             <div className="flex flex-row items-center bg-white p-3 rounded-md hover:scale-90 transition-all duration-500 ease-in-out">
-              <Link href={`/product-category/${category}`}>مشاهده همه</Link>
+              <Link href={`/products?category=${category}`}>مشاهده همه</Link>
               <IoIosArrowBack />
             </div>
           </div>
