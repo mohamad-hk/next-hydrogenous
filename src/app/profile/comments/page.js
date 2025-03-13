@@ -9,12 +9,16 @@ import "react-rater/lib/react-rater.css";
 import Link from "next/link";
 import fixurl from "@/app/utils/Fixurl";
 import Loading from "@/app/loading";
+import { redirect } from "next/navigation";
 
 const ProfileComments = () => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const { user } = useContext(AuthContext);
+  if (!user) {
+    redirect("/auth/login")
+  }
 
   const getComments = async (input_params) => {
     try {

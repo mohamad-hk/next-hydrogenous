@@ -2,6 +2,7 @@
 import { AuthContext } from "@/app/context/AuthContext";
 import Loading from "@/app/loading";
 import { Input } from "@heroui/react";
+import { redirect } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { mutate } from "swr";
 
@@ -15,7 +16,9 @@ const PersonalInfo = () => {
   const [loading, setLoading] = useState(false);
 
   const { user } = useContext(AuthContext);
-
+  if (!user) {
+    redirect("/auth/login")
+  }
   const getInfo = async (input_params) => {
     try {
       setLoading(true);

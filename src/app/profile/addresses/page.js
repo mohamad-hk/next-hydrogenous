@@ -10,11 +10,15 @@ import OptionAddress from "@/app/components/Profile/OptionAddress";
 import { AuthContext } from "@/app/context/AuthContext";
 import AddAddress from "@/app/components/Profile/AddAddress";
 import Loading from "@/app/components/Loading/Loading";
+import { redirect } from "next/navigation";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const Addresses = () => {
   const { user } = useContext(AuthContext);
+  if (!user) {
+    redirect("/auth/login")
+  }
 
   const {
     data: shipments,

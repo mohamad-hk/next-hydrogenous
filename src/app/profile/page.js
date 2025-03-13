@@ -1,4 +1,5 @@
 "use client";
+import { useContext } from "react";
 import Dashboard from "../components/Profile/Dashboard";
 import { useDashboard } from "../context/dashboard";
 import Addresses from "./addresses/page";
@@ -6,9 +7,15 @@ import ProfileComments from "./comments/page";
 import Orders from "./orders/page";
 import PersonalInfo from "./personal-info/page";
 import WishList from "./wish-list/page";
+import { AuthContext } from "../context/AuthContext";
+import { redirect } from "next/navigation";
 
 const Profile = () => {
   const { activeTab } = useDashboard();
+  const {user}=useContext(AuthContext)
+  if (!user) {
+    redirect("/auth/login")
+  }
   return (
     <>
       {(() => {

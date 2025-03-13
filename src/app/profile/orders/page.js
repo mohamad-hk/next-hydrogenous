@@ -8,6 +8,7 @@ import { Button } from "@heroui/react";
 import Link from "next/link";
 import { Divider } from "@heroui/divider";
 import Loading from "@/app/components/Loading/Loading";
+import { redirect } from "next/navigation";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -15,6 +16,9 @@ const Orders = () => {
   const [activeStatus, setActiveStatus] = useState("همه");
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
+  if (!user) {
+    redirect("/auth/login")
+  }
 
   const fetchOrders = async (inputParams) => {
     try {
@@ -60,7 +64,7 @@ const Orders = () => {
   return (
     <>
       <div className="shadow-xl bg-white p-10 rounded-l-3xl">
-        <nav className="flex flex-row justify-center items-center gap-10 mb-5">
+        <nav className="flex flex-row justify-center items-center gap-2 lg:gap-10 mb-5 overflow-x-scroll  md:overflow-auto">
           {[
             "همه",
             "در انتظار پرداخت",

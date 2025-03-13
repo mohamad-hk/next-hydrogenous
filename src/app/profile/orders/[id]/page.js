@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -10,7 +10,7 @@ import {
   Divider,
   Button,
 } from "@heroui/react";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import Image from "next/image";
 import PersianNumbers from "@/app/utils/ToPersianNumber";
 import convertToPersianDate from "@/app/utils/ConvertToPersianDate";
@@ -18,9 +18,14 @@ import ShowPersianNumbers from "@/app/utils/ShowPersinaNumbers";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import Loading from "@/app/components/Loading/Loading";
+import { AuthContext } from "@/app/context/AuthContext";
 
 const Showorder = () => {
   const invoiceRef = useRef(null);
+  const {user}=useContext(AuthContext)
+  if (!user) {
+    redirect("/auth/login")
+  }
 
   const downloadInvoice = async () => {
     if (!invoiceRef.current) return;

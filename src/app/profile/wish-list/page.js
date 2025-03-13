@@ -7,13 +7,17 @@ import Loading from "@/app/loading";
 import fixurl from "@/app/utils/Fixurl";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
 const WishList = () => {
   const [products, setProducts] = useState([]);
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
-
+  
+  if (!user) {
+    redirect("/auth/login")
+  }
 
   const getWish = async (input_params) => {
     try {

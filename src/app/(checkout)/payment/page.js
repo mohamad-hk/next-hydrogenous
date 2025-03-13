@@ -10,7 +10,7 @@ import { ShipmentContext } from "@/app/context/ShipmentContext";
 import { AuthContext } from "@/app/context/AuthContext";
 import useCartStore from "@/app/store/cartstore";
 import { Button } from "@heroui/react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const Payment = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +20,9 @@ const Payment = () => {
   const { user } = useContext(AuthContext);
   const { shipmentId } = useContext(ShipmentContext);
   const { cart, totalBasket } = useCartStore();
+   if (!user) {
+      redirect("/auth/login")
+    }
 
   const SetOrder = async () => {
     setIsLoading(true);
