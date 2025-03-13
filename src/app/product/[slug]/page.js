@@ -1,3 +1,4 @@
+import BreadCrump from "@/app/components/Productpage/BreadCrump";
 import AddComment from "../../components/Productpage/AddComment";
 import AddToCartSection from "../../components/Productpage/AddToCart";
 import Details from "../../components/Productpage/Details";
@@ -25,6 +26,10 @@ const ShowProduct = async ({ params }) => {
       {product_res?.map((product) => {
         return (
           <>
+          <div className=" ps-5 md:ps-8 lg:ps-10 xl:ps-20 2xl:ps-40 mt-10">
+          <BreadCrump title={product.product_name} category={product.t_category_id} />
+
+          </div>
             <div className="grid grid-cols-1 place-items-center md:grid-cols-2 md:gap-x-10 xl:gap-x-0 my-10 px-10 ">
               <ProductImage image={product.product_photo} product_id={product.product_id} />
                 
