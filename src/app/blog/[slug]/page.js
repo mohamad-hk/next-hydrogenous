@@ -1,86 +1,48 @@
+import BlogContent from "@/app/components/Blog/BlogContent";
+import BreadCrump from "@/app/components/Blog/BreadCrump";
 import Image from "next/image";
 
-export const revalidate = 60;
-
-const getPost = async (input_params) => {
-  const response = await fetch(
-    `https://hydrogenous.vercel.app/api/Blogs/Post?${input_params}`,
-    {
-      next: { revalidate: 60 },
-    }
-  );
-
-  if (!response.ok) {
-    return null;
-  }
-
-  return await response.json();
-};
-
-const getPostImages = async (input_images_params) => {
-  const response = await fetch(
-    `https://hydrogenous.vercel.app/api/Blogs/PostImages?${input_images_params}`,
-    {
-      next: { revalidate: 60 },
-    }
-  );
-
-  if (!response.ok) {
-    return null;
-  }
-
-  return await response.json();
-};
+export const revalidate = 15; 
 
 const BlogPost = async ({ params }) => {
-  const { slug } = await params;
+  const { slug } = await params; 
 
   if (!slug) {
     return <p>پست پیدا نشد</p>;
   }
 
-  const input_params = new URLSearchParams({
-    post_title: slug,
-  });
+  const response = await fetch(
+    `http://localhost:3000/api/Blogs/Post?post_id=${encodeURIComponent(slug.toString())}`,
+    {
+      next: { revalidate: 15 }, 
+    }
+  );
 
-  const post = await getPost(input_params);
+  if (!response.ok) {
+    console.error("Failed to fetch post:", response.status);
+    return <p>پست پیدا نشد</p>;
+  }
 
-  const input_images_params = new URLSearchParams({
-    post_id: post[0].post_id,
-  });
+  const post = await response.json();
 
-  const images = await getPostImages(input_images_params);
-
-  if (!post) {
+  if (!post || post.length === 0) {
     return <p>پست پیدا نشد</p>;
   }
 
   return (
     <div className="p-5 flex flex-col gap-3 lg:max-w-[60%] mx-auto">
+      <BreadCrump title={post[0].post_title}/>
       <h1 className="text-2xl font-bold">{post[0].post_title}</h1>
       <div className="flex flex-row justify-center items-center">
         <Image
-          src={`/images/posts/${post[0].post_feature_image}`}
+          src={post[0].post_feature_image}
           width={1000}
           height={500}
           className="rounded-md"
           alt="image not found"
         />
       </div>
-      <p className="mt-2 leading-8 text-justify">{post[0].post_content}</p>
-      <div className="flex flex-col items-center justify-center">
-        {images.map((image) => {
-          return (
-            <Image
-              src={`/images/posts/${image.image_url}`}
-              width={1000}
-              height={500}
-              className="rounded-md"
-              alt="image not found"
-            />
-          );
-        })}
-      </div>
+      <BlogContent content={post[0].post_content} />
     </div>
   );
 };
