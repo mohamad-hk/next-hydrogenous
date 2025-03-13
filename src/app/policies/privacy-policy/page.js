@@ -1,3 +1,7 @@
+export const metadata = {
+  title: " حریم خصوصی ",
+};
+
 const PrivacyPolicy = () => {
   return (
     <>

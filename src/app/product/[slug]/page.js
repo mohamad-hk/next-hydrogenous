@@ -6,6 +6,15 @@ import ProductImage from "../../components/Productpage/ProductImage";
 import RelatedProducts from "../../components/Productpage/RelatedProduts";
 import ShowComments from "../../components/Productpage/ShowComments";
 
+
+export async function generateMetadata({ params }) {
+  const decoded_url = decodeURIComponent(params.slug.replaceAll("-", " "));
+  return {
+    title: `${decoded_url}`,
+  };
+}
+
+
 const ShowProduct = async ({ params }) => {
   const { slug } = await params;
 

@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Input, Textarea } from "@heroui/react";
 import Image from "next/image";
 import ContactWays from "../components/Contact/ContactWays";
-
 const ContactUs = () => {
+  
   const [formData, setFormData] = useState({
     fn: "",
     ln: "",

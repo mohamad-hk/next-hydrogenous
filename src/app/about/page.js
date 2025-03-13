@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "درباره ما",
+};
+
+
 const About = () => {
   return (
     <>

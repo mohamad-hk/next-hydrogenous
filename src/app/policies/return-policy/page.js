@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "رویه بازگشت کالا",
+};
+
 const ReturnPolicy = () => {
   return (
     <>

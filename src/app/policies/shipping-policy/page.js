@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "قوانین ارسال",
+};
+
 const ShippingPolicy = () => {
   return (
     <>
