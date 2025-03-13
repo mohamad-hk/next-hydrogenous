@@ -9,6 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "هیدروژنوس",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
