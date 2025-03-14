@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -70,6 +70,7 @@ const useCartStore = create(
           get().updateTotals();
           return {};
         }),
+      clearCart: () => set({ cart: [], totalBasket: 0, totalDiscount: 0 }),
     }),
     {
       name: "cart-storage",
