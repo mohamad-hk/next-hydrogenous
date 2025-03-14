@@ -37,12 +37,13 @@ const OrderInfoSm = ({ href, button }) => {
                 <p>{PersianNumbers(totalBasket) + " تومان "}</p>
               </div>
             </div>
-            <Link
-              href={href}
-              className="w-full bg-danger-500 rounded-md text-white py-2 text-center text-lg"
-              aria-disabled={pathname != "/cart" ? !shipmentId : undefined}
-            >
-              {button}
+            <Link href={href} className="w-full">
+              <button
+                className="w-full bg-danger-500 rounded-md text-white py-2 text-center text-lg disabled:opacity-50"
+                disabled={pathname !== "/cart" ? !shipmentId : false}
+              >
+                {button}
+              </button>
             </Link>
           </div>
         </CardBody>
