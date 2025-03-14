@@ -146,11 +146,13 @@ const LoginUser = () => {
   }, [isResendDisabled]);
 
   return (
-    <div className="flex flex-col gap-10 shadow-xl rounded-md p-5">
+    <div className="flex flex-col gap-10 shadow-xl rounded-md p-5 w-[80%] sm:w-[60%] md:w-[40%] lg:w-[35%] xl:w-[30%] mx-auto">
+      <h2 className="text-xl font-bold text-center"> بازیابی رمز عبور </h2>
+
       {step === 1 && (
         <form
           onSubmit={handlePhoneSubmit}
-          className="grid grid-cols-2 items-center gap-5"
+          className="grid grid-cols-1 items-center gap-5"
         >
           <div className="flex flex-col gap-4">
             <input
@@ -161,54 +163,56 @@ const LoginUser = () => {
               required
               className="border p-2 rounded"
             />
+            <button
+              type="submit"
+              className="text-white bg-red-600 px-10 rounded-md py-3"
+            >
+              دریافت کد تأیید
+            </button>
             <Link className="text-blue-600" href={"/auth/login_password"}>
               ورود با پیامک
             </Link>
           </div>
-          <button
-            type="submit"
-            className="text-white bg-red-600 px-10 rounded-md py-3"
-          >
-            دریافت کد تأیید
-          </button>
         </form>
       )}
 
       {step === 2 && (
         <form
           onSubmit={handleVerifyCode}
-          className="grid grid-cols-2 items-center gap-5"
+          className="grid grid-cols-1 items-center gap-5"
         >
           <div className="flex flex-col gap-4">
             <p>کد ارسال‌شده را وارد کنید</p>
+            <div className="flex flex-row justify-center items-center gap-2">
+
             <input
               type="text"
               placeholder="کد تأیید"
               value={verifyCode}
               onChange={(e) => setVerifyCode(e.target.value)}
               required
-              className="border p-2 rounded"
+              className="border pe-16 sm:pe-2 lg:pe-4 ps-4 py-2 rounded"
             />
+            <div className="flex items-center gap-4">
+              <button
+                onClick={handleResendCode}
+                disabled={isResendDisabled}
+                className={`px-4 py-2 rounded-md ${
+                  isResendDisabled
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-blue-600 text-white"
+                }`}
+              >
+                ارسال مجدد
+              </button>
+              {isResendDisabled && (
+                <span className="text-gray-600">
+                  ارسال مجدد در {resendTimer} ثانیه
+                </span>
+              )}
+            </div>
+            </div>
           </div>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={handleResendCode}
-              disabled={isResendDisabled}
-              className={`px-4 py-2 rounded-md ${
-                isResendDisabled
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-blue-600 text-white"
-              }`}
-            >
-              ارسال مجدد
-            </button>
-            {isResendDisabled && (
-              <span className="text-gray-600">
-                ارسال مجدد در {resendTimer} ثانیه
-              </span>
-            )}
-          </div>
-
           <button
             type="submit"
             className="text-white bg-green-600 px-10 rounded-md py-3"

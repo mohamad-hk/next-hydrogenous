@@ -43,9 +43,9 @@ const LoginWithPassword = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10 shadow-xl rounded-md p-5">
-      <h2 className="text-xl font-bold">ورود با رمز عبور</h2>
-      <form onSubmit={handleLoginSubmit} className="grid grid-cols-2 gap-5">
+    <div className="flex flex-col gap-10 shadow-xl rounded-md p-5 w-[80%] sm:w-[50%] md:w[-40%] xl:w-[25%] mx-auto">
+      <h2 className="text-xl font-bold text-center">ورود با رمز عبور</h2>
+      <form onSubmit={handleLoginSubmit} className="grid grid-cols-1 gap-5">
         <div className="flex flex-col gap-4">
           <input
             type="text"

@@ -119,13 +119,13 @@ const RegisterUser = () => {
     }
   };
   return (
-    <div className="flex flex-col gap-10 shadow-xl rounded-md p-5">
-      <h2 className="text-xl font-bold">ثبت‌ نام در هیدروژنوس</h2>
+    <div className="flex flex-col gap-10 shadow-xl rounded-md p-10 w-[80%] sm:w-[50%] md:w[-40%] xl:w-[25%] mx-auto">
+      <h2 className="text-xl font-bold text-center">ثبت‌ نام در هیدروژنوس</h2>
 
       {step === 1 && (
         <form
           onSubmit={handlePhoneSubmit}
-          className="grid grid-cols-2 items-center gap-5"
+          className="grid grid-cols-1 items-center gap-2 p-5"
         >
           <div className="flex flex-col gap-4">
             <p>شماره موبایل خود را وارد کنید</p>
@@ -140,9 +140,9 @@ const RegisterUser = () => {
           </div>
           <button
             type="submit"
-            className="text-white bg-blue-600 px-10 rounded-md py-3"
+            className="text-white bg-blue-600 mx-auto px-20 mt-3 rounded-md py-3"
           >
-            دریافت کد تأیید
+            ادامه
           </button>
         </form>
       )}
