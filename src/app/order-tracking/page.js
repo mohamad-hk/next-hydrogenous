@@ -1,7 +1,7 @@
 "use client";
 import { Button, Input } from "@heroui/react";
 import { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const OrderTracking = () => {
   const [OrderCode, setOrderCode] = useState("");
@@ -9,20 +9,18 @@ const OrderTracking = () => {
 
   useEffect(() => {
     if (orderStatus != "") {
-      toast(orderStatus);
+      toast(" وضعیت سفارش شما: " + orderStatus);
     }
   }, [orderStatus]);
-  async function handleSubmit(event) {
-    event.preventDefault();
-    fetchOrder();
-  }
 
-  const fetchOrder = async () => {
+  const fetchOrder = async (event) => {
+    event.preventDefault();
+
     try {
       const input_param = new URLSearchParams({ order_code: OrderCode });
 
       const data = await fetch(
-        `https://hydrogenous.vercel.app/api/GetStatusOrder?${input_param}`
+        `https://hydrogenous.vercel.app/api/Profile/Orders/GetStatusOrder?${input_param}`
       );
       if (!data.ok) {
         throw new Error("Failed to fetch order status");
@@ -38,23 +36,23 @@ const OrderTracking = () => {
 
   return (
     <>
-      <h2 className="text-2xl ms-5">پیگیری سفارش</h2>
-      <ToastContainer />
-
-      <form onSubmit={handleSubmit} className="my-5">
-        <div className="flex flex-col items-center gap-5 w-[80%] mx-auto sm:w-[60%] md:w-[40%] lg:w-[30%] xl:w-[30%]">
-          <Input
-            label="کد رهگیری"
-            type="text"
-            variant={"bordered"}
-            value={OrderCode}
-            onChange={(e) => setOrderCode(e.target.value)}
-          />
-          <Button type="submit" className=" text-white" color="success">
-            رهگیری سفارش
-          </Button>
-        </div>
-      </form>
+      <div className="xl:pb-[25.5rem]">
+        <h2 className="text-2xl ms-5">پیگیری سفارش</h2>
+        <form onSubmit={fetchOrder} className="my-5">
+          <div className="flex flex-col items-center gap-5 w-[80%] mx-auto sm:w-[60%] md:w-[40%] lg:w-[30%] xl:w-[30%]">
+            <Input
+              label="شماره سفارش "
+              type="text"
+              variant={"bordered"}
+              value={OrderCode}
+              onChange={(e) => setOrderCode(e.target.value)}
+            />
+            <Button type="submit" className=" text-white" color="success">
+              رهگیری سفارش
+            </Button>
+          </div>
+        </form>
+      </div>
     </>
   );
 };
