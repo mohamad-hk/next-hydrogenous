@@ -15,6 +15,10 @@ const ShowAddresses = ({ data, onChange }) => {
   };
 
   return (
+    <div>
+
+    <p>یک آدرس انتخاب کنید</p>
+    
     <div className="flex flex-wrap gap-5 py-10 px-10">
       {data?.map((shipment, index) => (
         <label
@@ -51,6 +55,8 @@ const ShowAddresses = ({ data, onChange }) => {
         </label>
       ))}
     </div>
+    </div>
+
   );
 };
 

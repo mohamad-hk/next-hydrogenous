@@ -5,10 +5,17 @@ export async function GET(req) {
   const custId = searchParams.get("cust_id");
 
   try {
-    let { data: orders, error } = await supabase.from("tbl_orders").select("*").eq("cust_id",custId);
-
+    let { data: orders, error } = await supabase
+      .from("tbl_orders")
+      .select("*")
+      .eq("cust_id", custId)
+      .order("order_date", { ascending: false }); 
+  
+    if (error) throw error;
+  
     return Response.json(orders, { status: 200 });
   } catch (err) {
     return Response.json({ error: err.message }, { status: 500 });
   }
+  
 }
