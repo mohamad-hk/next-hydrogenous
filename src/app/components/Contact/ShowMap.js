@@ -1,10 +1,8 @@
 export default function ShowMap() {
   return (
-    <div className="w-full flex justify-center">
+    <div className="flex justify-center mt-10">
       <iframe
-        className="rounded-lg shadow-lg"
-        width="600"
-        height="450"
+        className="rounded-lg shadow-lg md:w-full h-[300px]"
         style={{ border: 0 }}
         loading="lazy"
         allowFullScreen

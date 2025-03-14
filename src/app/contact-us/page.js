@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Input, Textarea } from "@heroui/react";
 import Image from "next/image";
 import ContactWays from "../components/Contact/ContactWays";
+import ShowMap from "../components/Contact/ShowMap";
 const ContactUs = () => {
   
   const [formData, setFormData] = useState({
@@ -92,6 +93,7 @@ const ContactUs = () => {
         />
       </div>
       <ContactWays />
+      <ShowMap/>
     </div>
   );
 };
