@@ -5,7 +5,7 @@ import FetchCategories from "../FetchCategories/FetchCategories";
 import fixurl from "@/app/utils/Fixurl";
 
 export default function ProductsMenu() {
-  const { categories} = FetchCategories();
+  const { categories } = FetchCategories();
   const [hovered, setHovered] = useState(false);
   let hoverTimeout;
 
@@ -24,7 +24,7 @@ export default function ProductsMenu() {
         hoverTimeout = setTimeout(() => setHovered(false), 500);
       }}
     >
-      <span className="cursor-pointer">محصولات</span>
+      <Link href={"/products"}>محصولات</Link>
       <div
         className={`absolute left-0 mt-2 bg-white shadow-lg border rounded-md w-auto transition-all duration-300 ease-in-out transform z-20 ${
           hovered
