@@ -13,9 +13,7 @@ import { redirect } from "next/navigation";
 const Profile = () => {
   const { activeTab } = useDashboard();
   const {user}=useContext(AuthContext)
-  if (!user) {
-    redirect("/auth/login")
-  }
+
   return (
     <>
       {(() => {

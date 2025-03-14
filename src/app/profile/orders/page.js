@@ -16,9 +16,6 @@ const Orders = () => {
   const [activeStatus, setActiveStatus] = useState("همه");
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
-  if (!user) {
-    redirect("/auth/login")
-  }
 
   const fetchOrders = async (inputParams) => {
     try {

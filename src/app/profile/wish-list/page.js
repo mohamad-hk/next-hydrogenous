@@ -14,10 +14,6 @@ const WishList = () => {
   const [products, setProducts] = useState([]);
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
-  
-  if (!user) {
-    redirect("/auth/login")
-  }
 
   const getWish = async (input_params) => {
     try {

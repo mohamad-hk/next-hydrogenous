@@ -22,34 +22,31 @@ import { AuthContext } from "@/app/context/AuthContext";
 
 const Showorder = () => {
   const invoiceRef = useRef(null);
-  const {user}=useContext(AuthContext)
-  if (!user) {
-    redirect("/auth/login")
-  }
+  const { user } = useContext(AuthContext);
 
   const downloadInvoice = async () => {
     if (!invoiceRef.current) return;
-  
+
     const canvas = await html2canvas(invoiceRef.current, {
       scale: 2,
       useCORS: true,
     });
-  
+
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF({
-      orientation: "landscape", 
+      orientation: "landscape",
       unit: "mm",
       format: "a4",
       compress: true,
     });
-  
-    const imgWidth = 297; 
+
+    const imgWidth = 297;
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-  
+
     pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
     pdf.save(`${order_code}_hydrogenous`);
   };
-  
+
   const pathname = usePathname();
   const order_code = pathname.split("/").pop();
   const [firstname, setFirstName] = useState("");
@@ -75,7 +72,7 @@ const Showorder = () => {
         `/api/Profile/Orders/GetOrderInvoice?${input_params}`
       );
       const response = await data.json();
-    
+
       if (response) {
         setFirstName(response?.tbl_shipment.f_n_shipment);
         setLastName(response?.tbl_shipment.l_n_shipment);
@@ -94,7 +91,7 @@ const Showorder = () => {
       }
     } catch (error) {
       console.error("Error fetching shipments :", error);
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -107,140 +104,144 @@ const Showorder = () => {
 
   return (
     <>
-    {loading ? <Loading /> : (
-      <div
-        className="w-[90%] mx-auto border border-gray-400 rounded-md p-5 text-[16px] relative"
-        ref={invoiceRef}
-      >
-        <div className="grid grid-cols-[1fr_240px] items-center mb-3">
-          <div className="flex flex-row justify-center ">
-            <Image
-              src={"/images/statics/logo.png"}
-              width={400}
-              height={200}
-              alt="image not found"
-            />
-          </div>
-          <div className="flex flex-col gap-3">
-            <div className="flex flex-row items-center gap-2">
-              <p>شماره سفارش :</p>
-              <p>{ShowPersianNumbers(order_code)}</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <p>وضعیت سفارش :</p>
-              <p>{statusorder}</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <p>تاریخ سفارش :</p>
-              <p>{convertToPersianDate(orderdate)}</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <p>نحوه ارسال :</p>
-              <p>{Method}</p>
-            </div>
-          </div>
-        </div>
-        <div className="grid grid-cols-[80px_1fr]">
-          <div className=" flex flex-col justify-center bg-slate-400 text-center rounded-r-md ">
-            <p>فروشنده</p>
-          </div>
-          <div className="flex flex-col gap-3 border border-slate-400 border-r-0 rounded-md ps-3 py-3 rounded-tr-none rounded-br-none">
-            <p> فروشگاه اینترنتی هیدروژنوس </p>
-            <div className="flex flex-row items-center gap-2">
-              <p> آدرس :</p>
-              <p>
-                اراک - پارک علم و فناوری استان مرکزی - شرکت اکسیر سازان نو اندیش
-                پیشروفن
-              </p>
-            </div>
-            <div className="flex flex-row items-center gap-1">
-              <p className="fw-bold">کد پستی : </p>
-              <p className="me-1"> </p>
-              <p> {ShowPersianNumbers(3836134054)} </p>
-            </div>
-          </div>
-        </div>
-        <div className="grid grid-cols-[80px_1fr]  my-2">
-          <div className=" flex flex-col justify-center bg-slate-400 text-center rounded-r-md  ">
-            <p>گیرنده</p>
-          </div>
-          <div className="flex flex-col gap-3 border border-slate-400 border-r-0 rounded-md ps-3 py-3 rounded-tr-none rounded-br-none">
-            <div className="flex flex-row items-center gap-2">
-              <p>نام و نام خانوادگی :</p>
-              <p>{firstname + " " + lastname}</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <p>شماره موبایل :</p>
-              <p>{ShowPersianNumbers(phone)}</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <p>شماره تلفن :</p>
-              <p>{ShowPersianNumbers(landline)}</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <p>استان :</p>
-              <p>{state}</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <p>شهر :</p>
-              <p>{city}</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <p>آدرس :</p>
-              <p>{address}</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <p> کد پستی :</p>
-              <p>{ShowPersianNumbers(zipcode)}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col">
-          <Table
-            removeWrapper
-            className="border border-slate-400 rounded-md rounded-br-none"
-          >
-            <TableHeader>
-              <TableColumn>نام محصول</TableColumn>
-              <TableColumn>تعداد</TableColumn>
-              <TableColumn>قیمت</TableColumn>
-            </TableHeader>
-            <TableBody>
-              {lproducts.map((product, index) => {
-                return (
-                  <TableRow key={index}>
-                    <TableCell>{product.name}</TableCell>
-                    <TableCell>{PersianNumbers(product.quantity)}</TableCell>
-                    <TableCell>{PersianNumbers(product.price)} تومان </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-          <div className="flex flex-col gap-3 items-end w-fit border border-slate-400 rounded-md border-t-0 rounded-tl-none rounded-tr-none ">
-            <div className="flex flex-row items-center justify-center gap-2 px-3 pt-2 w-full">
-              <p>هزینه ارسال :</p>
-              <p>{PersianNumbers(pricedeliver)} تومان </p>
-            </div>
-            <Divider orientation="horzintal" />
-
-            <div className="flex flex-row items-center justify-center gap-2 px-3 pb-2">
-              <p>مجموع سفارش :</p>
-              <p>{PersianNumbers(totalprice)} تومان </p>
-            </div>
-          </div>
-        </div>
-        <Button
-          className="absolute left-0 -bottom-12"
-          size="lg"
-          color="primary"
-          onPress={downloadInvoice}
+      {loading ? (
+        <Loading />
+      ) : (
+        <div
+          className="w-[90%] mx-auto border border-gray-400 rounded-md p-5 text-[16px] relative"
+          ref={invoiceRef}
         >
-          دانلود فاکتور
-        </Button>
-      </div>
-    )}
+          <div className="grid grid-cols-[1fr_240px] items-center mb-3">
+            <div className="flex flex-row justify-center ">
+              <Image
+                src={"/images/statics/logo.png"}
+                width={400}
+                height={200}
+                alt="image not found"
+              />
+            </div>
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-row items-center gap-2">
+                <p>شماره سفارش :</p>
+                <p>{ShowPersianNumbers(order_code)}</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p>وضعیت سفارش :</p>
+                <p>{statusorder}</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p>تاریخ سفارش :</p>
+                <p>{convertToPersianDate(orderdate)}</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p>نحوه ارسال :</p>
+                <p>{Method}</p>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-[80px_1fr]">
+            <div className=" flex flex-col justify-center bg-slate-400 text-center rounded-r-md ">
+              <p>فروشنده</p>
+            </div>
+            <div className="flex flex-col gap-3 border border-slate-400 border-r-0 rounded-md ps-3 py-3 rounded-tr-none rounded-br-none">
+              <p> فروشگاه اینترنتی هیدروژنوس </p>
+              <div className="flex flex-row items-center gap-2">
+                <p> آدرس :</p>
+                <p>
+                  اراک - پارک علم و فناوری استان مرکزی - شرکت اکسیر سازان نو
+                  اندیش پیشروفن
+                </p>
+              </div>
+              <div className="flex flex-row items-center gap-1">
+                <p className="fw-bold">کد پستی : </p>
+                <p className="me-1"> </p>
+                <p> {ShowPersianNumbers(3836134054)} </p>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-[80px_1fr]  my-2">
+            <div className=" flex flex-col justify-center bg-slate-400 text-center rounded-r-md  ">
+              <p>گیرنده</p>
+            </div>
+            <div className="flex flex-col gap-3 border border-slate-400 border-r-0 rounded-md ps-3 py-3 rounded-tr-none rounded-br-none">
+              <div className="flex flex-row items-center gap-2">
+                <p>نام و نام خانوادگی :</p>
+                <p>{firstname + " " + lastname}</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p>شماره موبایل :</p>
+                <p>{ShowPersianNumbers(phone)}</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p>شماره تلفن :</p>
+                <p>{ShowPersianNumbers(landline)}</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p>استان :</p>
+                <p>{state}</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p>شهر :</p>
+                <p>{city}</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p>آدرس :</p>
+                <p>{address}</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p> کد پستی :</p>
+                <p>{ShowPersianNumbers(zipcode)}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <Table
+              removeWrapper
+              className="border border-slate-400 rounded-md rounded-br-none"
+            >
+              <TableHeader>
+                <TableColumn>نام محصول</TableColumn>
+                <TableColumn>تعداد</TableColumn>
+                <TableColumn>قیمت</TableColumn>
+              </TableHeader>
+              <TableBody>
+                {lproducts.map((product, index) => {
+                  return (
+                    <TableRow key={index}>
+                      <TableCell>{product.name}</TableCell>
+                      <TableCell>{PersianNumbers(product.quantity)}</TableCell>
+                      <TableCell>
+                        {PersianNumbers(product.price)} تومان{" "}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+            <div className="flex flex-col gap-3 items-end w-fit border border-slate-400 rounded-md border-t-0 rounded-tl-none rounded-tr-none ">
+              <div className="flex flex-row items-center justify-center gap-2 px-3 pt-2 w-full">
+                <p>هزینه ارسال :</p>
+                <p>{PersianNumbers(pricedeliver)} تومان </p>
+              </div>
+              <Divider orientation="horzintal" />
+
+              <div className="flex flex-row items-center justify-center gap-2 px-3 pb-2">
+                <p>مجموع سفارش :</p>
+                <p>{PersianNumbers(totalprice)} تومان </p>
+              </div>
+            </div>
+          </div>
+          <Button
+            className="absolute left-0 -bottom-12"
+            size="lg"
+            color="primary"
+            onPress={downloadInvoice}
+          >
+            دانلود فاکتور
+          </Button>
+        </div>
+      )}
     </>
   );
 };

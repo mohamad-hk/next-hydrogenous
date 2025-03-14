@@ -16,9 +16,7 @@ const PersonalInfo = () => {
   const [loading, setLoading] = useState(false);
 
   const { user } = useContext(AuthContext);
-  if (!user) {
-    redirect("/auth/login")
-  }
+
   const getInfo = async (input_params) => {
     try {
       setLoading(true);

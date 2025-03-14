@@ -16,9 +16,6 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const Addresses = () => {
   const { user } = useContext(AuthContext);
-  if (!user) {
-    redirect("/auth/login")
-  }
 
   const {
     data: shipments,
