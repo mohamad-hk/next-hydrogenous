@@ -5,7 +5,7 @@ export const metadata = {
 const PrivacyPolicy = () => {
   return (
     <>
-      <div className="p-6 space-y-6 w-[80%] mx-auto">
+      <div className="p-6 space-y-6 w-[90%] lg:w-[80%] mx-auto">
         <p className="text-lg text-justify">
           هیدروژنوس ضمن احترامی که برای حریم شخصی کاربران قائل است، برای خرید،
           ثبت نظر یا استفاده از برخی امکانات سایت هیدروژنوس، اطلاعاتی را از

@@ -5,7 +5,7 @@ export const metadata = {
 const ShippingPolicy = () => {
   return (
     <>
-      <div className="p-6 w-[80%] mx-auto">
+      <div className="p-6 w-[90%] lg:w-[80%] mx-auto lg:mb-[5.9rem]">
         <p className="text-lg mb-4">
           مشتریان گرامی، با تشکر از حسن انتخاب شما عزیزان، به اطلاع می‌رساند که
           ارسال کالا در هیدروژنوس به شرح زیر می‌باشد:

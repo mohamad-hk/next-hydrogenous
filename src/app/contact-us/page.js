@@ -82,7 +82,7 @@ const ContactUs = () => {
           <button
             type="submit"
             className="bg-blue-600 text-white rounded-md px-5 py-2 block mx-auto mt-3"
-          ></button>
+          >ارسال</button>
         </form>
         <Image
           src="/images/statics/contact.png"

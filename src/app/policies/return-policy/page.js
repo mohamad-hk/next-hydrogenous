@@ -5,7 +5,7 @@ export const metadata = {
 const ReturnPolicy = () => {
   return (
     <>
-      <div className="p-6 w-[80%] mx-auto">
+      <div className="p-6 w-[90%] lg:w-[80%] mx-auto">
         <p className="text-lg mb-4 text-justify">
           همراهان عزیز، هدف اصلی ما در هیدروژنوس، ارائه کالاهایی با کیفیت و قیمت
           مناسب و همچنین تحویل این کالاها با شرایط مطلوب به شما است؛ علی‌رغم

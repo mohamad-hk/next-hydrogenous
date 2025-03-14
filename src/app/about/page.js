@@ -6,7 +6,7 @@ export const metadata = {
 const About = () => {
   return (
     <>
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-6 min-h-screen">
         <p className="text-lg">
           حتما تا به حال برای شما پیش آمده که موقع سفارش نوشیدنی یا مشاهده
           ویترین یخچال سوپر مارکت ها برای سفارش یا انتخاب نوشیدنی سر در کم شده
