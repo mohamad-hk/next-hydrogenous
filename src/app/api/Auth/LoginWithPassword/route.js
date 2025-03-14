@@ -6,12 +6,13 @@ import { cookies } from "next/headers";
 export async function POST(req) {
   try {
     const { phone, password } = await req.json();
-    console.log(phone,password);
+    console.log(phone, password);
 
     const { data, error } = await supabase
       .from("tbl_customer")
       .select("customer_id, first_name, last_name, phone_number, password")
-      .eq("phone_number", phone).eq("password",password)
+      .eq("phone_number", phone)
+      .eq("password", password)
       .single();
 
     if (error || !data) {
@@ -25,7 +26,7 @@ export async function POST(req) {
     const accessToken = await JWTgenerate(data);
     const refreshToken = await JWTgenerate({ ...data, type: "refresh" }, "refresh");
 
-    const cookieStore = cookies();
+    const cookieStore = await cookies(); 
     cookieStore.set("accessToken", accessToken, {
       httpOnly: true,
       secure: true,
@@ -37,7 +38,7 @@ export async function POST(req) {
       httpOnly: true,
       secure: true,
       sameSite: "Strict",
-      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), 
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     });
 
     return NextResponse.json({ success: true, user: data, token: accessToken }, { status: 200 });

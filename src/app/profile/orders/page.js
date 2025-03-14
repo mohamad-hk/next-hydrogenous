@@ -98,7 +98,7 @@ const Orders = () => {
                       <p>شماره سفارش:</p>
                       <p>{ShowPersianNumbers(order.order_code)}</p>
                     </div>
-                    <div className="flex flex-row items-center gap-2">
+                    <div className="flex flex-col lg:flex-row items-center gap-2">
                       <p>وضعیت سفارش:</p>
                       <p
                         className={`text-center bg-slate-200 rounded-2xl py-2 px-5 w-[150px] ${

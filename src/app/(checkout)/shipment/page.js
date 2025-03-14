@@ -4,7 +4,8 @@ import Orderinfo from "../../components/Shipment/OrderInfo";
 import ShowAddresses from "../../components/Shipment/ShowAddresses";
 import { AuthContext } from "@/app/context/AuthContext";
 import Loading from "@/app/components/Loading/Loading";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
+
 
 const Shipment = () => {
   const [addresses, setAddresses] = useState([]);
