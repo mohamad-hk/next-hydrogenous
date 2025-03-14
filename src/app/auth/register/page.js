@@ -152,7 +152,7 @@ const RegisterUser = () => {
           <h3 className="text-lg font-semibold">اطلاعات خود را وارد کنید</h3>
           <form
             onSubmit={handleRegisterSubmit}
-            className="grid grid-cols-2 gap-5"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-5"
           >
             <input
               type="text"

@@ -1,7 +1,6 @@
 "use client";
 
 import { CgProfile } from "react-icons/cg";
-import Login from "../Login/Login";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { AuthContext } from "@/app/context/AuthContext";
@@ -21,11 +20,15 @@ const CheckLloginSm = () => {
     }
   }, [user]);
 
-
   return (
     <>
       {state == 1 && !user ? (
-        <Login />
+        <Link href={"/auth/login"} className="py-3">
+          <div className="flex flex-col items-center justify-center gap-1">
+            <CgProfile className="text-2xl" />
+            <p>پروفایل من</p>
+          </div>
+        </Link>
       ) : (
         <Link className="py-3" href={"/profile"}>
           <div className=" flex flex-row items-center justify-center">

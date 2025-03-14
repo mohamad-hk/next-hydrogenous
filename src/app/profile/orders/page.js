@@ -60,13 +60,13 @@ const Orders = () => {
 
   return (
     <>
-      <div className="shadow-xl bg-white p-10 rounded-l-3xl">
+      <div className="shadow-xl bg-white p-2 lg:p-10 rounded-l-3xl">
         <nav className="flex flex-row justify-center items-center gap-2 lg:gap-10 mb-5 overflow-x-scroll  md:overflow-auto">
           {[
             "همه",
             "در انتظار پرداخت",
             "در حال پردازش",
-            "ارسال سفارش",
+            "ثبت سفارش",
             "لغو سفارش",
           ].map((status) => (
             <button
@@ -91,7 +91,7 @@ const Orders = () => {
               filteredOrders.map((order, index) => (
                 <div className="p-5 rounded-md" key={index}>
                   <div className="flex flex-row justify-between ">
-                    <div className="flex flex-row items-center justify-center gap-2">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
                       <p>شماره سفارش:</p>
                       <p>{ShowPersianNumbers(order.order_code)}</p>
                     </div>
@@ -101,7 +101,7 @@ const Orders = () => {
                         className={`text-center bg-slate-200 rounded-2xl py-2 px-5 w-[150px] ${
                           order.status_order === "در انتظار پرداخت"
                             ? "text-warning-600"
-                            : order.status_order === "ارسال سفارش"
+                            : order.status_order === "ثبت سفارش"
                             ? "text-green-600"
                             : order.status_order === "لغو سفارش"
                             ? "text-danger"
