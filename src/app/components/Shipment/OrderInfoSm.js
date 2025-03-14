@@ -26,7 +26,7 @@ const OrderInfoSm = ({ href, button }) => {
   }, []);
   return (
     <>
-      <Card className="fixed bottom-0 w-full right-0 rounded-none">
+      <Card className="fixed bottom-0 w-full right-0 rounded-none z-10">
         <CardBody>
           <div className="flex flex-col gap-5">
             <div className="flex flex-row justify-between max-h-[400px]">
@@ -37,12 +37,13 @@ const OrderInfoSm = ({ href, button }) => {
                 <p>{PersianNumbers(totalBasket) + " تومان "}</p>
               </div>
             </div>
-            <Button
-              isDisabled={pathname != "/cart" ? !shipmentId : undefined}
-              color="danger"
+            <Link
+              href={href}
+              className="w-full bg-danger-500 rounded-md text-white py-2 text-center text-lg"
+              aria-disabled={pathname != "/cart" ? !shipmentId : undefined}
             >
-              <Link href={href}>{button}</Link>
-            </Button>
+              {button}
+            </Link>
           </div>
         </CardBody>
       </Card>

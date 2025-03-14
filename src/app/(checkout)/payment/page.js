@@ -20,9 +20,6 @@ const Payment = () => {
   const { user } = useContext(AuthContext);
   const { shipmentId } = useContext(ShipmentContext);
   const { cart, totalBasket } = useCartStore();
-   if (!user) {
-      redirect("/auth/login")
-    }
 
   const SetOrder = async () => {
     setIsLoading(true);
@@ -56,6 +53,8 @@ const Payment = () => {
       const data = await res.json();
 
       if (res.ok) {
+
+        useCartStore.getState().clearCart();
         router.push("/profile/orders");
       }
        else {
