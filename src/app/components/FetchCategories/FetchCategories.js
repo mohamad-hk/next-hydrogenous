@@ -8,9 +8,9 @@ export default function FetchCategories() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const topRes = await fetch("http://localhost:3000/api/Navbar/TopCategory", { cache: "no-store" });
-        const midRes = await fetch("http://localhost:3000/api/Navbar/MidCategory", { cache: "no-store" });
-        const prodRes = await fetch("http://localhost:3000/api/Navbar/ProductName", { cache: "no-store" });
+        const topRes = await fetch("https://hydrogenous.vercel.app/api/Navbar/TopCategory", { cache: "no-store" });
+        const midRes = await fetch("https://hydrogenous.vercel.app/api/Navbar/MidCategory", { cache: "no-store" });
+        const prodRes = await fetch("https://hydrogenous.vercel.app/api/Navbar/ProductName", { cache: "no-store" });
 
         const topCategories = await topRes.json();
         const midCategories = await midRes.json();

@@ -100,7 +100,7 @@ const LoginUser = () => {
       const new_password = MD5(temp_password).toString();
       try {
         const response = await fetch(
-          "http://localhost:3000/api/Auth/ResetPassword",
+          "https://hydrogenous.vercel.app/api/Auth/ResetPassword",
           {
             method: "PATCH",
             headers: {

@@ -12,7 +12,7 @@ const BlogPost = async ({ params }) => {
   }
 
   const response = await fetch(
-    `http://localhost:3000/api/Blogs/Post?post_id=${encodeURIComponent(slug.toString())}`,
+    `https://hydrogenous.vercel.app/api/Blogs/Post?post_id=${encodeURIComponent(slug.toString())}`,
     {
       next: { revalidate: 15 }, 
     }
