@@ -8,11 +8,13 @@ import { LuPackage } from "react-icons/lu";
 import { IoExitOutline } from "react-icons/io5";
 import { BiBuildingHouse } from "react-icons/bi";
 import { AuthContext } from "@/app/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const CheckLlogin = () => {
   const [state, setState] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -25,6 +27,20 @@ const CheckLlogin = () => {
   const timeoutRef = useRef(null);
   const { user } = useContext(AuthContext);
 
+  const router = useRouter();
+
+  const Logout = async () => {
+    setLoading(true);
+
+    try {
+      await fetch("/api/Auth/Logout", { method: "GET" });
+      router.push("/");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     if (user) {
       setState(2);
@@ -88,15 +104,13 @@ const CheckLlogin = () => {
                   <p>آدرس ها</p>
                 </div>
               </Link>
-              <Link
-                href="/api/Auth/Logout"
-                className="block px-4 py-2 hover:bg-danger hover:text-white transition-all duration-500 ease-in-out"
+              <button
+                onClick={Logout}
+                className="px-4 py-2 hover:bg-danger hover:text-white transition-all duration-500 ease-in-out flex flex-row items-center gap-2"
               >
-                <div className="flex flex-row items-center gap-2">
-                  <IoExitOutline className="text-2xl" />
-                  <p>خروج از حساب کاربری</p>
-                </div>
-              </Link>
+                <IoExitOutline className="text-2xl" />
+                <p>خروج از حساب کاربری</p>
+              </button>
             </motion.div>
           )}
         </div>
