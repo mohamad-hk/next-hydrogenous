@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const OrderInfoSm = ({ href, button }) => {
+const OrderInfoSm = ({ href, button, set_function,loading }) => {
   const [LargeScreen, setLargeScreen] = useState(false);
   const { totalBasket, totalDiscount } = useCartStore();
   const { shipmentId } = useShipment();
@@ -37,14 +37,21 @@ const OrderInfoSm = ({ href, button }) => {
                 <p>{PersianNumbers(totalBasket) + " تومان "}</p>
               </div>
             </div>
-            <Link href={href} className="w-full">
-              <button
-                className="w-full bg-danger-500 rounded-md text-white py-2 text-center text-lg disabled:opacity-50"
-                disabled={pathname !== "/cart" ? !shipmentId : false}
-              >
-                {button}
-              </button>
-            </Link>
+
+            {pathname == "/payment" ? (
+              <Button onPress={set_function} disabled={loading}>
+                {loading ? "در حال پردازش..." : "پرداخت"}
+              </Button>
+            ) : (
+              <Link href={href} className="w-full">
+                <button
+                  className="w-full bg-danger-500 rounded-md text-white py-2 text-center text-lg disabled:opacity-50"
+                  disabled={pathname !== "/cart" ? !shipmentId : false}
+                >
+                  {button}
+                </button>
+              </Link>
+            )}
           </div>
         </CardBody>
       </Card>

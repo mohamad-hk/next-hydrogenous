@@ -8,7 +8,8 @@ import { Progress } from "@heroui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const OrderInfoDesktop = ({ href, button }) => {
+const OrderInfoDesktop = ({ href, button, set_function,loading }) => {
+  
   const { totalBasket, totalDiscount } = useCartStore();
   const flour = 550000;
   const { shipmentId } = useShipment();
@@ -46,13 +47,18 @@ const OrderInfoDesktop = ({ href, button }) => {
                   </div>
                 )}
               </div>
-
-              <Button
-                isDisabled={pathname != "/cart" ? !shipmentId : undefined}
-                color="primary"
-              >
-                <Link href={href}>{button}</Link>
-              </Button>
+              {pathname == "/payment" ? (
+                <Button color="primary" onPress={set_function} disabled={loading}>
+                  {loading ? "در حال پردازش..." : "پرداخت"}
+                </Button>
+              ) : (
+                <Button
+                  isDisabled={pathname != "/cart" ? !shipmentId : undefined}
+                  color="primary"
+                >
+                  <Link href={href}>{button}</Link>
+                </Button>
+              )}
             </div>
           </CardBody>
         </Card>
