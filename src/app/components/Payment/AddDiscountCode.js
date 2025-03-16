@@ -20,7 +20,7 @@ const AddDiscountCode = () => {
         coupon: code,
       });
       const response = await fetch(
-        `http://localhost:3000/api/CheckDiscountCode?${input_params}`
+        `https://hydrogenous.vercel.app/api/CheckDiscountCode?${input_params}`
       );
 
       const responseData = await response.json();
