@@ -1,6 +1,7 @@
 "use client";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import useCouponStore from "./discountstore";
 
 const useCartStore = create(
   persist(
@@ -10,15 +11,23 @@ const useCartStore = create(
       totalDiscount: 0,
 
       updateTotals: () => {
-        const newTotal = get().cart.reduce(
+        const { cart } = get();
+        const { couponDiscount } = useCouponStore.getState();
+
+        const newTotal = cart.reduce(
           (acc, item) => acc + item.price * item.quantity,
           0
         );
-        const newTotalDiscount = get().cart.reduce(
+
+        const newTotalDiscount = cart.reduce(
           (acc, item) => acc + (Number(item.discount) || 0) * item.quantity,
           0
         );
-        set({ totalBasket: newTotal, totalDiscount: newTotalDiscount });
+
+        set({
+          totalBasket: newTotal - newTotalDiscount - couponDiscount,
+          totalDiscount: newTotalDiscount + couponDiscount,
+        });
       },
 
       addToCart: (product) =>
@@ -70,7 +79,9 @@ const useCartStore = create(
           get().updateTotals();
           return {};
         }),
-      clearCart: () => set({ cart: [], totalBasket: 0, totalDiscount: 0 }),
+
+      clearCart: () =>
+        set({ cart: [], totalBasket: 0, totalDiscount: 0 }),
     }),
     {
       name: "cart-storage",

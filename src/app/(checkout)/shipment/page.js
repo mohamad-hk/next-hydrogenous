@@ -6,6 +6,7 @@ import { AuthContext } from "@/app/context/AuthContext";
 import Loading from "@/app/components/Loading/Loading";
 import { redirect } from "next/navigation";
 import { Radio, RadioGroup } from "@heroui/react";
+import useCouponStore from "@/app/store/discountstore";
 
 const Shipment = () => {
   const [addresses, setAddresses] = useState([]);
@@ -34,6 +35,8 @@ const Shipment = () => {
         cust_id: user.customer_id,
       });
       getAddresses(input_params);
+      useCouponStore.getState().clearCoupon();
+
     }
   }, [user]);
 
