@@ -22,10 +22,14 @@ const Addresses = () => {
     error,
     isLoading,
   } = useSWR(
-    user
+    user?.customer_id
       ? `https://hydrogenous.vercel.app/api/Profile/Shipments/GetShipment?cust_id=${user.customer_id}`
       : null,
-    fetcher
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      shouldRetryOnError: false,
+    }
   );
 
   if (isLoading) {
@@ -61,16 +65,7 @@ const Addresses = () => {
                 <MdOutlineLocalPostOffice className="text-2xl" />
                 <p>{shipment.zip_code_shipment}</p>
               </div>
-              <OptionAddress
-                sh_id={shipment.shipment_id}
-                refreshData={() =>
-                  mutate(
-                    user
-                      ? `https://hydrogenous.vercel.app/api/Product/Shipments/GetShipment?cust_id=${user.customer_id}`
-                      : null
-                  )
-                }
-              />
+              <OptionAddress sh_id={shipment.shipment_id} />
             </div>
           ))}
           <AddAddress

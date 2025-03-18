@@ -15,6 +15,7 @@ import {
 import { useState, useEffect, useContext } from "react";
 import { CgAdd } from "react-icons/cg";
 import { toast } from "react-toastify";
+import { mutate } from "swr";
 
 export default function AddAddress({ refresh }) {
   const [size, setSize] = useState("");
@@ -88,8 +89,12 @@ export default function AddAddress({ refresh }) {
       });
 
       const data = await response.json();
+
       if (response.ok) {
         toast.success("آدرس جدید با موفقیت اضافه شد");
+        mutate(
+          `https://hydrogenous.vercel.app/api/Profile/Shipments/GetShipment?cust_id=${user.customer_id}`
+        );
         setFirstName("");
         setLastName("");
         setPhone("");
@@ -106,7 +111,6 @@ export default function AddAddress({ refresh }) {
       toast.error("مشکلی پیش اومده");
     }
     onClose();
-    refresh();
   };
 
   return (
@@ -164,7 +168,7 @@ export default function AddAddress({ refresh }) {
                       onChange={(e) => {
                         const selectedProvince = provinces.find(
                           (p) => p.state_id === Number(e.target.value)
-                        ); 
+                        );
                         if (!selectedProvince) {
                           console.error("Selected province not found!");
                           return;

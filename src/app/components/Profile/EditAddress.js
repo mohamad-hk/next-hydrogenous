@@ -1,4 +1,5 @@
 "use client";
+import { AuthContext } from "@/app/context/AuthContext";
 import { getShipment } from "@/app/utils/ShipmentService";
 import {
   Modal,
@@ -10,8 +11,9 @@ import {
   Textarea,
 } from "@heroui/react";
 import { Input } from "@heroui/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { mutate } from "swr";
 
 export default function EditAddress({ sh_id, refresh }) {
   const [size, setSize] = useState("");
@@ -25,6 +27,7 @@ export default function EditAddress({ sh_id, refresh }) {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [zipcode, setZipCode] = useState("");
+  const { user } = useContext(AuthContext);
 
   const handleOpen = (size) => {
     setSize(size);
@@ -80,13 +83,13 @@ export default function EditAddress({ sh_id, refresh }) {
       const data = await response.json();
       if (response.ok) {
         toast.success("آدرس با موفقیت ویرایش شد");
-      } else {
-        toast.error("مشکلی پیش اومده");
+        mutate(
+          `https://hydrogenous.vercel.app/api/Profile/Shipments/GetShipment?cust_id=${user.customer_id}`
+        );
       }
     } catch (error) {
       toast.error("مشکلی پیش اومده");
     }
-    refresh();
     onClose();
   };
   return (

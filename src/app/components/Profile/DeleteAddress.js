@@ -1,3 +1,4 @@
+import { AuthContext } from "@/app/context/AuthContext";
 import {
   Modal,
   ModalContent,
@@ -6,14 +7,16 @@ import {
   Button,
   useDisclosure,
 } from "@heroui/react";
+import { useContext } from "react";
 import { toast } from "react-toastify";
+import { mutate } from "swr";
 
-const DeleteAddress = ({ sh_id, refresh }) => {
+const DeleteAddress = ({ sh_id}) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const input_params = new URLSearchParams({
     ship_id: sh_id,
   });
-
+  const { user } = useContext(AuthContext);
   const removeAddress = async (input_params) => {
     try {
       const response = await fetch(
@@ -30,17 +33,16 @@ const DeleteAddress = ({ sh_id, refresh }) => {
 
       if (response.ok) {
         toast.success("آدرس با موفقیت حذف شد");
-        refresh();
-      } else {
-        toast.error("مشکلی پیش اومده");
+        mutate(
+          `https://hydrogenous.vercel.app/api/Profile/Shipments/GetShipment?cust_id=${user.customer_id}`
+        );
       }
     } catch (error) {
       toast.error("مشکلی پیش اومده");
     }
-    onOpenChange(false)
+    onOpenChange(false);
   };
   const deleteData = () => {
-    console.log(1);
     removeAddress(input_params);
   };
   return (
