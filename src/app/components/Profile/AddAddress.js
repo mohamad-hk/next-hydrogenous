@@ -47,7 +47,7 @@ export default function AddAddress({ refresh }) {
 
   useEffect(() => {
     const fetchProvinces = async () => {
-      const response = await fetch("/api/Profile/Shipments/GetCity");
+      const response = await fetch("https://hydrogenous.vercel.app/api/Profile/Shipments/GetCity");
       const data = await response.json();
       setProvinces(data);
     };
@@ -59,7 +59,7 @@ export default function AddAddress({ refresh }) {
     setState(provinceName);
     try {
       const response = await fetch(
-        `/api/Profile/Shipments/GetState?province_id=${provinceId}`
+        `https://hydrogenous.vercel.app/api/Profile/Shipments/GetState?province_id=${provinceId}`
       );
       const data = await response.json();
       setCities(data);
@@ -70,7 +70,7 @@ export default function AddAddress({ refresh }) {
 
   const addAddress = async () => {
     try {
-      const response = await fetch(`/api/Profile/Shipments/AddShipment`, {
+      const response = await fetch(`https://hydrogenous.vercel.app/api/Profile/Shipments/AddShipment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
