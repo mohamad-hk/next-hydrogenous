@@ -3,10 +3,25 @@ import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 import { useDashboard } from "@/app/context/dashboard";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 const ProfileNavbar = () => {
   const { setActiveTab } = useDashboard();
   const [clicked, setClicked] = useState("dashboard");
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
+  const Logout = async () => {
+    setLoading(true);
+
+    try {
+      await fetch("/api/Auth/Logout", { method: "GET" });
+      router.push("/");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <>
       <div className="w-[95%] block mx-auto rounded-lg md:w-full md:h-[100vh] bg-[#0046fe] md:rounded-r-3xl">
@@ -118,16 +133,12 @@ const ProfileNavbar = () => {
             </li>
 
             <li className="px-1 mb-5 md:mb-0">
-              <Link
-                className="rounded-3xl bg-danger text-white text-center text-lg p-3  block"
-                href={"/profile/personal-info"}
-                onClick={() => {
-                  setActiveTab("personal-info");
-                  setClicked("personal-info");
-                }}
+              <button
+                className="rounded-3xl bg-danger text-white text-center text-lg p-3 w-full block"
+                onClick={Logout}
               >
                 خروج
-              </Link>
+              </button>
             </li>
           </ul>
         </nav>
