@@ -1,4 +1,5 @@
 "use client";
+import { MD5 } from "crypto-js";
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -8,7 +9,7 @@ const RegisterUser = () => {
   const [isNewUser, setIsNewUser] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
+  const [temppassword, setTempPassword] = useState("");
   const [verifyCode, setVerifyCode] = useState("");
   const serverCode = useRef(null);
 
@@ -59,6 +60,7 @@ const RegisterUser = () => {
   };
 
   const handleRegisterSubmit = async (e) => {
+    const password=MD5(temppassword).toString()
     e.preventDefault();
 
     try {
@@ -173,8 +175,8 @@ const RegisterUser = () => {
             <input
               type="password"
               placeholder="رمز عبور"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={temppassword}
+              onChange={(e) => setTempPassword(e.target.value)}
               required
               className="border p-2 rounded"
             />
