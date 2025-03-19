@@ -25,8 +25,8 @@ const PersonalInfo = () => {
       const data = await fetch(`/api/GetInfo?${input_params}`);
       const response = await data.json();
       if (response) {
-        setFirstName(response[0]?.last_name);
-        setLastName(response[0]?.first_name);
+        setFirstName(response[0]?.first_name);
+        setLastName(response[0]?.last_name);
         setPhone(response[0]?.phone_number);
         setEmail(response[0]?.Email);
       }
