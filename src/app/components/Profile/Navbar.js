@@ -30,7 +30,7 @@ const ProfileNavbar = () => {
         <div className="bg-white w-[80%] block mx-auto rounded-3xl mt-4">
           <CgProfile className="text-[8rem] block mx-auto text-[#c7c7c7]" />
           <p className="text-center">
-            {user.first_name + " " + user.last_name}
+            {user?.first_name + " " + user?.last_name}
           </p>
         </div>
 
