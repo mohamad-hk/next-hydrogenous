@@ -51,7 +51,7 @@ const CheckLlogin = () => {
   return (
     <>
       {state == 1 && !user ? (
-        <Link href={"/auth/login"} className="border border-blue-400 rounded-md px-3 py-2 hover:border-blue-800 hover:bg-blue-500 hover:text-white transition-all duration-500 ease-in-out">ورود | ثبت نام</Link>
+        <Link href={"/auth/login"} className="border border-white rounded-md px-3 py-2 hover:text-white hover:border-blue-300 transition-all duration-300 ease-in-out text-white">ورود | ثبت نام</Link>
       ) : (
         <div
           className="relative"
@@ -62,7 +62,7 @@ const CheckLlogin = () => {
             href={"/profile"}
             className="cursor-pointer flex items-center gap-2"
           >
-            <CgProfile className="text-2xl" />
+            <CgProfile className="text-2xl text-white" />
           </Link>
 
           {isOpen && (

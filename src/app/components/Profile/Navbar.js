@@ -2,13 +2,15 @@
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 import { useDashboard } from "@/app/context/dashboard";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "@/app/context/AuthContext";
 const ProfileNavbar = () => {
   const { setActiveTab } = useDashboard();
   const [clicked, setClicked] = useState("dashboard");
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const { user } = useContext(AuthContext);
 
   const Logout = async () => {
     setLoading(true);
@@ -27,7 +29,9 @@ const ProfileNavbar = () => {
       <div className="w-[95%] block mx-auto rounded-lg md:w-full md:h-[100vh] bg-[#0046fe] md:rounded-r-3xl">
         <div className="bg-white w-[80%] block mx-auto rounded-3xl mt-4">
           <CgProfile className="text-[8rem] block mx-auto text-[#c7c7c7]" />
-          <p className="text-center">محمد حسین کریمی</p>
+          <p className="text-center">
+            {user.first_name + " " + user.last_name}
+          </p>
         </div>
 
         <nav className="mt-5 ">

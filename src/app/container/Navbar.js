@@ -8,18 +8,18 @@ const Navigation = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="flex items-center justify-center lg:justify-between px-4 py-2 bg-slate-100 shadow-xl mb-5">
+    <nav className="flex items-center justify-center lg:justify-between px-4 py-2 bg-[#3a7bd5] shadow-xl mb-5">
       <Link href="/" className="flex-shrink-0">
         <Image src="/images/statics/logo.png" alt="image not found" height={100} width={500} className="h-14 w-auto" />
       </Link>
 
       <div className="hidden lg:flex lg:flex-row lg:justify-center lg:gap-10 lg:pe-16">
-        <Link className="group relative w-max" href="/">صفحه اصلی</Link>
+        <Link className="group relative w-max text-white" href="/">صفحه اصلی</Link>
         
         <ProductsMenu/>
-        <Link className="group relative w-max" href="/blog">بلاگ</Link>
-        <Link className="group relative w-max" href="/about">درباره ما</Link>
-        <Link className="group relative w-max" href="/contact-us">تماس با ما</Link>
+        <Link className="group relative w-max text-white" href="/blog">بلاگ</Link>
+        <Link className="group relative w-max text-white" href="/about">درباره ما</Link>
+        <Link className="group relative w-max text-white" href="/contact-us">تماس با ما</Link>
       </div>
 
       <div className="hidden lg:flex lg:flex-row justify-end items-center gap-5">

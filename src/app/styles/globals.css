@@ -22,11 +22,10 @@
   color: #ffd700 !important;
 }
 
-
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #3a7bd5;
+    --foreground: #ffffff;
   }
 }
 

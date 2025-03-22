@@ -73,7 +73,7 @@ const ShowProductsContent = () => {
           products.map((product, index) => {
             return (
               <div
-                className={`bg-white shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-2xl lg:h-[450px] flex flex-col items-center gap-5 pb-3 relative ${
+                className={`shadow-[0px_0px_5px_5px_rgba(7,_65,_210,_0.1)] rounded-2xl lg:h-[450px] flex flex-col items-center gap-5 pb-3 relative ${
                   product.stock == 0 ? "opacity-50 " : ""
                 }`}
                 key={index}
@@ -96,9 +96,10 @@ const ShowProductsContent = () => {
                     height={350}
                     alt="image not found"
                     src={`/images/products/${product.product_photo}`}
+                    className="hover:scale-110 transition-all duration-500 ease-in-out"
                   />
                 </Link>
-                <h3 className="z-10">{product.product_name}</h3>
+                <h3 className="z-10 text-[#007BFF]">{product.product_name}</h3>
                 {product.stock == 0 ? null : (
                   <div className="flex flex-col text-lg">
                     <ShowPrice

@@ -6,14 +6,12 @@ import ProductImage from "../../components/Productpage/ProductImage";
 import RelatedProducts from "../../components/Productpage/RelatedProduts";
 import ShowComments from "../../components/Productpage/ShowComments";
 
-
 export async function generateMetadata({ params }) {
   const decoded_url = decodeURIComponent(params.slug.replaceAll("-", " "));
   return {
     title: `${decoded_url}`,
   };
 }
-
 
 const ShowProduct = async ({ params }) => {
   const { slug } = await params;
@@ -35,13 +33,18 @@ const ShowProduct = async ({ params }) => {
       {product_res?.map((product) => {
         return (
           <>
-          <div className=" ps-5 md:ps-8 lg:ps-10 xl:ps-20 2xl:ps-40 mt-10">
-          <BreadCrump title={product.product_name} category={product.t_category_id} />
-
-          </div>
+            <div className=" ps-5 md:ps-8 lg:ps-10 xl:ps-20 2xl:ps-40 mt-10">
+              <BreadCrump
+                title={product.product_name}
+                category={product.t_category_id}
+              />
+            </div>
             <div className="grid grid-cols-1 place-items-center md:grid-cols-2 md:gap-x-10 xl:gap-x-0 my-10 px-10 ">
-              <ProductImage image={product.product_photo} product_id={product.product_id} />
-                
+              <ProductImage
+                image={product.product_photo}
+                product_id={product.product_id}
+              />
+
               <AddToCartSection
                 product_name={product.product_name}
                 price={product.product_price}
@@ -51,9 +54,13 @@ const ShowProduct = async ({ params }) => {
               />
             </div>
             <Details id={product.product_id} />
-            <div className="flex flex-col md:flex-row gap-10 mt-10 px-10 xl:px-20 2xl:px-40">
+            <div className="">
+              <h2 className="text-3xl ms-3 my-10 px-10 xl:px-20 2xl:px-40">نظرات کاربران</h2>
+            <div className="flex flex-col md:flex-row gap-10 px-10 xl:px-20 2xl:px-40">
+
               <ShowComments id={product.product_id} />
               <AddComment id={product.product_id} />
+            </div>
             </div>
 
             <RelatedProducts

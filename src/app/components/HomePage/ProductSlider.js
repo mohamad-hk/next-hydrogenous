@@ -57,12 +57,15 @@ const ProductSlider = ({ products, category }) => {
               spaceBetween: 20,
             },
           }}
-          className=" min-h-[300px]"
+          className=" min-h-[300px] bg-white rounded-lg"
         >
           {products.map((product, index) => {
             return (
               <SwiperSlide key={index} className="my-5 p-3">
-                <div className="bg-white shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-2xl min-h-[270px] sm:min-h-[300px] lg:min-h-[300px] xl:min-h-[350px] p-2">
+                <div
+                  className="shadow-[0px_0px_15px_5px_rgba(7,_65,_210,_0.1)]
+ rounded-2xl min-h-[270px] sm:min-h-[300px] lg:min-h-[300px] xl:min-h-[350px] p-2"
+                >
                   <Link href={`/product/${fixurl(product.product_name)}`}>
                     <Image
                       width={350}
@@ -74,13 +77,13 @@ const ProductSlider = ({ products, category }) => {
                   </Link>
 
                   <div className="flex flex-col items-center gap-5">
-                    <h3 className="">{product.product_name}</h3>
+                    <h3 className="text-[#007BFF]">{product.product_name}</h3>
                     <div className="flex flex-col gap-2 text-xl">
-                    <ShowPrice
-                    price={product.product_price}
-                    discount_percent={product.discount_percent}
-                    discount_price={product.discount_price}
-                  />
+                      <ShowPrice
+                        price={product.product_price}
+                        discount_percent={product.discount_percent}
+                        discount_price={product.discount_price}
+                      />
                     </div>
                   </div>
                 </div>

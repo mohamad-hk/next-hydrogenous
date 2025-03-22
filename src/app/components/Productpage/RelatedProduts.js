@@ -10,9 +10,11 @@ const RelatedProducts = async ({ m_category, t_category }) => {
   );
   const products = await response.json();
   return (
-    <>
+    <>  
+    <div className="mb-5">
       <h2 className="text-3xl my-5 px-10 xl:px-20 2xl:px-40">محصولات مرتبط</h2>
       {<ProductSlider products={products} />}
+    </div>
     </>
   );
 };

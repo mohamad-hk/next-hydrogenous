@@ -15,17 +15,16 @@ export default function ShowBasket() {
   return (
     <>
       <div
-        className="cursor-pointer hover:text-danger transition-all duration-500 ease-in-out"
+        className="cursor-pointer hover:text-warning transition-all duration-500 ease-in-out text-white"
         onClick={onOpen}
       >
         <div className="flex flex-row gap-1">
           <Badge
-            color="danger"
             showOutline="false"
             content={<CounterBasket />}
-            className="top-2 text-danger bg-transparent "
+            className="top-2 text-danger md:text-warning bg-transparent "
           ></Badge>
-          <PiBasket className="text-2xl" />
+          <PiBasket className="text-2xl text-black md:text-white" />
         </div>
       </div>
       <Drawer isOpen={isOpen} onOpenChange={onOpenChange}>

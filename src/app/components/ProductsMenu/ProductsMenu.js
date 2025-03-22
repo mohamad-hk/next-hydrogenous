@@ -24,7 +24,7 @@ export default function ProductsMenu() {
         hoverTimeout = setTimeout(() => setHovered(false), 500);
       }}
     >
-      <Link href={"/products"}>محصولات</Link>
+      <Link href={"/products"} className="text-white">محصولات</Link>
       <div
         className={`absolute left-0 mt-2 bg-white shadow-lg border rounded-md w-auto transition-all duration-300 ease-in-out transform z-20 ${
           hovered
