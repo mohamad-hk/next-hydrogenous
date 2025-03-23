@@ -17,13 +17,21 @@ const OrderInfoSm = ({ href, button, set_function,loading }) => {
     <>
       <Card className="fixed bottom-0 w-full right-0 rounded-none z-10  dark:text-white dark:bg-[#4e76a4]">
         <CardBody>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2">
             <div className="flex flex-row justify-between max-h-[400px]">
               <div className="flex flex-col items-start gap-3">
                 <p>مبلغ قابل پرداخت</p>
               </div>
               <div className="flex flex-col gap-3">
                 <p>{PersianNumbers(totalBasket) + " تومان "}</p>
+              </div>
+            </div>
+            <div className="flex flex-row justify-between max-h-[400px] text-[12px] px-2 text-gray-400">
+              <div className="flex flex-col items-start gap-3">
+                <p>سود شما از سفارش</p>
+              </div>
+              <div className="flex flex-col gap-3">
+                <p>{PersianNumbers(totalDiscount) + " تومان "}</p>
               </div>
             </div>
 

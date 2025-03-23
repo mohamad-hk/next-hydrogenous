@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 const OrderInfoDesktop = ({ href, button, set_function,loading }) => {
   
   const { totalBasket, totalDiscount } = useCartStore();
-  const flour = 550000;
+  const flour = 500000;
   const { shipmentId } = useShipment();
   const pathname = usePathname();
 

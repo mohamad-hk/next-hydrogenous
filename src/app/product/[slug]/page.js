@@ -39,7 +39,7 @@ const ShowProduct = async ({ params }) => {
                 category={product.t_category_id}
               />
             </div>
-            <div className="grid grid-cols-1 place-items-center md:grid-cols-2 md:gap-x-10 xl:gap-x-0 my-10 px-10 ">
+            <div className="grid grid-cols-1 place-items-center lg:grid-cols-[_minmax(400px,_700px)_minmax(400px,_1fr)] lg:gap-x-10 xl:gap-x-0 my-10 px-10 ">
               <ProductImage
                 image={product.product_photo}
                 product_id={product.product_id}
@@ -56,7 +56,7 @@ const ShowProduct = async ({ params }) => {
             <Details id={product.product_id} />
             <div className="">
               <h2 className="text-3xl ms-3 my-10 px-10 xl:px-20 2xl:px-40">نظرات کاربران</h2>
-            <div className="flex flex-col md:flex-row gap-4 px-10 xl:px-20 2xl:px-40">
+            <div className="flex flex-col md:flex-row gap-4 lg:gap-20 px-10 xl:px-20 2xl:px-40">
               <ShowComments id={product.product_id} />
               <AddComment id={product.product_id} />
             </div>

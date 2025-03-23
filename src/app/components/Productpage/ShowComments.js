@@ -32,7 +32,7 @@ const ShowComments = ({ id }) => {
               <>
                 <div
                   key={index}
-                  className={`flex flex-col justify-start gap-4 md:w-[400px] lg:w-[600px] p-2 max-w-[800px] h-fit  dark:bg-[#3e5f86] rounded-md dark:shadow-md dark:shadow-white
+                  className={`flex flex-col justify-start gap-4 md:w-[400px] lg:w-[500px] xl:w-[750px] p-2 max-w-[800px] h-fit  dark:bg-[#3e5f86] rounded-md dark:shadow-md dark:shadow-white
                     ${
                       index !== comments.length - 1
                         ? "border-b border-[#00D1FF]  dark:border-white "

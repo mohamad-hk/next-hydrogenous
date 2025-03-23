@@ -61,7 +61,7 @@ const Cart = ({ close }) => {
               <div className="flex flex-row gap-2">
                 <button
                   onClick={() => inc_quantity(item.id)}
-                  className="text-blue-400 border border-blue-500 px-1 rounded-lg"
+                  className="text-blue-400 border border-blue-500 dark:text-white dark:border-white px-1 rounded-lg"
                 >
                   <FaPlus />
                 </button>
@@ -73,7 +73,7 @@ const Cart = ({ close }) => {
                   </button>
                 ) : (
                   <FaMinus
-                    className="text-blue-400 border border-blue-500 p-1 rounded-lg text-2xl cursor-pointer"
+                    className="text-blue-400 border border-blue-500 dark:text-white dark:border-white p-1 rounded-lg text-2xl cursor-pointer"
                     onClick={() => dec_quantity(item.id)}
                   />
                 )}

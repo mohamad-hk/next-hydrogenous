@@ -47,7 +47,7 @@ const Shipment = () => {
         <div className="grid grid-cols-1 pt-[5.5rem] px-3 pb-32  md:grid-cols-[_minmax(400px,_1fr)_minmax(200px,_300px)] lg:grid-cols-[_minmax(400px,_1fr)_minmax(300px,_300px)] xl:grid-cols-[_minmax(400px,_1fr)_minmax(300px,_300px)] md:gap-x-10 md:p-10 xl:px-56 ">
           <ShowAddresses data={addresses} />
           <Orderinfo href={"/payment"} button="تایید و تکمیل سفارش" />
-          <div className="flex flex-col gap-3 ">
+          <div className="flex flex-col gap-3 mt-5  ">
             <h1>انتخاب شیوه ارسال</h1>
             <RadioGroup defaultValue="london" >
               <Radio value="london" className=" dark:text-white" >ارسال با پست</Radio>

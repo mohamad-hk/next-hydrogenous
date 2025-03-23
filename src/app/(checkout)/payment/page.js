@@ -9,7 +9,7 @@ const Payment = () => {
 
 
   return (
-    <div className="grid grid-cols-1 lg:mx-auto lg:grid-cols-[_minmax(600px,_1fr)_minmax(100px,_300px)] xl:grid-cols-[_minmax(800px,_1fr)_minmax(100px,_300px)] md:gap-x-10 md:p-10 py-[5.5rem] px-3 ">
+    <div className="grid grid-cols-1 mx-auto justify-center lg:grid-cols-[_minmax(600px,_1fr)_minmax(100px,_300px)] xl:grid-cols-[_minmax(700px,_1000px)_minmax(100px,_300px)] md:gap-x-10 md:p-10 py-[5.5rem] mb-20 lg:mb-0 ">
       <div className="flex flex-col gap-3">
         <ChoiceGateaway />
         <AddDiscountCode />

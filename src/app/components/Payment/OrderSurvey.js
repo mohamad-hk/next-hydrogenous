@@ -8,14 +8,25 @@ const OrderSurvey = () => {
   const { cart } = useCartStore();
 
   return (
-    <>
+    <div
+      className={`w-full ${
+        cart?.length >= 2
+          ? "overflow-x-scroll lg:overflow-auto"
+          : ""
+      }`}
+    >
       <div
-        className={`flex flex-row gap-3 my-5 ${
-          cart.length > 4 ? "overflow-x-scroll" : ""
+        className={`flex flex-row gap-3 my-5 w-max ${
+          cart?.length >= 3
+            ? " lg:overflow-auto whitespace-nowrap scroll-smooth"
+            : ""
         }`}
       >
         {cart.map((item, index) => (
-          <div className="flex flex-col items-center  dark:bg-[#4e76a4] dark:rounded-lg dark:p-2" key={index}>
+          <div
+            className="flex flex-col items-center dark:bg-[#4e76a4] dark:rounded-lg dark:p-2"
+            key={index}
+          >
             <Image
               src={item.image}
               width={300}
@@ -31,7 +42,7 @@ const OrderSurvey = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

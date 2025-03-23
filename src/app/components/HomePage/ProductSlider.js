@@ -57,7 +57,7 @@ const ProductSlider = ({ products, category }) => {
               spaceBetween: 20,
             },
           }}
-          className=" min-h-[300px] bg-white rounded-lg dark:bg-transparent dark:border  dark:shadow-[0px_2px_8px_0px_rgba(255,255,255,1),_0px_2px_8px_0px_rgba(255,255,255,1)] mt-5 mb-10"
+          className=" min-h-[300px]  rounded-lg dark:bg-transparent dark:border  dark:shadow-[0px_2px_8px_0px_rgba(255,255,255,1),_0px_2px_8px_0px_rgba(255,255,255,1)] mt-5 mb-10"
         >
           {products.map((product, index) => {
             return (

@@ -40,7 +40,7 @@ const AddToCartSection = ({
 
         {product.stock == 0 ? null : (
           <>
-            <div className=" flex flex-row justify-around gap-2 sm:justify-between w-full items-center bg-slate-50 fixed shadow-md md:hidden bottom-[4.5rem] left-0 z-10 p-3">
+            <div className=" flex flex-row justify-around gap-2 sm:justify-between w-full items-center bg-slate-50 dark:bg-[#4e76a4]  fixed shadow-md md:hidden bottom-[4.5rem] left-0 z-10 p-3">
               {discount_percent != null ? (
                 <div className="rounded-full bg-danger absolute text-white p-1 text-sm left-0 top-0">
                   {PersianNumbers(discount_percent)}%
