@@ -23,78 +23,27 @@
 }
 
 @media (prefers-color-scheme: dark) {
-
 }
 
 body {
   font-family: Iransens;
   font-size: 14px;
 }
-/* @keyframes moving-line {
-  0% {
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #60a5fa);
-  }
-  25% {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, #60a5fa, #38bdf8);
-  }
-  26% {
-    top: 0;
-    left: 100%;
-    width: 3px;
-    height: 0%;
-  }
-  50% {
-    top: 0;
-    left: 100%;
-    width: 3px;
-    height: 100%;
-    background: linear-gradient(180deg, #38bdf8, #0ea5e9);
-  }
-  51% {
-    top: 100%;
-    left: 100%;
-    width: 0%;
-    height: 3px;
-  }
-  75% {
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, #0ea5e9, #3b82f6);
-  }
-  76% {
-    top: 100%;
-    left: 0;
-    width: 3px;
-    height: 0%;
-  }
-  100% {
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 100%;
-    background: linear-gradient(180deg, #3b82f6, #60a5fa);
+.loader {
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #25b09b;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
   }
 }
-
-.animate-moving-line {
-  position: absolute;
-  animation: moving-line 5s linear infinite;
-  animation-play-state: paused;
-  will-change: transform;
-}
-
-.group:hover .animate-moving-line {
-  animation-play-state: running;
-  animation: none;
-  animation: moving-line 5s linear infinite;
-} */
