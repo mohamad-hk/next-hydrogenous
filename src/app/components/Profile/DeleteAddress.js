@@ -50,7 +50,7 @@ const DeleteAddress = ({ sh_id}) => {
       <Button color="danger" onPress={onOpen}>
         حذف آدرس
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="dark:bg-[#4e76a4] ">
         <ModalContent>
           {(onClose) => (
             <>

@@ -114,13 +114,14 @@ const ProductImage = ({ image, product_id }) => {
   return (
     <div className="relative">
       <Image
-        className="rounded-xl shadow-xl"
+        className="rounded-xl shadow-xl dark:shadow-[0px_2px_16px_0px_rgba(255,255,255,1),_0px_2px_16px_0px_rgba(255,255,255,1)]
+ "
         src={`/images/products/${image}`}
         width={500}
         height={500}
         alt="image not found"
       />
-      <div className="shadow-md rounded-xl flex flex-col items-center gap-5 p-3 absolute -right-14 top-0 border border-blue-200">
+      <div className="shadow-md rounded-xl flex flex-col items-center gap-5 p-3 absolute -right-20 top-0 border border-blue-200">
         <CiShare2
           className="cursor-pointer text-2xl hover:text-blue-800 transition-all duration-500 ease-in-out"
           onClick={handleCopy}

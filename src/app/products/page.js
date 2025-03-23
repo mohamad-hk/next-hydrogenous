@@ -73,13 +73,13 @@ const ShowProductsContent = () => {
           products.map((product, index) => {
             return (
               <div
-                className={`shadow-[0px_0px_5px_5px_rgba(7,_65,_210,_0.1)] rounded-2xl lg:h-[450px] flex flex-col items-center gap-5 pb-3 relative ${
+                className={`shadow-[0px_0px_5px_5px_rgba(7,_65,_210,_0.1)] rounded-2xl lg:h-[450px] flex flex-col items-center gap-5 pb-3 relative dark:bg-[#4e76a4] ${
                   product.stock == 0 ? "opacity-50 " : ""
                 }`}
                 key={index}
               >
                 {product.stock == 0 && (
-                  <div className="relative inset-0 bg-gray-200 bg-opacity-50 text-xl font-bold text-red-600">
+                  <div className="relative inset-0 bg-gray-200 dark:bg-gray-50 dark:bg-opacity-80 bg-opacity-50 text-xl font-bold text-red-600">
                     <p className="absolute top-52 -left-6 z-20">ناموجود</p>
                   </div>
                 )}
@@ -99,7 +99,7 @@ const ShowProductsContent = () => {
                     className="hover:scale-110 transition-all duration-500 ease-in-out"
                   />
                 </Link>
-                <h3 className="z-10 text-[#007BFF]">{product.product_name}</h3>
+                <h3 className="z-10 text-[#007BFF] dark:text-white">{product.product_name}</h3>
                 {product.stock == 0 ? null : (
                   <div className="flex flex-col text-lg">
                     <ShowPrice

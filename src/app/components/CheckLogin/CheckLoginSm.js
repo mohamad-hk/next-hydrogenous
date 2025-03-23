@@ -26,14 +26,14 @@ const CheckLloginSm = () => {
         <Link href={"/auth/login"} className="py-3">
           <div className="flex flex-col items-center justify-center gap-1">
             <CgProfile className="text-2xl" />
-            <p>پروفایل من</p>
+            <p>حساب کاربری</p>
           </div>
         </Link>
       ) : (
         <Link className="py-3" href={"/profile"}>
           <div className=" flex flex-row items-center justify-center">
             <Badge
-              className="bg-transparent"
+              className="bg-transparent dark:border-none"
               color="success"
               content={
                 <IoIosCheckmark className="text-xl bg-green-600 text-white rounded-full" />

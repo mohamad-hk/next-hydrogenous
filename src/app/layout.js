@@ -16,8 +16,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl">
-      <body className="bg-[#F5F7FA]">
+    <html lang="fa" dir="rtl">
+      <body className="bg-[#F5F7FA] dark:bg-[#313747] dark:text-white">
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <AuthProvider>
           <ShipmentProvider>
             <Header />
@@ -37,3 +38,14 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+const themeScript = `
+  (function() {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (prefersDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  })();
+`;

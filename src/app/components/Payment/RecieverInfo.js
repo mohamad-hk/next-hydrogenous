@@ -33,7 +33,7 @@ const ReceiverInfo = () => {
     <>
       {shipment.map((item) => {
         return (
-          <div className="flex flex-col gap-5 rounded-md p-3 ">
+          <div className="flex flex-col gap-5 rounded-md p-3  dark:bg-[#4e76a4] dark:w-fit mt-2 ">
             <div className="flex flex-row gap-2">
               <IoPersonOutline className="text-2xl" />
               <p>{item.f_n_shipment + " " + item.l_n_shipment}</p>

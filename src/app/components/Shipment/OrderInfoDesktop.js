@@ -18,7 +18,7 @@ const OrderInfoDesktop = ({ href, button, set_function,loading }) => {
   return (
     <>
       <div>
-        <Card>
+        <Card  className="dark:bg-[#4e76a4]  dark:text-white">
           <CardBody>
             <div className="flex flex-col gap-5">
               <div className="flex flex-row justify-between max-h-[400px]">

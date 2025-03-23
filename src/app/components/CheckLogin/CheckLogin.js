@@ -71,24 +71,24 @@ const CheckLlogin = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="flex flex-col gap-2 absolute top-10 left-0 bg-white shadow-lg rounded-lg py-3 w-72 z-10"
+              className="flex flex-col gap-2 absolute top-10 left-0 bg-white  dark:bg-[#4e76a4] shadow-lg rounded-lg py-3 w-72 z-10"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
               <Link
                 href="/profile"
-                className="block px-4 py-2 hover:bg-gray-100 transition-all duration-500 ease-in-out"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-red-400 transition-all duration-500 ease-in-out"
               >
                 <div className="flex flex-row items-center gap-2">
                   <p>حساب کاربری من</p>
-                  <p className="text-gray-500">
+                  <p className="text-gray-500  dark:text-white">
                     {data.first_name + " " + data.last_name}
                   </p>
                 </div>
               </Link>
               <Link
                 href="/profile/orders"
-                className="block px-4 py-2 hover:bg-gray-100 transition-all duration-500 ease-in-out"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-red-400 transition-all duration-500 ease-in-out"
               >
                 <div className="flex flex-row items-center gap-2">
                   <LuPackage className="text-2xl" />
@@ -97,7 +97,7 @@ const CheckLlogin = () => {
               </Link>
               <Link
                 href="/profile/addresses"
-                className="block px-4 py-2 hover:bg-gray-100 transition-all duration-500 ease-in-out"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-red-400 transition-all duration-500 ease-in-out"
               >
                 <div className="flex flex-row items-center gap-2">
                   <BiBuildingHouse className="text-2xl" />

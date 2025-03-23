@@ -21,7 +21,7 @@ const ProductSlider = ({ products, category }) => {
         {pathname.startsWith("/product") ? null : (
           <div className="flex flex-row justify-between items-center rounded-md p-2 bg-blue-700">
             <h2 className="text-3xl text-white">{category}</h2>
-            <div className="flex flex-row items-center bg-white p-3 rounded-md hover:scale-90 transition-all duration-500 ease-in-out">
+            <div className="flex flex-row items-center bg-white dark:bg-blue-700 dark:border dark:border-white p-3 rounded-md hover:scale-90 transition-all duration-500 ease-in-out">
               <Link href={`/products?category=${category}`}>مشاهده همه</Link>
               <IoIosArrowBack />
             </div>
@@ -57,14 +57,15 @@ const ProductSlider = ({ products, category }) => {
               spaceBetween: 20,
             },
           }}
-          className=" min-h-[300px] bg-white rounded-lg"
+          className=" min-h-[300px] bg-white rounded-lg dark:bg-transparent dark:border  dark:shadow-[0px_2px_8px_0px_rgba(255,255,255,1),_0px_2px_8px_0px_rgba(255,255,255,1)] mt-5 mb-10"
         >
           {products.map((product, index) => {
             return (
               <SwiperSlide key={index} className="my-5 p-3">
                 <div
                   className="shadow-[0px_0px_15px_5px_rgba(7,_65,_210,_0.1)]
- rounded-2xl min-h-[270px] sm:min-h-[300px] lg:min-h-[300px] xl:min-h-[350px] p-2"
+                  
+ rounded-2xl min-h-[270px] sm:min-h-[300px] lg:min-h-[300px] xl:min-h-[350px] p-2 dark:bg-[#4e76a4]"
                 >
                   <Link href={`/product/${fixurl(product.product_name)}`}>
                     <Image
@@ -77,7 +78,7 @@ const ProductSlider = ({ products, category }) => {
                   </Link>
 
                   <div className="flex flex-col items-center gap-5">
-                    <h3 className="text-[#007BFF]">{product.product_name}</h3>
+                    <h3 className="text-[#007BFF] dark:text-white">{product.product_name}</h3>
                     <div className="flex flex-col gap-2 text-xl">
                       <ShowPrice
                         price={product.product_price}

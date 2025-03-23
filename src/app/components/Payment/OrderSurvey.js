@@ -15,14 +15,14 @@ const OrderSurvey = () => {
         }`}
       >
         {cart.map((item, index) => (
-          <div className="flex flex-col items-center" key={index}>
+          <div className="flex flex-col items-center  dark:bg-[#4e76a4] dark:rounded-lg dark:p-2" key={index}>
             <Image
               src={item.image}
               width={300}
               height={300}
               alt="image not found"
             />
-            <div className="flex flex-col items-center lg:flex-row md:items-center md:gap-3">
+            <div className="flex flex-col items-center md:gap-3 ">
               <div className="shadow-md px-3 border border-blue-200 py-1 rounded-md">
                 {PersianNumbers(item.quantity)} عدد
               </div>

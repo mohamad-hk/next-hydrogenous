@@ -29,8 +29,8 @@ const Cart = ({ close }) => {
         <p className="text-gray-600">سبد خرید خالی است.</p>
       ) : (
         cart.map((item, index) => (
-          <div key={item.id}>
-            <div className="rounded-lg flex flex-row justify-between items-center">
+          <div key={item.id} className="">
+            <div className="rounded-lg dark:bg-[#4e76a4] flex flex-row justify-between items-center  px-2 pb-2">
               <div className="flex flex-row items-center">
                 <div
                   className={`flex ${
@@ -79,13 +79,16 @@ const Cart = ({ close }) => {
                 )}
               </div>
             </div>
-            {cart.length - 1 !== index && <Divider />}
+            {cart.length - 1 !== index && <Divider className="dark:bg-gray-100 dark:my-2" />}
           </div>
         ))
       )}
       {pathname !== "/cart" && (
         <>
-          <p className="mt-5">{PersianNumbers(total)} تومان</p>
+        <div className="flex flex-row items-center gap-2 mt-5">
+          <p>مجموع سبد:</p>
+          <p>{PersianNumbers(total)} تومان</p>
+        </div>
           <Link
             href="/cart"
             className="w-[80%] block mx-auto mt-5 bg-danger rounded-xl text-white text-center p-2"

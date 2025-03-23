@@ -64,8 +64,8 @@ const Dashboard = () => {
     setDelivered(deliveredCount);
   }, [orders]);
   return (
-    <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 shadow-xl bg-white p-10 rounded-l-3xl">
-      <Card className="h-[150px]">
+    <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 shadow-xl bg-white  dark:bg-[#4e76a4]  p-10 rounded-l-3xl">
+      <Card className="h-[150px]  dark:bg-[#4e76a4] dark:text-white">
         <CardBody>
           <div className="flex flex-col items-start gap-2">
             <div className="flex flex-row">
@@ -76,7 +76,7 @@ const Dashboard = () => {
           </div>
         </CardBody>
       </Card>
-      <Card className="h-[150px]">
+      <Card className="h-[150px] dark:bg-[#4e76a4] dark:text-white">
         <CardBody>
           <div className="flex flex-col items-start gap-2">
             <div className="flex flex-row">
@@ -87,7 +87,7 @@ const Dashboard = () => {
           </div>
         </CardBody>
       </Card>
-      <Card className="h-[150px]">
+      <Card className="h-[150px] dark:bg-[#4e76a4] dark:text-white">
         <CardBody>
           <div className="flex flex-col items-start gap-2">
             <div className="flex flex-row">
@@ -98,7 +98,7 @@ const Dashboard = () => {
           </div>
         </CardBody>
       </Card>
-      <Card className="h-[150px]">
+      <Card className="h-[150px] dark:bg-[#4e76a4] dark:text-white">
         <CardBody>
           <div className="flex flex-col items-start gap-2">
             <div className="flex flex-row">

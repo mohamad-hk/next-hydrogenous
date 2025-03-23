@@ -57,7 +57,7 @@ const CommentStatics = ({ id }) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-[250px_1fr] gap-x-5 max-h-[250px]">
+      <div className="grid grid-cols-1 sm:grid-cols-[230px_1fr] gap-x-5 max-h-[250px] ">
         <div className="flex flex-col gap-5 ">
           <div className="flex flex-row items-center gap-2 ">
             {PersianNumbers(5)}

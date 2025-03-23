@@ -60,7 +60,7 @@ const Orders = () => {
 
   return (
     <>
-      <div className="shadow-xl bg-white p-2 lg:p-10 rounded-l-3xl">
+      <div className="shadow-xl bg-white p-2 lg:p-10 rounded-l-3xl  dark:bg-[#4e76a4] ">
         <nav className="flex flex-row justify-center items-center gap-2 lg:gap-10 mb-5 overflow-x-scroll  md:overflow-auto">
           {[
             "همه",
@@ -73,8 +73,8 @@ const Orders = () => {
               key={status}
               className={`border-2 rounded-lg p-2 w-[150px] text-center transition-all ${
                 activeStatus === status
-                  ? "border-blue-700 bg-blue-100"
-                  : "border-blue-500"
+                  ? "border-blue-700 bg-blue-100  dark:bg-[#4e76a4]"
+                  : "border-blue-500 dark:border-blue-100"
               }`}
               onClick={() => setActiveStatus(status)}
             >

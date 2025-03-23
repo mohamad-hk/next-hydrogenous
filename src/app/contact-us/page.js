@@ -38,8 +38,8 @@ const ContactUs = () => {
   return (
     <div className="w-fit mx-auto border border-gray-200 rounded-lg p-3 my-5">
       <h2 className="text-center text-xl my-2 md:my-0">تماس با ما</h2>
-      <div className="flex flex-col md:flex-row justify-center gap-3 items-center">
-        <form onSubmit={handleSubmit} className="w-full max-w-md">
+      <div className="flex flex-col md:flex-row justify-center gap-3 items-center ">
+        <form onSubmit={handleSubmit} className="w-full max-w-md ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <Input
               label="نام"

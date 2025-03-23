@@ -53,14 +53,14 @@ const ProfileComments = () => {
                 <>
                   <div
                     key={index}
-                    className="flex flex-col justify-start gap-3 md:w-[400px] lg:w-[600px] p-5 max-w-[800px] h-[250px] shadow-md rounded-lg "
+                    className="flex flex-col justify-start gap-3 md:w-[400px] lg:w-[600px] p-5 max-w-[800px] h-[250px] shadow-md rounded-lg  dark:bg-[#4e76a4]"
                   >
                     <div className="flex flex-row gap-2 items-center text-xl">
                       <LuCircleUser />
                       <p>{comment.comment_user}</p>
                     </div>
                     <Link
-                      className="text-blue-600"
+                      className="text-blue-600 dark:text-white"
                       href={`/product/${fixurl(
                         comment.tbl_products.product_name
                       )}`}

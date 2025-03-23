@@ -18,7 +18,7 @@ const ShowAddresses = ({ data, onChange }) => {
     <div>
       <p>یک آدرس انتخاب کنید</p>
 
-      <div className="flex flex-wrap gap-5 py-10  px-10">
+      <div className="flex flex-wrap gap-5">
         {data?.map((shipment, index) => (
           <label
             key={shipment.shipment_id ?? index}
@@ -29,11 +29,11 @@ const ShowAddresses = ({ data, onChange }) => {
             className={`relative flex items-start gap-3 rounded-xl shadow-lg p-5 max-w-[500px] w-full 
             transition-all duration-300 cursor-pointer ${
               selected === shipment.shipment_id
-                ? "bg-blue-100 shadow-xl scale-105"
-                : "bg-white"
+                ? "bg-blue-100 shadow-xl scale-105  dark:bg-[#4e76a4]"
+                : "bg-white  dark:bg-[#4e76a4]"
             }`}
           >
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3  dark:text-white">
               <div className="flex flex-row gap-2">
                 <IoPersonOutline className="text-2xl" />
                 <p>{shipment.f_n_shipment + " " + shipment.l_n_shipment}</p>

@@ -73,7 +73,7 @@ const AddComment = ({ id }) => {
   };
   return (
     <>
-      <div className="flex flex-col gap-5 shadow-md rounded-2xl p-3 max-h-[340px]">
+      <div className="flex flex-col gap-5 shadow-md rounded-2xl p-3 max-h-[340px] dark:bg-[#3e5f86]">
         <CommentStatics id={id} />
         <p className="text-center">نظر خود را در مورد این محصول بنویسید</p>
         <Button

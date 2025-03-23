@@ -5,7 +5,6 @@ import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
 // import { SlLike } from "react-icons/sl";
 // import { SlDislike } from "react-icons/sl";
-import { Divider } from "@heroui/react";
 import { useEffect, useState } from "react";
 import convertToPersianDate from "@/app/utils/ConvertToPersianDate";
 
@@ -26,29 +25,29 @@ const ShowComments = ({ id }) => {
   }, []);
   return (
     <>
-        <div className="flex flex-col shadow-lg rounded-lg">
+        <div className="flex flex-col shadow-lg rounded-lg h-fit">
         {comments?.length > 0 ? (
           comments.map((comment, index) => {
             return (
               <>
                 <div
                   key={index}
-                  className={`flex flex-col justify-start gap-4 md:w-[400px] lg:w-[600px] p-2 max-w-[800px] h-[250px] 
+                  className={`flex flex-col justify-start gap-4 md:w-[400px] lg:w-[600px] p-2 max-w-[800px] h-fit  dark:bg-[#3e5f86] rounded-md dark:shadow-md dark:shadow-white
                     ${
                       index !== comments.length - 1
-                        ? "border-b border-[#00D1FF]"
-                        : ""
+                        ? "border-b border-[#00D1FF]  dark:border-white "
+                        : " dark:border-white"
                     }
                   `}
                 >
                   <div className="flex flex-row gap-2 items-center text-xl">
-                    <LuCircleUser className="text-[#007BFF]" />
-                    <p className="text-[#007BFF]">{comment.comment_user}</p>
+                    <LuCircleUser className="text-[#007BFF] dark:text-white" />
+                    <p className="text-[#007BFF] dark:text-white">{comment.comment_user}</p>
                   </div>
                   <div className="text-2xl">
                     <Rater total={5} rating={comment.comment_score} />
                   </div>
-                  <p className="text-[#333333]"> {comment.comment_text} </p>
+                  <p className="text-[#333333] dark:text-white"> {comment.comment_text} </p>
                   <p>{convertToPersianDate(comment.create_comment)}</p>
 
                   {/* <div className="flex flex-row gap-5">
@@ -63,7 +62,7 @@ const ShowComments = ({ id }) => {
             );
           })
         ) : (
-          <div className="flex flex-col justify-start gap-5 rounded-md shadow-sm  bg-blue-200 w-full p-4 max-w-[800px] h-[150px] ">
+          <div className="flex flex-col justify-start gap-5 rounded-md shadow-sm  bg-blue-200 w-full p-4 max-w-[800px] h-[150px] dark:bg-[#3e5f86] dark:text-white ">
             <p className="font-bold">
               دیدگاه خود را در مورد این محصول ثبت کنید و به دیگران کمک کنید.
             </p>

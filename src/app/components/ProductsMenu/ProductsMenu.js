@@ -24,9 +24,11 @@ export default function ProductsMenu() {
         hoverTimeout = setTimeout(() => setHovered(false), 500);
       }}
     >
-      <Link href={"/products"} className="text-white">محصولات</Link>
+      <Link href={"/products"} className="text-white">
+        محصولات
+      </Link>
       <div
-        className={`absolute left-0 mt-2 bg-white shadow-lg border rounded-md w-auto transition-all duration-300 ease-in-out transform z-20 ${
+        className={`absolute left-0 mt-2 bg-white dark:bg-[#4e76a4] shadow-lg border rounded-md w-auto transition-all duration-300 ease-in-out transform z-20 ${
           hovered
             ? "opacity-100 scale-100"
             : "opacity-0 scale-95 pointer-events-none"
@@ -43,28 +45,24 @@ export default function ProductsMenu() {
           {categories.map((top) => {
             const tempLink = top.top_category_id === 1 ? sache : powder;
             return (
-              <div
-                key={top.top_category_id}
-                className=" border border-l-0 rounded-md"
-              >
+              <div key={top.top_category_id} className="">
                 <h3 className="font-bold text-lg mb-2 hover:cursor-pointer px-10">
                   {top.top_category_name}
                 </h3>
-                <div className="ml-4">
+                <div className="flex flex-col items-center">
                   {top.midCategories.map((mid) => (
                     <div
                       key={mid.m_c_id}
-                      className="p-1 hover:bg-gray-200 hover:cursor-pointer"
+                      className="p-1 hover:text-blue-400 hover:cursor-pointer transition-all duration-500 ease-in-out "
                     >
-                      <h4 className="text-md w-full">
-                        <Link
-                          href={`/product/${fixurl(
-                            tempLink + " " + mid.mid_category_name
-                          )}`}
-                        >
-                          {mid.mid_category_name}
-                        </Link>
-                      </h4>
+                      <Link
+                        className="text-md w-full"
+                        href={`/product/${fixurl(
+                          tempLink + " " + mid.mid_category_name
+                        )}`}
+                      >
+                        {mid.mid_category_name}
+                      </Link>
                     </div>
                   ))}
                 </div>

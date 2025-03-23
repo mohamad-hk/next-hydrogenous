@@ -46,7 +46,7 @@ const WishList = () => {
         {products.map((product, index) => {
           return (
             <div
-              className=" bg-white shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-2xl lg:h-[400px] flex flex-col items-center gap-5 pb-3 relative"
+              className=" bg-white  dark:bg-[#4e76a4] shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-2xl lg:h-[400px] flex flex-col items-center gap-5 pb-3 relative"
               key={index}
             >
               <ShowDiscount

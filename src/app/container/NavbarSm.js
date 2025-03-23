@@ -7,7 +7,7 @@ import CheckLloginSm from "../components/CheckLogin/CheckLoginSm";
 const NavbarMobile = () => {
   return (
     <>
-      <div className="grid grid-cols-4 w-full bg-blue-200 fixed bottom-0 z-30 lg:hidden">
+      <div className="grid grid-cols-4 w-full bg-blue-200 dark:bg-[#3a7bd5] fixed bottom-0 z-30 lg:hidden">
         <Link className="py-3" href={"/"}>
           <div className="flex flex-col items-center gap-1">
             <GoHome className="text-2xl" />

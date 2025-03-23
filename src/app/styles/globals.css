@@ -23,19 +23,14 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #3a7bd5;
-    --foreground: #ffffff;
-  }
+
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Iransens;
   font-size: 14px;
 }
-@keyframes moving-line {
+/* @keyframes moving-line {
   0% {
     top: 0;
     left: 0;
@@ -102,4 +97,4 @@ body {
   animation-play-state: running;
   animation: none;
   animation: moving-line 5s linear infinite;
-}
+} */

@@ -44,7 +44,7 @@ const Addresses = () => {
         <div className="grid grid-cols-1 gap-y-5 sm:grid-cols-2 sm:gap-x-5 lg:grid-cols-3 lg:gap-x-5">
           {shipments?.map((shipment, index) => (
             <div
-              className="flex flex-col gap-5 rounded-xl shadow-lg p-3 max-w-[500px] max-h-[300px]"
+              className="flex flex-col gap-5 rounded-xl shadow-lg p-3 max-w-[500px] max-h-[300px]  dark:bg-[#4e76a4]"
               key={index}
             >
               <div className="flex flex-row justify-between">

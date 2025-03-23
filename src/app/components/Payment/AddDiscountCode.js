@@ -45,7 +45,7 @@ const AddDiscountCode = () => {
           value={code}
           onChange={(e) => setCode(e.target.value)}
         />
-        <Button variant="flat" onPress={CheckDiscountCode}>
+        <Button variant="flat" className=" dark:!bg-blue-500 dark:text-white" onPress={CheckDiscountCode}>
           ثبت کد
         </Button>
       </div>

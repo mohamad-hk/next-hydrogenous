@@ -6,27 +6,16 @@ import PersianNumbers from "@/app/utils/ToPersianNumber";
 import { Button, Card, CardBody } from "@heroui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 const OrderInfoSm = ({ href, button, set_function,loading }) => {
-  const [LargeScreen, setLargeScreen] = useState(false);
   const { totalBasket, totalDiscount } = useCartStore();
   const { shipmentId } = useShipment();
   const pathname = usePathname();
 
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setLargeScreen(window.innerWidth > 768);
-    };
 
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
   return (
     <>
-      <Card className="fixed bottom-0 w-full right-0 rounded-none z-10">
+      <Card className="fixed bottom-0 w-full right-0 rounded-none z-10  dark:text-white dark:bg-[#4e76a4]">
         <CardBody>
           <div className="flex flex-col gap-5">
             <div className="flex flex-row justify-between max-h-[400px]">
@@ -45,7 +34,7 @@ const OrderInfoSm = ({ href, button, set_function,loading }) => {
             ) : (
               <Link href={href} className="w-full">
                 <button
-                  className="w-full bg-danger-500 rounded-md text-white py-2 text-center text-lg disabled:opacity-50"
+                  className="w-full bg-blue-600 rounded-md text-white py-2 text-center text-lg disabled:opacity-50"
                   disabled={pathname !== "/cart" ? !shipmentId : false}
                 >
                   {button}

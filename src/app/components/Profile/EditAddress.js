@@ -101,7 +101,7 @@ export default function EditAddress({ sh_id, refresh }) {
       >
         ویرایش آدرس
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="3xl">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="3xl" className="dark:bg-[#4e76a4] ">
         <ModalContent>
           {(onClose) => (
             <>
