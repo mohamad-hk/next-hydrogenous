@@ -34,6 +34,7 @@
     "swiper": "^11.2.2",
     "swr": "^2.3.3",
     "tailwind-merge": "^3.0.1",
+    "yup": "^1.6.1",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
