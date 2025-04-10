@@ -34,19 +34,19 @@ const FilterProducts = () => {
     updateFilters("price", newPrice);
   };
   const handleCategoryChange = (selected) => {
-    const value = selected?.target?.value || selected; 
+    const value = selected?.target?.value || selected;
 
     if (value === "همه") {
       setCategory("");
       updateFilters("category", "");
     } else {
       setCategory(value);
-      updateFilters("category", value); 
+      updateFilters("category", value);
     }
   };
   const handleFlavour = (selected) => {
     const value = selected?.target?.value || selected;
-    console.log("Selected Flavour:", value); 
+    console.log("Selected Flavour:", value);
 
     if (value === "همه") {
       setFlavour("");
@@ -56,7 +56,6 @@ const FilterProducts = () => {
       updateFilters("flavour", value);
     }
   };
-
 
   const handleDiscountChange = () => {
     const newDiscount = !discount;
@@ -68,12 +67,10 @@ const FilterProducts = () => {
     setExist(newExist);
     updateFilters("exist", newExist ? "false" : "true");
   };
-  
 
   return (
-    <div className="flex flex-col gap-5 w-[90%] bg-slate-50 shadow-sm max-h-[300px] p-2">
-
-      <div className="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg w-80">
+    <div className="flex flex-col gap-5 w-[100%] lg:w-[90%] bg-slate-50 shadow-sm h-fit rounded-md lg:p-2">
+      <div className="flex flex-col items-center justify-center lg:p-6 bg-slate-50 rounded-2xl shadow-lg">
         <h2 className=" text-lg font-semibold text-gray-800">محدوده قیمت</h2>
         <div className="relative w-full mt-4">
           <input
@@ -102,7 +99,6 @@ const FilterProducts = () => {
       </div>
 
       <Select
-        className="max-w-xs"
         color="primary"
         placeholder="دسته‌بندی"
         onChange={handleCategoryChange}
@@ -120,11 +116,10 @@ const FilterProducts = () => {
       </Select>
 
       <Select
-        className="max-w-xs"
         color="primary"
         placeholder="طعم ها"
         onChange={handleFlavour}
-        selectedKeys={[flavour ? String(flavour) : "همه"]} 
+        selectedKeys={[flavour ? String(flavour) : "همه"]}
       >
         <SelectItem key="همه" value="همه">
           همه
