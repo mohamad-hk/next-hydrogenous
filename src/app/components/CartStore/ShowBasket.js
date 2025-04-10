@@ -24,7 +24,7 @@ export default function ShowBasket() {
             content={<CounterBasket />}
             className="top-2 text-danger dark:text-warning md:text-warning bg-transparent "
           ></Badge>
-          <PiBasket className="text-2xl text-black dark:text-white md:text-white" />
+          <PiBasket className="text-2xl text-black dark:text-white lg:text-white" />
         </div>
       </div>
       <Drawer isOpen={isOpen} onOpenChange={onOpenChange}>
