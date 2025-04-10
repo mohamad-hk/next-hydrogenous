@@ -42,9 +42,8 @@ const ProductImage = ({ image, product_id }) => {
   };
 
   const setWish = async () => {
-    console.log(user);
     try {
-      if (user) {
+
         const response = await fetch(
           "https://hydrogenous.vercel.app/api/Product/Wish/InsertWish",
           {
@@ -65,10 +64,7 @@ const ProductImage = ({ image, product_id }) => {
 
         toast.success("به لیست علاقه مندی اضافه شد");
         setIsWish(true);
-      } else {
-        console.log("user nist");
-        router.push("/auth/login");
-      }
+
     } catch (error) {
       toast.error("مشکلی پیش اومده");
     }

@@ -17,7 +17,6 @@ const Dashboard = () => {
         `https://hydrogenous.vercel.app/api/Profile/Orders/GetOrders?${input_params}`
       );
       const response = await data.json();
-      console.log(response);
       setOrders(response);
     } catch (error) {
       console.error("Error fetching shipments:", error);

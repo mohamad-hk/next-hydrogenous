@@ -22,7 +22,6 @@ const WishList = () => {
         `https://hydrogenous.vercel.app/api/Product/Wish/GetWish?${input_params}`
       );
       const response = await data.json();
-      console.log(response);
       setProducts(response);
     } catch (error) {
       console.error("Error fetching", error);

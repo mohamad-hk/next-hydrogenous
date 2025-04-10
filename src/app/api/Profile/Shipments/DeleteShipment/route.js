@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { supabase } from "@/app/utils/client";
 
 export async function DELETE(req) {
-  console.log(78)
   const { searchParams } = new URL(req.url);
   const ship_id = searchParams.get("ship_id");
 

@@ -77,8 +77,6 @@ const RegisterUser = () => {
       });
 
       const data = await userResponse.json();
-      console.log(data);
-
       if (data.exists) {
         toast.error(" شماره موبایل قبلا ثبت شده است ");
         throw new Error();

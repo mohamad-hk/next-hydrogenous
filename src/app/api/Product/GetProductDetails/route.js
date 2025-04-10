@@ -4,7 +4,6 @@ export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const product_id = Number(searchParams.get("p_id"));
 
-  console.log(typeof product_id);
   const { data: details } = await supabase
     .from("tbl_product_details")
     .select("*")

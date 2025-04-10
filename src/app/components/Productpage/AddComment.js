@@ -41,7 +41,6 @@ const AddComment = ({ id }) => {
       rating,
       user_name: temp_user,
     };
-    console.log(input_params);
 
     try {
       const response = await fetch(

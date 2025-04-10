@@ -46,7 +46,6 @@ const FilterProducts = () => {
   };
   const handleFlavour = (selected) => {
     const value = selected?.target?.value || selected;
-    console.log("Selected Flavour:", value);
 
     if (value === "همه") {
       setFlavour("");
