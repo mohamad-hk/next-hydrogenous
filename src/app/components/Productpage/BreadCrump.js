@@ -10,7 +10,6 @@ export default function BreadCrump({ title, category }) {
     t_category = "/products?category=پودر";
     name_category="پودر"
   }
-console.log(category,t_category);
   return (
     <Breadcrumbs>
       <BreadcrumbItem href="/">صفحه اصلی</BreadcrumbItem>

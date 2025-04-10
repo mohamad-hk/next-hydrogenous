@@ -42,37 +42,36 @@ const ProductImage = ({ image, product_id }) => {
   };
 
   const setWish = async () => {
-    if(user){
-
+    console.log(user);
     try {
-      const response = await fetch(
-        "https://hydrogenous.vercel.app/api/Product/Wish/InsertWish",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            customer_id: user.customer_id,
-            product_id: product_id,
-          }),
+      if (user) {
+        const response = await fetch(
+          "https://hydrogenous.vercel.app/api/Product/Wish/InsertWish",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              customer_id: user.customer_id,
+              product_id: product_id,
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          toast.error("مشکلی پیش اومده");
         }
-      );
 
-      if (!response.ok) {
-        toast.error("مشکلی پیش اومده");
+        toast.success("به لیست علاقه مندی اضافه شد");
+        setIsWish(true);
+      } else {
+        console.log("user nist");
+        router.push("/auth/login");
       }
-
-      const responseData = await response.json();
-      toast.success("به لیست علاقه مندی اضافه شد");
-      setIsWish(true);
     } catch (error) {
       toast.error("مشکلی پیش اومده");
     }
-  }else{
-    router.push("/auth/login");
-  }
-
   };
 
   const removeWish = async () => {
