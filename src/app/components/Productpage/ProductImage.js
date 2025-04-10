@@ -111,10 +111,14 @@ const ProductImage = ({ image, product_id }) => {
   }, [user, product_id]);
 
   useEffect(() => {
-    if (!isWish && beWish && user) {
-      setWish();
-    } else if (isWish && !beWish && user) {
-      removeWish();
+    if (user) {
+      if (!isWish && beWish) {
+        setWish();
+      } else if (isWish && !beWish) {
+        removeWish();
+      }
+    } else if (!user && beWish) {
+      router.push("/auth/login");
     }
   }, [beWish, user]);
 
