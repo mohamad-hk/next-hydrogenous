@@ -74,10 +74,10 @@ const LoginUser = () => {
       const jwtData = await jwtResponse.json();
 
       if (!jwtResponse.ok) {
-        throw new Error(" خطا در تولید و ذخیره توکن JWT.");
+        throw new Error("");
       }
 
-      toast.success(" ثبت نام با موفقیت انجام شد");
+      toast.success("خوش اومدی");
 
       setTimeout(() => {
         router.push("/");

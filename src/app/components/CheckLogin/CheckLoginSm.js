@@ -36,7 +36,7 @@ const CheckLloginSm = () => {
               className="bg-transparent dark:border-none"
               color="success"
               content={
-                <IoIosCheckmark className="text-xl bg-green-600 text-white rounded-full" />
+                <IoIosCheckmark className="text-xl bg-green-600 text-white px-0" />
               }
             >
               <div className="flex flex-col items-center gap-1">

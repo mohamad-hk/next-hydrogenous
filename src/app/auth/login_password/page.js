@@ -17,7 +17,7 @@ const LoginWithPassword = () => {
     const hash = MD5(currentPassword).toString();
 
     try {
-      const loginResponse = await fetch("/api/Auth/LoginWithPassword", {
+      const loginResponse = await fetch("https://hydrogenous.vercel.app/api/Auth/LoginWithPassword", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone: phoneNumber, password: hash }),
