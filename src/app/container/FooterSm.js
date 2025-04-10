@@ -105,10 +105,11 @@ const FooterMobile = () => {
             <LinkedInIcon className="text-gray-100" />
           </div>
         </nav>
-        <p className="text-center text-white text-[12px]">
-          کلیه حقوق این سایت برای شرکت اکسیر سازان نو اندیش پیشروفن محفوظ است
-        </p>
+        <p className="text-center text-white text-[12px] mb-24">
+        تمامی حقوق مادی و معنوی این سایت متعلق به شرکت اکسیر سازان نو اندیش
+        پیشروفن می‌باشد.        </p>
       </footer>
+      
     </>
   );
 };

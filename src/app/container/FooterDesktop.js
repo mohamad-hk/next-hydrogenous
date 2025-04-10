@@ -89,7 +89,15 @@ const FooterDesktop = () => {
             برای کسب اطلاعات بیشتر QR کد را اسکن کنید
           </p>
         </nav>
+
       </footer>
+      <div className=" py-5 px-5 bg-gradient-to-r from-[#3a6073] to-[#3a7bd5]">
+      <p className="text-white text-center">
+        تمامی حقوق مادی و معنوی این سایت متعلق به شرکت اکسیر سازان نو اندیش
+        پیشروفن می‌باشد.
+      </p>
+      </div>
+
     </>
   );
 };
