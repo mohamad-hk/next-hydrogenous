@@ -1,6 +1,7 @@
 "use client";
 import { AuthContext } from "@/app/context/AuthContext";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { CiShare2 } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
@@ -11,6 +12,7 @@ const ProductImage = ({ image, product_id }) => {
   const [copied, setCopied] = useState(false);
   const [isWish, setIsWish] = useState(false);
   const [beWish, setBeWish] = useState(false);
+  const router = useRouter();
 
   const handleCopy = async () => {
     try {
@@ -40,6 +42,8 @@ const ProductImage = ({ image, product_id }) => {
   };
 
   const setWish = async () => {
+    if(user){
+
     try {
       const response = await fetch(
         "https://hydrogenous.vercel.app/api/Product/Wish/InsertWish",
@@ -65,6 +69,10 @@ const ProductImage = ({ image, product_id }) => {
     } catch (error) {
       toast.error("مشکلی پیش اومده");
     }
+  }else{
+    router.push("/auth/login");
+  }
+
   };
 
   const removeWish = async () => {
